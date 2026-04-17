@@ -60,16 +60,10 @@ def _parse_session(jsonl_file: Path, namespace: str, min_messages: int) -> dict 
     # Build conversation text
     text_parts = []
     files_touched = set()
-    last_ts = None
 
     for entry in entries:
-        ts = entry.get("timestamp", "")
-        if ts:
-            last_ts = ts
-
         msg = entry.get("message", {})
         role = msg.get("role", "")
-        entry_type = entry.get("type", "")
 
         if role == "user":
             content = msg.get("content", "")

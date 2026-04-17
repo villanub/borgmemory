@@ -10,7 +10,7 @@ def transform_manual_knowledge(filepath: str, namespace: str, title: str = "Manu
 
     return [{
         "source": "manual",
-        "source_id": f"manual-{hashlib.md5(filepath.encode()).hexdigest()[:8]}",
+        "source_id": f"manual-{hashlib.md5(filepath.encode(), usedforsecurity=False).hexdigest()[:8]}",
         "source_event_id": f"manual-{filepath}",
         "content": content,
         "occurred_at": datetime.now().isoformat(),

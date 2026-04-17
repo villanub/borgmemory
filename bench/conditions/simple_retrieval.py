@@ -40,7 +40,6 @@ async def _fetch_episodes(query: str, namespace: str, limit: int) -> list[dict]:
                 api_version="2025-04-01-preview",
             )
             # Use the same embedding endpoint as Borg
-            emb_endpoint = cfg.azure_endpoint
             emb_key = cfg.azure_api_key
             import os
             if os.getenv("AZURE_OPENAI_EMBEDDING_ENDPOINT"):
