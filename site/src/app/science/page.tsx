@@ -134,7 +134,7 @@ export default function SciencePage() {
       <Section
         id="measured"
         title="Measured Results (April 2026)"
-        subtitle="The compilation thesis tested on real production episodes from Azure MSP engineering."
+        subtitle="The compilation thesis tested on real production episodes from cloud-infrastructure engineering."
         className="border-t border-[var(--border)]"
       >
         <div className="rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-6">
