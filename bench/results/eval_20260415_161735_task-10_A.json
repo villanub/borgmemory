@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response fails to address any of the specific implementation details of azr-compliance-v3 requested (dedicated Postgres tables, the 15s ProcessEventGridBulkRemediation timer, requeuing stale items, recency index, and worker-specific env knobs).",
+  "retrieval_precision": 0.0,
+  "retrieval_precision_reasoning": "The reply gives generic architecture patterns rather than retrieving or asserting the concrete, repository-specific facts from the ground truth, so precision is effectively zero.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The response does not present outdated or incorrect facts about azr-compliance-v3; it simply omits the ground-truth details rather than stating stale information.",
+  "irrelevant_rate": 1.0,
+  "irrelevant_reasoning": "Most of the content is generic best-practice material unrelated to the specific implementation details requested, so nearly all of it is irrelevant to the task.",
+  "knowledge_coverage": 0.0,
+  "knowledge_coverage_reasoning": "None of the expected knowledge points (dedicated tables, 15s timer worker, non-reuse of sync_queue, requeuing stale items, recency index, separate fleet knobs) are covered.",
+  "context_tokens": 0,
+  "latency_ms": 40943,
+  "condition": "A",
+  "task_id": "task-10",
+  "explainability": null
+}

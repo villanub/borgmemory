@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response delivers a complete, well-structured RFP section tailored to governance automation, using appropriate governance terminology and providing functional/non-functional requirements, acceptance criteria, deliverables, and a timeline.",
+  "retrieval_precision": 0.9,
+  "retrieval_precision_reasoning": "The response accurately uses governance automation terms (policy-as-code, OPA/Rego, RBAC/ABAC, SIEM, model registries) and gives concrete examples and integration points; a few performance targets were left as vendor-provided placeholders rather than specific quantified thresholds.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The content is evergreen and does not rely on time-bound facts or outdated references.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "All sections and items are relevant to governance automation for an RFP; no extraneous topics are introduced.",
+  "knowledge_coverage": 0.92,
+  "knowledge_coverage_reasoning": "The response covers policy lifecycle, enforcement/remediation, identity and ML governance, audit and integrations, testing, SLA and deployment options, and acceptance criteria \u2014 only minor gaps are explicit numeric performance SLAs and any Wisdm-specific constraints (no org context was provided).",
+  "context_tokens": 0,
+  "latency_ms": 33582,
+  "condition": "A",
+  "task_id": "task-08",
+  "explainability": null
+}

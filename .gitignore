@@ -1,0 +1,79 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+.venv/
+venv/
+env/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+htmlcov/
+.coverage
+coverage.xml
+
+# Environment / secrets
+.env
+.env.local
+.env.*.local
+site/.env.local
+
+# Local reference files (not needed for build)
+.local/
+.remember/
+.claude/
+.codex/
+.kiro/
+
+# macOS
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Node / Next.js (site/)
+node_modules/
+site/.next/
+site/out/
+
+# Docker
+*.log
+
+# Conversation exports (may contain sensitive data)
+exports/*.json
+exports/*.jsonl
+exports/*.txt
+!exports/README.md
+
+# SQLite (local dev)
+*.db
+*.sqlite3
+
+# Bootstrap data (may contain conversation dumps)
+bootstrap/*.json
+bootstrap/*.jsonl
+!bootstrap/*.py
+!bootstrap/*.sh
+!bootstrap/README.md
+
+# Borg install directory (created by install.sh)
+.borg/
+
+# Editor backup files
+*.bak
+*.orig
+
+# Terraform / IaC state (if ever used)
+*.tfstate
+*.tfstate.backup
+.terraform/

@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response failed to retrieve or state the documented decision about SyncEventGrid scoping and ownership; instead it claimed no explicit decision was present and offered generic design options.",
+  "retrieval_precision": 0.0,
+  "retrieval_precision_reasoning": "None of the expected, specific facts (join to lighthouse_delegations, managed_by_tenant_id filter, delegation_state, use of a single Lighthouse credential, and no per-customer tokens) were retrieved or reported.",
+  "stale_fact_rate": 1.0,
+  "stale_fact_reasoning": "The response incorrectly asserted the context contained no decision and proposed alternative designs; this contradicts the ground-truth decision and therefore its factual content is effectively stale/incorrect for the task.",
+  "irrelevant_rate": 0.9,
+  "irrelevant_reasoning": "Most of the reply consisted of high-level options and recommendations unrelated to the specific compliance retrieval task instead of extracting the documented decision.",
+  "knowledge_coverage": 0.0,
+  "knowledge_coverage_reasoning": "The response did not mention any of the five expected knowledge points (the join, tenant ID filter, delegation_state values, use of a single shared Lighthouse credential, and lack of per-customer tokens).",
+  "context_tokens": 1600,
+  "latency_ms": 48950,
+  "condition": "C",
+  "task_id": "task-03",
+  "explainability": 1
+}

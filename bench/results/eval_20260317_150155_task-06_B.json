@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response accurately identified the ARM scope root cause, described the template scope change to resource-group level, and noted the switch from curl to az rest as the operational fix.",
+  "retrieval_precision": 0.2,
+  "retrieval_precision_reasoning": "The answer mainly used the information from the first episode (the core diagnosis and fix); most of the injected episodes were not directly leveraged.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The injected context and the response refer to a recent, specific debugging outcome with no indications of being outdated or superseded.",
+  "irrelevant_rate": 0.8,
+  "irrelevant_reasoning": "Several of the injected episodes covered other auth and DCR topics that were not relevant to the MFA Phase 2 ARM scope issue.",
+  "knowledge_coverage": 1.0,
+  "knowledge_coverage_reasoning": "All expected knowledge points were present: ARM scope issue, using az rest instead of curl, and updating ARM scope definitions.",
+  "context_tokens": 1338,
+  "latency_ms": 7281,
+  "condition": "B",
+  "task_id": "task-06",
+  "explainability": null
+}

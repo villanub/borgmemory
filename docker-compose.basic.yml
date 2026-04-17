@@ -1,0 +1,47 @@
+services:
+  borg-engine:
+    build: .
+    container_name: borg-engine-basic
+    ports:
+      - "8080:8080"
+    environment:
+      - BORG_PROFILE=basic
+      - DATABASE_URL=postgresql+asyncpg://borg:borg@borg-db:5432/borg
+      - DATABASE_URL_SYNC=postgresql://borg:borg@borg-db:5432/borg
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_EMBEDDING_MODEL=${OPENAI_EMBEDDING_MODEL:-text-embedding-3-small}
+      - OPENAI_CHAT_MODEL=${OPENAI_CHAT_MODEL:-gpt-4o-mini}
+      - BORG_ENABLE_DOCS=${BORG_ENABLE_DOCS:-true}
+      - BORG_MAX_EPISODE_CONTENT_CHARS=${BORG_MAX_EPISODE_CONTENT_CHARS:-20000}
+      - BORG_RATE_LIMIT_THINK_PER_MINUTE=${BORG_RATE_LIMIT_THINK_PER_MINUTE:-60}
+      - BORG_RATE_LIMIT_LEARN_PER_MINUTE=${BORG_RATE_LIMIT_LEARN_PER_MINUTE:-120}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+    depends_on:
+      borg-db:
+        condition: service_healthy
+    restart: unless-stopped
+    volumes:
+      - ./migrations:/app/migrations
+
+  borg-db:
+    image: pgvector/pgvector:pg16
+    container_name: borg-db-basic
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_DB=borg
+      - POSTGRES_USER=borg
+      - POSTGRES_PASSWORD=borg
+    volumes:
+      - borg-basic-data:/var/lib/postgresql/data
+      - ./migrations/001_initial_schema.sql:/docker-entrypoint-initdb.d/001_initial_schema.sql
+      - ./migrations/002_amendments.sql:/docker-entrypoint-initdb.d/002_amendments.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U borg -d borg"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  borg-basic-data:

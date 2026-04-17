@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The AI response was empty and therefore did not produce the requested RFP section on governance automation.",
+  "retrieval_precision": 0.0,
+  "retrieval_precision_reasoning": "No content was produced, so none of the provided context or relevant details were retrieved or used.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "Because the response contained no factual content, there are no facts that could be outdated or stale.",
+  "irrelevant_rate": 1.0,
+  "irrelevant_reasoning": "The response provided no material relevant to the task, making the entire output effectively irrelevant to the RFP request.",
+  "knowledge_coverage": 0.0,
+  "knowledge_coverage_reasoning": "No governance automation concepts, metrics, or terminology were included, so the response covered none of the required knowledge areas.",
+  "context_tokens": 1312,
+  "latency_ms": 25709,
+  "condition": "B",
+  "task_id": "task-08",
+  "explainability": null
+}

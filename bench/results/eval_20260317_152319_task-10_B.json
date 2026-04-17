@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response correctly lists several schema changes but fails to include entity modifications (service principal, AKS version upgrade, WAF policy, Key Vault rotation) and superseded facts required by the audit task.",
+  "retrieval_precision": 1.0,
+  "retrieval_precision_reasoning": "All items the response included are accurate and directly match the provided change log (Episode 1).",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "No facts in the response conflict with the provided context or appear outdated within the one-month window.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "All listed changes are relevant to the Azure-PROD schema change audit.",
+  "knowledge_coverage": 0.5,
+  "knowledge_coverage_reasoning": "The response covers schema resource changes from Episode 1 but omits several expected items from Episode 2 (service principal, AKS upgrade, WAF update, Key Vault rotation and supersession details), covering roughly half of the pertinent facts.",
+  "context_tokens": 1316,
+  "latency_ms": 6012,
+  "condition": "B",
+  "task_id": "task-10",
+  "explainability": null
+}

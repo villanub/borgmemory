@@ -1,0 +1,14 @@
+{
+  "condition": "C",
+  "task_id": "task-10",
+  "response": "Summary of Azure-PROD schema changes last month (March 2026):\n\n- Added a new resource group: rax-prod-sentinel-rg (for the Project Sentinel pilot).  \n- NSG rule changes were made (notes show \"Updated NSG rules on rax-\u2026\" but the record is truncated \u2014 the exact NSG/resource is not fully listed in the summary).\n\nRelated entity change (same timeframe):\n- A new service principal sp-sentinel-prod was created and granted Contributor scoped to rax-prod-sentinel- (record truncated).\n\nI recommend checking the full Azure-PROD change log or the subscription activity logs to get the complete NSG change details and to confirm the exact scope of the new SP role assignment.",
+  "context_injected": "{\"ns\": \"azure-msp\", \"task\": \"compliance\", \"facts\": [\"Azure-PROD contains rax-prod-monitoring-rg\", \"Sentinel managed_by Azure-PROD\"], \"recent\": [\"2026-03-17: Azure-PROD schema change log \u2014 March 2026: (1) Added new resource group rax-prod-sentinel-rg for Project Sentinel pilot. (2) Updated NSG rules on rax-\", \"2026-03-17: Azure-PROD entity changes this month: New service principal created for Sentinel (sp-sentinel-prod) with contributor role scoped to rax-prod-sentinel-\", \"2026-03-17: AeroPro Texas current architecture: Hub-spoke network topology with Azure Virtual WAN. Production workloads run in South Central US region. Key compon\", \"2026-03-17: AeroPro Texas deployment update: Added a secondary region (East US 2) for disaster recovery. Active-passive configuration with Azure Traffic Manager f\", \"2026-03-17: AMA compliance tracking v2 post-mortem: the main drift risk was that DCR assignments could silently change during Azure maintenance or subscription mi\", \"2026-03-17: Decision: Use pgAudit for SOX compliance on all Borg database tables. Rationale: pgAudit is natively supported on Azure PostgreSQL Flexible Server, re\", \"2026-03-17: Designing the AMA v3 DCR drift detection system. Key considerations: all Data Collection Rules follow the rax- prefix naming convention (e.g., rax-win\", \"2026-03-17: SOX compliance review for AI development practices at Rackspace. Key outcomes: (1) All AI model deployments must go through the existing change manage\", \"2026-03-17: Project Sentinel customer pipeline update: Contoso Financial has signed the pilot agreement \u2014 starting with SOC2 compliance automation. Woodgrove Bank\", \"2026-03-17: Cyber Recovery value proposition elements: (1) Azure-native DR with automated failover \u2014 no manual intervention required. (2) Immutable backup vaults \"]}",
+  "context_tokens": 451,
+  "task_class": "compliance",
+  "candidates_found": 12,
+  "candidates_selected": 12,
+  "latency_ms": 13783,
+  "latency_think_ms": 383,
+  "latency_llm_ms": 13400,
+  "borg_latency_ms": 325
+}

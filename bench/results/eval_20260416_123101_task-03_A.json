@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response did not retrieve or state the actual decision about SyncEventGrid scoping; it provided general recommendations instead of the specific implementation details asked for.",
+  "retrieval_precision": 0.0,
+  "retrieval_precision_reasoning": "None of the required factual elements (the join to lighthouse_delegations, filters on managed_by_tenant_id and delegation_state, or the shared Lighthouse credential behavior) were present in the response.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The response made general, up-to-date recommendations and did not assert any outdated facts about the SyncEventGrid decision.",
+  "irrelevant_rate": 0.9,
+  "irrelevant_reasoning": "The majority of the response consisted of broad Event Grid ownership and operational guidance unrelated to the specific question about how SyncEventGrid filters to Rackspace-owned subscriptions.",
+  "knowledge_coverage": 0.0,
+  "knowledge_coverage_reasoning": "It failed to include any of the expected knowledge points: the customer_subscriptions join to lighthouse_delegations, managed_by_tenant_id and delegation_state filters, and the single shared Rackspace Lighthouse credential with no per-customer tokens.",
+  "context_tokens": 0,
+  "latency_ms": 52436,
+  "condition": "A",
+  "task_id": "task-03",
+  "explainability": null
+}

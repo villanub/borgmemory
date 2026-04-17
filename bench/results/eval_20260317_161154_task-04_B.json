@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response captures segments and impact metrics but fails to explicitly reference the required targeting of 36 identified customers, so it does not fully meet the task requirement.",
+  "retrieval_precision": 0.9,
+  "retrieval_precision_reasoning": "The response accurately incorporates core elements from the context (Azure-native automation, immutable vaults, compliance, managed service, and cited metrics) but omits the explicit '36 customers' targeting detail.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "Metrics and technical claims align with the provided episodes; there are no apparent outdated or incorrect facts drawn from the context.",
+  "irrelevant_rate": 0.05,
+  "irrelevant_reasoning": "The content stays focused on the value proposition with minimal extraneous information.",
+  "knowledge_coverage": 0.8,
+  "knowledge_coverage_reasoning": "It demonstrates awareness of BFSI and Healthcare as primary segments and includes quantified impact metrics, but misses the explicit 36-customer targeting and finer pipeline details from the context.",
+  "context_tokens": 1338,
+  "latency_ms": 10963,
+  "condition": "B",
+  "task_id": "task-04",
+  "explainability": null
+}

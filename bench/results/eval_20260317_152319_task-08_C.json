@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response delivers a thorough, well-structured RFP section that addresses governance automation for Wisdm and aligns with the provided Azure/NIST context, though it leaves some numeric metrics as placeholders.",
+  "retrieval_precision": 1.0,
+  "retrieval_precision_reasoning": "All provided context facts (NIST CSF targeting, Azure Policy, Remediation tasks, Azure Monitor Workbooks) are accurately incorporated into the response.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "No outdated or incorrect facts were introduced; the content references current Azure capabilities and governance concepts.",
+  "irrelevant_rate": 0.05,
+  "irrelevant_reasoning": "Nearly all content is relevant to the RFP section; a few generic placeholders (e.g., 'state number or ask vendor to size', 'X automated remediation scenarios') are non-specific but not irrelevant.",
+  "knowledge_coverage": 0.9,
+  "knowledge_coverage_reasoning": "The draft covers policy design, policy-as-code/CI-CD, remediation patterns, monitoring, RBAC, auditing, exception handling and acceptance criteria using correct terminology, but it lacks concrete quantified metrics and specific SLA/scale numbers.",
+  "context_tokens": 44,
+  "latency_ms": 20020,
+  "condition": "C",
+  "task_id": "task-08",
+  "explainability": 1
+}

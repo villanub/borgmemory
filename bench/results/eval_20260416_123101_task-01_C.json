@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response correctly concluded the 502s were transient gateway\u2192backend connectivity issues (not WAF or backend 500s) and cited the supporting metrics and logs.",
+  "retrieval_precision": 1.0,
+  "retrieval_precision_reasoning": "The response accurately reported HealthyHostCount=1/UnhealthyHostCount=0, Http5xx=0, FailedRequests spikes, clustered 502 windows, expected VpnOnly 403s, and included the DNS/cert and restart facts from the context.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "All referenced facts align with the provided 2026-04-15 investigation details and there is no outdated or time-sensitive mismatch.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "All included details (metrics, log findings, DNS/cert issue, manual restart) are relevant to diagnosing the 502s and mapping root cause contributors.",
+  "knowledge_coverage": 1.0,
+  "knowledge_coverage_reasoning": "The response demonstrated awareness that 502s were transient upstream unavailability, backend health stayed healthy, App Service returned no 5xx, FailedRequests spiked without health-state change, and 403s were expected VpnOnly blocks.",
+  "context_tokens": 3055,
+  "latency_ms": 47099,
+  "condition": "C",
+  "task_id": "task-01",
+  "explainability": 1
+}

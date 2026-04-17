@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response omitted the specific, expected fix\u2014using az rest instead of curl\u2014and did not explicitly state that ARM scope definitions were updated, so it does not fully answer the query.",
+  "retrieval_precision": 0.6,
+  "retrieval_precision_reasoning": "The reply accurately described ARM limitations, permission issues, and post-deploy script remediation, but missed the explicit detail about switching to az rest for correct authentication/scoping.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The technical recommendations (use Graph API or post\u2011deploy scripting, assign Graph permissions, orchestration changes) are current and not outdated.",
+  "irrelevant_rate": 0.15,
+  "irrelevant_reasoning": "Most of the content is relevant to diagnosing and fixing the ARM/MFA issue; a few broader suggestions (e.g., conditional access as an alternative, extensive testing/rollback notes) are peripheral to the core expected facts.",
+  "knowledge_coverage": 0.67,
+  "knowledge_coverage_reasoning": "The response covered the ARM scope/permission root cause and remediation via removing unsupported ARM properties and using post\u2011deployment mechanisms, but failed to mention the az rest vs curl decision and did not explicitly state ARM scope definitions were updated.",
+  "context_tokens": 0,
+  "latency_ms": 19167,
+  "condition": "A",
+  "task_id": "task-06",
+  "explainability": null
+}

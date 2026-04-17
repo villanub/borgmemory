@@ -1,0 +1,9 @@
+{
+  "condition": "C",
+  "task_id": "task-07",
+  "response": "",
+  "context_injected": null,
+  "context_tokens": 0,
+  "latency_ms": 0,
+  "error": "Client error '401 Unauthorized' for url 'http://localhost:8080/api/think'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401"
+}

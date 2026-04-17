@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response provides a strong general debugging pattern and token inspection steps but fails to explicitly mention the required 'DDI isolation first' check and does not clearly call out APIM policy review as a distinct, required step.",
+  "retrieval_precision": 0.67,
+  "retrieval_precision_reasoning": "Token inspection and general debugging steps are covered in detail and APIM-related concepts are implied (API gateway, downstream policy/ACL), but the specific DDI isolation step is missing and APIM policies are not explicitly enumerated.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The guidance is procedural and/tooling-agnostic with no time-sensitive claims, so there are no stale facts.",
+  "irrelevant_rate": 0.05,
+  "irrelevant_reasoning": "Most content is relevant to auth debugging; a few tool suggestions and broader checks are extra detail but still generally applicable.",
+  "knowledge_coverage": 0.67,
+  "knowledge_coverage_reasoning": "Covers token inspection thoroughly and touches on gateway/policy areas implicitly, but omits explicit DDI isolation and does not clearly present APIM policy review as a discrete repeatable step.",
+  "context_tokens": 0,
+  "latency_ms": 22210,
+  "condition": "A",
+  "task_id": "task-09",
+  "explainability": null
+}

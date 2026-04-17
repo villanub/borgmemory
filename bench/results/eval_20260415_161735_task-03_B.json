@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response directly and correctly states that SyncEventGrid now scopes to Rackspace-managed monitoring subscriptions and that it uses a single Rackspace Lighthouse credential without acquiring per-customer tokens.",
+  "retrieval_precision": 1.0,
+  "retrieval_precision_reasoning": "The response accurately includes the join to lighthouse_delegations, the managed_by_tenant_id == Rackspace Lighthouse tenant requirement, delegation_state \u2208 {active, succeeded}, and the single shared Lighthouse credential behavior.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "No information appears outdated; the details match the provided context and recent change log entries.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "All presented details pertain to scoping and ownership filtering in SyncEventGrid and are relevant to the query.",
+  "knowledge_coverage": 1.0,
+  "knowledge_coverage_reasoning": "The response covers all expected knowledge points: the join/filter logic, delegation states, credential usage, and intentional omission of per-customer tokens.",
+  "context_tokens": 2501,
+  "latency_ms": 17786,
+  "condition": "B",
+  "task_id": "task-03",
+  "explainability": null
+}

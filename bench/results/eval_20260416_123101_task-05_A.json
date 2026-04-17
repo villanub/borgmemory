@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response failed to identify the actual investigation path and root cause from the ground truth (Datadog blob logs and missing topic-scoped permissions) and instead described an unrelated Log Analytics/Key Vault rotation scenario.",
+  "retrieval_precision": 0.1,
+  "retrieval_precision_reasoning": "It roughly addresses generic diagnostic steps but misses all critical specifics: the Datadog blob storage location, the exact storage account/container, the five pim-dev endpoints and their request counts, and the namespace permission detail.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The response does not present outdated facts; its errors are incorrect/inapplicable to the provided ground truth rather than being stale.",
+  "irrelevant_rate": 0.6,
+  "irrelevant_reasoning": "Many described steps (Log Analytics queries, AppInsights correlation, Key Vault rotation remediation, AAD checks) are generic and not tied to the actual investigation path; these details are largely irrelevant given the real trace used Datadog blob logs.",
+  "knowledge_coverage": 0.1,
+  "knowledge_coverage_reasoning": "Covers only the high-level idea of checking logs and auth methods, but fails to cover the concrete expected items (ddlogstorage3a0c161f2e70, insights-logs-operationallogs, ServiceBus Client hitting five pim-dev endpoints with ~442-450 attempts each, and namespace-only RootManageSharedAccessKey).",
+  "context_tokens": 0,
+  "latency_ms": 92403,
+  "condition": "A",
+  "task_id": "task-05",
+  "explainability": null
+}

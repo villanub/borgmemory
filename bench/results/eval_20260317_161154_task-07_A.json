@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The AI response was empty and provided no description of AeroPro Texas's architecture, so it did not accomplish the task.",
+  "retrieval_precision": 0.0,
+  "retrieval_precision_reasoning": "No facts or claims were presented in the response, so there is nothing accurate or precise to score.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "Because the response contained no factual claims, there are no facts that could be considered outdated.",
+  "irrelevant_rate": 1.0,
+  "irrelevant_reasoning": "The response contained no content relevant to the query and therefore failed entirely to address the requested architecture description.",
+  "knowledge_coverage": 0.0,
+  "knowledge_coverage_reasoning": "The response did not include any information about infrastructure components, recent decisions, or deployment topology, covering none of the expected knowledge.",
+  "context_tokens": 0,
+  "latency_ms": 28565,
+  "condition": "A",
+  "task_id": "task-07",
+  "explainability": null
+}

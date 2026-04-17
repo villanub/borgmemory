@@ -1,0 +1,14 @@
+{
+  "condition": "C",
+  "task_id": "task-07",
+  "response": "High-level/current architecture (summary):\n\n- Region: deployed in East US 2.\n- Front-end: Azure Front Door is used for global HTTP(S) routing and edge delivery.\n- Application platform: workloads run in an AKS cluster (migration from App Service to AKS has been implemented).\n- Networking: Azure Virtual WAN provides the WAN connectivity/branch/VPN/expressroute connectivity surface.\n- Storage/resilience: data stored with Read-Access Geo-Redundant Storage (RA-GRS) for cross-region redundancy and read access.\n- Availability/DR posture: the design targets an RTO as part of its resilience/DR goals.\n- Operational note: AeroPro Texas owns the monthly cloud spend for this deployment.\n\nIn short: Front Door fronting an AKS-based application platform in East US 2, connected via Azure Virtual WAN, with RA-GRS for storage and an RTO-driven resilience posture.",
+  "context_injected": "<borg model=\"TargetModel.claude\" ns=\"azure-msp\" task=\"TaskHint.architecture\">\n  <knowledge>\n    <fact status=\"observed\" salience=\"0.62\">AeroPro Texas uses Azure Virtual WAN</fact>\n    <fact status=\"observed\" salience=\"0.62\">AeroPro Texas contains Front Door</fact>\n    <fact status=\"observed\" salience=\"0.62\">Migration from App Service to AKS implemented_by AeroPro Texas</fact>\n    <fact status=\"observed\" salience=\"0.62\">Monthly cloud spend owned_by AeroPro Texas</fact>\n    <fact status=\"observed\" salience=\"0.62\">AeroPro Texas deployed_to East US 2</fact>\n    <fact status=\"observed\" salience=\"0.62\">AeroPro Texas uses Read-access geo-redundant storage (RA-GRS)</fact>\n    <fact status=\"observed\" salience=\"0.62\">AeroPro Texas targets RTO</fact>\n    <fact status=\"observed\" salience=\"0.62\">AeroPro deployed_to AKS</fact>\n    <fact status=\"observed\" salience=\"0.62\">AeroPro AKS cluster implements AKS</fact>\n  </knowledge>\n</borg>",
+  "context_tokens": 233,
+  "task_class": "architecture",
+  "candidates_found": 9,
+  "candidates_selected": 9,
+  "latency_ms": 9118,
+  "latency_think_ms": 61,
+  "latency_llm_ms": 9057,
+  "borg_latency_ms": 5
+}

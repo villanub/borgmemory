@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response correctly concluded the 502s were transient Application Gateway-level failures (not a WAF regression or backend 5xx) and noted backend HTTP 500s were 0; it only added an extra operational detail about adding missing trusted IPs that was not in the ground truth.",
+  "retrieval_precision": 0.8,
+  "retrieval_precision_reasoning": "Most key facts match the ground truth (502s transient, backend reported 0 HTTP 500s, WAF not regressed), but the claim about adding missing trusted IPs and resolving 403s is an extra/unverified action not present in the ground truth.",
+  "stale_fact_rate": 0.2,
+  "stale_fact_reasoning": "No outright stale facts, but the added operational detail (modifying allowlist) appears speculative or not supported by the provided ground truth.",
+  "irrelevant_rate": 0.15,
+  "irrelevant_reasoning": "Nearly all information is relevant to diagnosing the 502s; the specific remediation action (adding IPs) is somewhat extraneous to the core diagnosis.",
+  "knowledge_coverage": 0.85,
+  "knowledge_coverage_reasoning": "The response covers the main expected points (transient upstream unavailability, backend showed no 5xx, not a WAF regression, 403s due to VpnOnly), but it omits explicit mention of HealthyHostCount/UnhealthyHostCount metrics and the FailedRequests spike not causing a health-state change.",
+  "context_tokens": 2214,
+  "latency_ms": 83237,
+  "condition": "C",
+  "task_id": "task-01",
+  "explainability": 1
+}

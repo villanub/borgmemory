@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response delivers a clear, actionable, repeatable debugging pattern that includes scoping, isolation, token inspection, and policy/account checks, matching the task to retrieve procedural patterns.",
+  "retrieval_precision": 0.9,
+  "retrieval_precision_reasoning": "It accurately covers the expected steps (isolate components, detailed token inspection, and policy/authorization review) but does not explicitly use the phrase 'DDI isolation' as stated in the ground truth.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The guidance is procedural and tool-agnostic with no time-sensitive claims, so it remains current.",
+  "irrelevant_rate": 0.05,
+  "irrelevant_reasoning": "Nearly all items are relevant to debugging auth issues; a few generic network or low-level diagnostics may be more than required for routine auth debugging.",
+  "knowledge_coverage": 0.9,
+  "knowledge_coverage_reasoning": "Covers the key expected areas (isolation, token inspection, APIM/policy review and authorization checks) comprehensively, with only a minor omission of the specific 'DDI isolation' terminology.",
+  "context_tokens": 0,
+  "latency_ms": 19262,
+  "condition": "A",
+  "task_id": "task-09",
+  "explainability": null
+}

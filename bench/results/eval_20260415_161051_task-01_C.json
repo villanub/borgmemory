@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response correctly identifies XML-escaping of the service token as the root cause, references the tri-auth pattern and DDI/x-auth-ddi checks, and gives actionable triage and remediation steps.",
+  "retrieval_precision": 0.95,
+  "retrieval_precision_reasoning": "Includes accurate, specific remediation (runtime token acquisition via send-request, Named Values/Key Vault, XML-escaping) and diagnostics; slightly generic about preferred encoding (suggests base64/URL-safe as options rather than explicitly prescribing URL-encoding when necessary).",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The response uses the provided recent/contextual facts (including 2026 dates) and makes no outdated assertions beyond the supplied context.",
+  "irrelevant_rate": 0.05,
+  "irrelevant_reasoning": "Nearly all content is relevant to debugging the APIM token retry issue; minor peripheral recommendations (CI checks, extended monitoring) are useful but not central.",
+  "knowledge_coverage": 1.0,
+  "knowledge_coverage_reasoning": "Addresses the expected items: APIM tri-auth pattern, DDI tenant isolation via x-auth-ddi, root cause of XML escaping, and the recommendation to check DDI isolation first, along with concrete debugging and mitigation steps.",
+  "context_tokens": 993,
+  "latency_ms": 56281,
+  "condition": "C",
+  "task_id": "task-01",
+  "explainability": 1
+}

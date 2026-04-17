@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response accurately describes the bulk remediation architecture, including dedicated Postgres tables, the 15s ProcessEventGridBulkRemediation timer worker, requeuing of stale runs on restart, recency indexing, and separate worker knobs.",
+  "retrieval_precision": 1.0,
+  "retrieval_precision_reasoning": "All key implementation details from the ground truth are present and correctly stated (table names, worker interval/name, avoidance of sync_queue, requeue behavior, recency index, and separate env knobs).",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "No facts in the response contradict the provided context or the ground truth; details align with the latest implementation notes.",
+  "irrelevant_rate": 0.05,
+  "irrelevant_reasoning": "A small amount of extra integration detail (Fleet/APIM and UI coordination) goes beyond the core ask but remains relevant to operational behavior and observability.",
+  "knowledge_coverage": 1.0,
+  "knowledge_coverage_reasoning": "The response covers all expected knowledge points: dedicated tables, 15s timer worker, non-reuse of sync_queue, requeuing stale items, recency index, and separate bulk-worker polling knobs.",
+  "context_tokens": 1836,
+  "latency_ms": 38753,
+  "condition": "C",
+  "task_id": "task-10",
+  "explainability": 1
+}

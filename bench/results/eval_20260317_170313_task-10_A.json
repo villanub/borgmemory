@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response did not list any actual schema changes in Azure-PROD from the last month; it only provided methods and queries to discover them, so it failed to meet the primary requirement of enumerating specific recent changes.",
+  "retrieval_precision": 0.9,
+  "retrieval_precision_reasoning": "The provided queries, logs, and procedures are accurate and appropriate for Azure SQL, PostgreSQL, Cosmos DB, Synapse, and common migration/IaC workflows, making the guidance precise and actionable.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "Recommendations and example queries reference current system views, logging approaches, and tools that remain valid; there are no identifiable outdated or incorrect technical facts.",
+  "irrelevant_rate": 0.05,
+  "irrelevant_reasoning": "Almost all content is relevant to discovering schema changes; a small amount of general advice (e.g., broad recommendations) is marginally extraneous to the immediate request for a change list.",
+  "knowledge_coverage": 0.6,
+  "knowledge_coverage_reasoning": "The response demonstrates good knowledge of methods to detect schema changes across environments and where to look for superseding facts, but it does not provide the expected concrete list of entity changes, additions, or supersessions from the Azure-PROD environment in the last 30 days.",
+  "context_tokens": 0,
+  "latency_ms": 27711,
+  "condition": "A",
+  "task_id": "task-10",
+  "explainability": null
+}

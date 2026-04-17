@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response correctly identifies the ARM template scope mismatch as the root cause and states the template was updated and redeployed using az rest, which matches the expected diagnosis and solution.",
+  "retrieval_precision": 0.35,
+  "retrieval_precision_reasoning": "The reply used the core injected facts (ARM scope issue and use of az rest) but ignored many other episodic details in the provided context, so only a minority of the total context tokens were actively used.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The context facts are recent and directly relevant to the incident; none appear outdated or superseded.",
+  "irrelevant_rate": 0.65,
+  "irrelevant_reasoning": "A large portion of the borg context contained unrelated episode notes (APIM, DCRs, Sentinel, etc.) that were not pertinent to diagnosing the MFA Phase 2 ARM issue.",
+  "knowledge_coverage": 1.0,
+  "knowledge_coverage_reasoning": "All expected knowledge items were present: the ARM scope problem, switching to az rest (instead of curl), and updating ARM scope definitions.",
+  "context_tokens": 797,
+  "latency_ms": 8258,
+  "condition": "C",
+  "task_id": "task-06",
+  "explainability": 1
+}

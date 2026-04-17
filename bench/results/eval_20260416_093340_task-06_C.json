@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response captures general architecture (WAF + allowlists, DDI/tri-auth) but omits critical specifics required by the task (explicit WAF policy and rule names, Janus AWS IP addresses, and the backend App Service/resource group) and therefore does not fully satisfy the task.",
+  "retrieval_precision": 0.68,
+  "retrieval_precision_reasoning": "Correctly identifies Application Gateway WAF, VpnOnly blocking behavior, DDI/tri\u2011auth headers, and AAD usage, but it adds APIM as a fronting component (not in the ground truth for this service), fails to name the exact WAF policy and AllowTrustedVpnFazureMcp rule, and omits the required Janus IPs and backend App Service name.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "No evidence of outdated or time-sensitive facts; the response mixes present configuration details and general patterns without relying on obsolete information.",
+  "irrelevant_rate": 0.25,
+  "irrelevant_reasoning": "The inclusion of APIM and extensive APIM policy/observability discussion is partially outside the explicit ground-truth scope for fazure-mcp authentication (some context mentions APIM patterns, but the ground truth focuses on Application Gateway and backend App Service).",
+  "knowledge_coverage": 0.55,
+  "knowledge_coverage_reasoning": "Covers high-level flow (AGW WAF \u2192 auth enforcement \u2192 backend) and DDI header usage, but misses key expected items: specific WAF policy name, AllowTrustedVpnFazureMcp rule naming, explicit Janus AWS IP allowlist entries, the backend App Service (azure-mcp-prod in rg-azure-mcp-prod), and a clear statement that 403s from unknown IPs are expected behavior.",
+  "context_tokens": 2099,
+  "latency_ms": 49742,
+  "condition": "C",
+  "task_id": "task-06",
+  "explainability": 1
+}

@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response accurately lists several schema changes from the context but omits key entity changes (service principal, AKS version upgrade, Front Door WAF update, Key Vault rotation policy) and superseded facts, so it fails to fully satisfy the audit requirements.",
+  "retrieval_precision": 0.9,
+  "retrieval_precision_reasoning": "All listed items match the provided context and are factually correct and specific for the March schema changes.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The facts reported reflect the March 2026 context and none of the included items appear outdated within the one-month window.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "Every item in the response is directly relevant to Azure-PROD schema changes and the audit query.",
+  "knowledge_coverage": 0.5,
+  "knowledge_coverage_reasoning": "The response covers schema/resource-group and DCR changes but omits several expected entity-level changes and supersessions (service principal creation, AKS upgrade, WAF ruleset change, Key Vault rotation policy and its supersession).",
+  "context_tokens": 1316,
+  "latency_ms": 7842,
+  "condition": "B",
+  "task_id": "task-10",
+  "explainability": null
+}

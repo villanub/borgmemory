@@ -1,0 +1,14 @@
+{
+  "condition": "C",
+  "task_id": "task-08",
+  "response": "",
+  "context_injected": "<borg model=\"TargetModel.claude\" ns=\"azure-msp\" task=\"TaskHint.writing\">\n  <knowledge>\n    <fact status=\"observed\" salience=\"0.62\">Wisdm targets NIST CSF</fact>\n    <fact status=\"observed\" salience=\"0.62\">Wisdm uses Azure Policy</fact>\n    <fact status=\"observed\" salience=\"0.62\">Wisdm contains Remediation tasks</fact>\n    <fact status=\"observed\" salience=\"0.62\">Wisdm uses Azure Monitor Workbooks</fact>\n  </knowledge>\n</borg>",
+  "context_tokens": 107,
+  "task_class": "writing",
+  "candidates_found": 4,
+  "candidates_selected": 4,
+  "latency_ms": 45886,
+  "latency_think_ms": 46,
+  "latency_llm_ms": 45840,
+  "borg_latency_ms": 2
+}

@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response identifies the correct root cause (XML-special characters in the service token) and provides a concrete, tested fix (URL-encode/escape the token and use policy expressions), matching the debugging objective.",
+  "retrieval_precision": 0.95,
+  "retrieval_precision_reasoning": "Facts and recommendations are accurate and actionable (including a valid APIM policy expression using System.Uri.EscapeDataString), with only minor room for implementation-environment caveats.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "No outdated or time-sensitive claims are present; the guidance and APIs referenced remain current and applicable.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "All content directly pertains to the APIM token retry bug, debugging steps, or remediation and validation; no unrelated material is included.",
+  "knowledge_coverage": 0.98,
+  "knowledge_coverage_reasoning": "Covers the tri-auth pattern, DDI tenant isolation and checking x-auth-ddi first, the XML-escaping root cause, and testing across the three auth paths as expected.",
+  "context_tokens": 1318,
+  "latency_ms": 21382,
+  "condition": "B",
+  "task_id": "task-01",
+  "explainability": null
+}

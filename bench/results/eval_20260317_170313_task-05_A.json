@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response did not list any customers discussed for Project Sentinel and thus failed to answer the query; it only provided instructions on how to find them.",
+  "retrieval_precision": 0.0,
+  "retrieval_precision_reasoning": "No customer names were retrieved or provided, so precision is zero.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The response made no factual claims about Project Sentinel or customers that could be dated; guidance is general and not stale.",
+  "irrelevant_rate": 0.2,
+  "irrelevant_reasoning": "Most content was relevant procedural guidance for finding customer names, but it did not address the core task of naming customers and included some extraneous search tips.",
+  "knowledge_coverage": 0.1,
+  "knowledge_coverage_reasoning": "The response did not demonstrate knowledge of Project Sentinel's architecture or name any customers as required; it only stated access limitations and gave search advice.",
+  "context_tokens": 0,
+  "latency_ms": 8696,
+  "condition": "A",
+  "task_id": "task-05",
+  "explainability": null
+}

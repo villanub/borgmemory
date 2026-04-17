@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response captures the high-level architecture (Application Gateway + WAF, VPN/trusted IP allowlisting and that WAF rules can cause 403s) but omits key concrete details from the ground truth (specific WAF policy name, explicit Janus IPs, and the backend App Service resource), and it introduces unverified claims (OAuth) not present in the ground truth.",
+  "retrieval_precision": 0.6,
+  "retrieval_precision_reasoning": "Correct on App Gateway/WAF, VPN/trusted allowlisting, and that WAF rules can produce 403s; however it adds unsupported specifics (OAuth as primary auth, additional custom rules) and fails to provide exact items required by the query (policy name, Janus IP addresses, backend resource name).",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "No evidence of outdated information; omissions and additions are inaccuracies rather than stale facts.",
+  "irrelevant_rate": 0.3,
+  "irrelevant_reasoning": "Includes extra speculative details (OAuth primary auth, many custom rule names and mitigations) that are not in the provided ground truth and are not necessary to answer the requested architecture description.",
+  "knowledge_coverage": 0.6,
+  "knowledge_coverage_reasoning": "Covers several expected points (App Gateway + WAF, VPN/allowlist behavior, that trusted Janus traffic must be allowed, and WAF-caused 403s), but misses the explicit WAF policy name, the specific Janus IP addresses, and the backend App Service resource and resource group.",
+  "context_tokens": 2095,
+  "latency_ms": 50538,
+  "condition": "C",
+  "task_id": "task-06",
+  "explainability": 1
+}

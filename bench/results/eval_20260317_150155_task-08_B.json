@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The provided AI response contained no substantive RFP section content, so it did not fulfill the task of drafting the governance automation section for Wisdm.",
+  "retrieval_precision": 0.0,
+  "retrieval_precision_reasoning": "None of the injected context was actually used in the AI response \u2014 the response was effectively empty and did not incorporate any of the provided details or metrics.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The injected context appears current (dated 2026-03-17) and contains no clearly outdated or superseded facts, so no portion was identified as stale.",
+  "irrelevant_rate": 0.33,
+  "irrelevant_reasoning": "About two of the six injected episodes (episodes 3 and 4) are only tangentially related to Wisdm governance automation; the rest are relevant, so approximately one-third is irrelevant.",
+  "knowledge_coverage": 0.0,
+  "knowledge_coverage_reasoning": "The response did not demonstrate governance automation capabilities, metrics, or technical terminology from the expected knowledge set because it provided no substantive content.",
+  "context_tokens": 1312,
+  "latency_ms": 23850,
+  "condition": "B",
+  "task_id": "task-08",
+  "explainability": null
+}

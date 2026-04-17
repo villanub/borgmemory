@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response correctly lists the primary schema and entity changes (resource group, NSG update, service principal) but fails to report any facts that were superseded in the last month as required by the task.",
+  "retrieval_precision": 0.9,
+  "retrieval_precision_reasoning": "The items returned match the provided recent change log entries and are accurately reported; the NSG target/name was omitted due to truncated source data, which slightly reduces precision.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "All reported changes are from the recent change log entries within the last month and appear current.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "The response stays focused on schema and entity changes relevant to the Azure-PROD environment and includes no extraneous information.",
+  "knowledge_coverage": 0.7,
+  "knowledge_coverage_reasoning": "Covers major schema and entity changes but omits any mention of fact supersessions and does not provide the exact NSG target details due to truncated source data.",
+  "context_tokens": 516,
+  "latency_ms": 9568,
+  "condition": "C",
+  "task_id": "task-10",
+  "explainability": 1
+}

@@ -1,0 +1,14 @@
+{
+  "condition": "C",
+  "task_id": "task-02",
+  "response": "",
+  "context_injected": "{\"ns\": \"azure-msp\", \"task\": \"architecture\", \"facts\": [\"AMA v3 implements reconciliation loop\", \"AMA compliance tracking depends_on Data Collection Rules\", \"ARM Resource Graph compared_with DCR mapping table\", \"AMA compliance tracking integrates_with DCR mapping table\", \"DCR mapping table contains Data Collection Rules\", \"Project Sentinel uses Azure Monitor DCR\", \"AMA v3 \u2192 compares_with \u2192 Azure Monitor\", \"AMA compliance tracking \u2192 contained_in \u2192 Azure Monitor\", \"AMA compliance tracking \u2192 targets \u2192 Linux\", \"AMA compliance tracking \u2192 targets \u2192 OS categorization (Windows/Linux/Other)\", \"AMA compliance tracking \u2192 owned_by \u2192 Rackspace\", \"AMA compliance tracking \u2192 uses \u2192 rax- prefix naming convention\", \"AMA compliance tracking \u2192 used_by \u2192 rax- prefix naming convention\", \"Azure Monitor DCR \u2192 expressed_interest_in \u2192 Adatum Insurance\", \"Azure Monitor DCR \u2192 uses \u2192 Contoso Financial\", \"Azure Monitor DCR \u2192 declined \u2192 Northwind Traders\", \"Azure Monitor DCR \u2192 targets \u2192 SOC2\", \"Azure Monitor DCR \u2192 in_legal_review_with \u2192 Woodgrove Bank\"]}",
+  "context_tokens": 259,
+  "task_class": "architecture",
+  "candidates_found": 18,
+  "candidates_selected": 18,
+  "latency_ms": 30097,
+  "latency_think_ms": 67,
+  "latency_llm_ms": 30030,
+  "borg_latency_ms": 11
+}

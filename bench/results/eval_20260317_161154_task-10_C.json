@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response correctly lists the added resource group and new service principal but fails to report any superseded facts and leaves NSG details truncated, so it does not fully meet the compliance audit requirement.",
+  "retrieval_precision": 0.9,
+  "retrieval_precision_reasoning": "The responder accurately extracted the key items present in the provided context (rax-prod-sentinel-rg and sp-sentinel-prod) and correctly noted an NSG update, though details were truncated due to the supplied context.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "All reported changes are from the provided March 17, 2026 context within the relevant 30-day window, so none appear stale.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "All items in the response are directly relevant to recent schema/entity changes in Azure-PROD.",
+  "knowledge_coverage": 0.6,
+  "knowledge_coverage_reasoning": "The response covers primary additions and an entity change but omits detailed NSG change specifics and does not identify any facts that were superseded in the last month.",
+  "context_tokens": 516,
+  "latency_ms": 8259,
+  "condition": "C",
+  "task_id": "task-10",
+  "explainability": 1
+}

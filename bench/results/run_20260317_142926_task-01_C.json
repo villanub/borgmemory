@@ -1,0 +1,14 @@
+{
+  "condition": "C",
+  "task_id": "task-01",
+  "response": "",
+  "context_injected": "<borg model=\"TargetModel.claude\" ns=\"azure-msp\" task=\"TaskHint.debug\">\n</borg>",
+  "context_tokens": 19,
+  "task_class": "debug",
+  "candidates_found": 0,
+  "candidates_selected": 0,
+  "latency_ms": 22469,
+  "latency_think_ms": 1065,
+  "latency_llm_ms": 21404,
+  "borg_latency_ms": 1015
+}

@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response correctly describes the backend-mediated flow, the reason (Fleet requires application permission), the frontend endpoint (POST /api/event-grid/remediation/ensure), the backend token acquisition and APIM call, and polling of the returned statusUrl.",
+  "retrieval_precision": 0.9,
+  "retrieval_precision_reasoning": "Most key details match the ground truth precisely (backend mediation, ClientSecretCredential-style token flow, APIM endpoint, statusUrl polling). It adds notes about alternative Rackspace identity token variants which are present in the code history but slightly dilutes the single definitive ClientSecretCredential assertion.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The response reflects the current implemented architecture and does not introduce outdated information.",
+  "irrelevant_rate": 0.05,
+  "irrelevant_reasoning": "Additional details (bulk run persistence, timer worker, inventory filters) go beyond the minimal answer but are relevant to the overall remediation architecture rather than being irrelevant tangents.",
+  "knowledge_coverage": 1.0,
+  "knowledge_coverage_reasoning": "All expected knowledge points are covered: switch from browser to backend, reason (app permission), backend endpoint, token acquisition for APIM, polling statusUrl, and the specific APIM path pattern.",
+  "context_tokens": 2271,
+  "latency_ms": 34893,
+  "condition": "B",
+  "task_id": "task-02",
+  "explainability": null
+}

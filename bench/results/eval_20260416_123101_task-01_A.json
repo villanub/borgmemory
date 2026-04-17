@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response did not diagnose the specific fazure-mcp incident or state the investigation findings; it only provided generic explanations and a checklist and asked for more data.",
+  "retrieval_precision": 0.1,
+  "retrieval_precision_reasoning": "While the reply correctly described general 502 causes and useful diagnostics, it failed to retrieve or state the incident-specific facts (backend health metrics, Http5xx=0, FailedRequests spike, expected 403s).",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The response contained general, up-to-date diagnostic information and no incorrect or outdated facts.",
+  "irrelevant_rate": 0.8,
+  "irrelevant_reasoning": "A large portion of the reply was generic background, checklists, and remediation guidance that do not answer the posed question about the specific fazure-mcp 502 findings.",
+  "knowledge_coverage": 0.2,
+  "knowledge_coverage_reasoning": "The response covered general 502 semantics and diagnostics but omitted the critical incident findings: backend remained healthy (HealthyHostCount=1, UnhealthyHostCount=0), App Service Http5xx=0, FailedRequests spike indicating transient upstream unavailability, and 403s being expected VpnOnly blocks.",
+  "context_tokens": 0,
+  "latency_ms": 62475,
+  "condition": "A",
+  "task_id": "task-01",
+  "explainability": null
+}

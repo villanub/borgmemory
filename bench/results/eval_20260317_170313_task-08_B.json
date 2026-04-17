@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response produces a complete, well-structured RFP section that uses appropriate governance automation terminology, includes the required quantified metrics, and aligns to Wisdm's stated governance needs.",
+  "retrieval_precision": 0.9,
+  "retrieval_precision_reasoning": "The reply accurately incorporates key context items (Azure Policy, SOC2/ISO27001/NIST CSF mapping, 95%/80%/\u22644 hours metrics, CMDB reconciliation, DCR concerns). A few specific SLAs (e.g., 15-minute alerting, \u22642-hour remediation) appear added rather than directly sourced from the provided context.",
+  "stale_fact_rate": 0.05,
+  "stale_fact_reasoning": "The content references stable technical capabilities and metrics rather than time-sensitive claims; Azure services and governance concepts used are current and not obsolete.",
+  "irrelevant_rate": 0.05,
+  "irrelevant_reasoning": "Nearly all sections are directly relevant to governance automation for Wisdm; minor additional implementation specifics and SLAs extend beyond the provided context but remain pertinent.",
+  "knowledge_coverage": 0.95,
+  "knowledge_coverage_reasoning": "The response demonstrates broad and detailed knowledge of governance automation (policy-as-code, drift detection, remediation, evidence collection, reporting, metrics). It could include a few more explicit mappings or sample policy snippets to be fully exhaustive, but coverage is strong.",
+  "context_tokens": 1312,
+  "latency_ms": 27303,
+  "condition": "B",
+  "task_id": "task-08",
+  "explainability": null
+}

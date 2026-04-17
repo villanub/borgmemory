@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response was empty and did not perform any debugging or mention tri-auth, x-auth-ddi, XML escaping, or DDI isolation.",
+  "retrieval_precision": 0.0,
+  "retrieval_precision_reasoning": "No facts from the provided context were retrieved or referenced because the response was empty.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "No facts were used in the response, so none were stale.",
+  "irrelevant_rate": 1.0,
+  "irrelevant_reasoning": "An empty response provides no relevant information and is entirely unhelpful for the debugging task.",
+  "knowledge_coverage": 0.0,
+  "knowledge_coverage_reasoning": "None of the expected knowledge (tri-auth pattern, x-auth-ddi, XML escaping causing the service token retry bug, DDI isolation checks) was present.",
+  "context_tokens": 724,
+  "latency_ms": 24225,
+  "condition": "C",
+  "task_id": "task-01",
+  "explainability": 1
+}

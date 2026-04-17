@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response captures the App Gateway / WAF\u2013first pattern and allowlist/policy troubleshooting but omits key checks (App Service state/show-backend-health, App Gateway HealthyHostCount/UnhealthyHostCount, and App Insights azure-mcp-prod), so it does not fully satisfy the debugging pattern required.",
+  "retrieval_precision": 0.6,
+  "retrieval_precision_reasoning": "Correctly identifies AGWAccessLogs and AGWFirewallLogs as first steps and details policy/allowlist fixes, but misses several explicit diagnostics from the ground truth and does not mention App Insights or backend-health commands.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The response contains up-to-date operational details from the provided context and does not rely on outdated facts.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "All content is relevant to debugging fazure-mcp traffic/WAF/allowlist issues; no extraneous information was included.",
+  "knowledge_coverage": 0.6,
+  "knowledge_coverage_reasoning": "Covers AGWAccessLogs, AGWFirewallLogs, allowlist/policy troubleshooting and validation, but omits checking App Service state and show-backend-health, App Gateway host health metrics, App Insights backend traces, and the explicit note that VpnOnly 403s for unknown IPs are expected.",
+  "context_tokens": 1665,
+  "latency_ms": 32932,
+  "condition": "C",
+  "task_id": "task-09",
+  "explainability": 1
+}

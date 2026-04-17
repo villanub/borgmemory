@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The value proposition is well-written and includes the required BFSI/Healthcare focus and quantified impact metrics, but it fails to explicitly reference the target of 36 identified customers as required.",
+  "retrieval_precision": 0.9,
+  "retrieval_precision_reasoning": "The response accurately incorporates specific elements and metrics from the provided context (Azure-native automation, immutable vaults, 99.97% recovery rate, RTO improvement, ~60% cost reduction), but omits the explicit '36 customers' target.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "All facts and metrics are drawn from the provided context and are not time-sensitive, so there are no stale facts.",
+  "irrelevant_rate": 0.05,
+  "irrelevant_reasoning": "Nearly all content is focused on the requested value proposition; only minimal generic phrasing (e.g., elevator-pitch repetition) is slightly redundant but not truly irrelevant.",
+  "knowledge_coverage": 0.8,
+  "knowledge_coverage_reasoning": "Covers BFSI and Healthcare focus and includes quantified impact metrics and technical differentiators, but omits the explicit 36-customer targeting detail from the expected knowledge.",
+  "context_tokens": 1338,
+  "latency_ms": 12976,
+  "condition": "B",
+  "task_id": "task-04",
+  "explainability": null
+}

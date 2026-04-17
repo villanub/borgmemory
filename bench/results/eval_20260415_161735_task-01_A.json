@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response failed to state the actual investigation findings (transient upstream unavailability with healthy backend metrics and expected 403 VpnOnly blocks) and only provided generic troubleshooting steps.",
+  "retrieval_precision": 0.0,
+  "retrieval_precision_reasoning": "None of the specific ground-truth facts (HealthyHostCount=1, UnhealthyHostCount=0, Http5xx=0, FailedRequests spike interpretation, expected 403s) were reported.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The response contained up-to-date, general troubleshooting knowledge and no outdated facts.",
+  "irrelevant_rate": 0.8,
+  "irrelevant_reasoning": "Much of the reply was generic background, checks, and mitigations that are not directly answering the incident-specific findings requested.",
+  "knowledge_coverage": 0.25,
+  "knowledge_coverage_reasoning": "It correctly explained that a 502 implies gateway couldn't get a valid response and listed possible causes, but it omitted the critical specific findings about backend health remaining healthy, zero Http5xx, FailedRequests spike, and VpnOnly 403s.",
+  "context_tokens": 0,
+  "latency_ms": 44717,
+  "condition": "A",
+  "task_id": "task-01",
+  "explainability": null
+}

@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response correctly identifies the ARM template scope mismatch as the root cause and states the remediation steps (update scopes to resource-group level and use az rest).",
+  "retrieval_precision": 1.0,
+  "retrieval_precision_reasoning": "All expected facts from the ground truth are present and accurately described: ARM scope issue, az rest chosen over curl, and ARM scope updates required.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The response contains current, relevant operational details with no outdated or time-sensitive claims.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "The response is concise and focused only on the diagnosis and fixes requested, with no extraneous information.",
+  "knowledge_coverage": 1.0,
+  "knowledge_coverage_reasoning": "Covers all required points: diagnosis (scope mismatch), solution (change ARM scopes), and tooling change (az rest vs curl).",
+  "context_tokens": 1338,
+  "latency_ms": 5587,
+  "condition": "B",
+  "task_id": "task-06",
+  "explainability": null
+}

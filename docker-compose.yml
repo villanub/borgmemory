@@ -1,0 +1,78 @@
+services:
+  borg-engine:
+    build: .
+    container_name: borg-engine
+    ports:
+      - "8080:8080"
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - DATABASE_URL_SYNC=${DATABASE_URL_SYNC}
+      - AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT}
+      - AZURE_OPENAI_API_KEY=${AZURE_OPENAI_API_KEY}
+      - AZURE_OPENAI_EMBEDDING_ENDPOINT=${AZURE_OPENAI_EMBEDDING_ENDPOINT:-}
+      - AZURE_OPENAI_EMBEDDING_API_KEY=${AZURE_OPENAI_EMBEDDING_API_KEY:-}
+      - AZURE_OPENAI_EMBEDDING_DEPLOYMENT=${AZURE_OPENAI_EMBEDDING_DEPLOYMENT}
+      - AZURE_OPENAI_EXTRACTION_DEPLOYMENT=${AZURE_OPENAI_EXTRACTION_DEPLOYMENT}
+      - ENTRA_TENANT_ID=${ENTRA_TENANT_ID}
+      - ENTRA_CLIENT_ID=${ENTRA_CLIENT_ID}
+      - ENTRA_CLIENT_SECRET=${ENTRA_CLIENT_SECRET:-}
+      - ENTRA_MCP_CLIENT_ID=${ENTRA_MCP_CLIENT_ID:-}
+      - ENTRA_MCP_CLIENT_SECRET=${ENTRA_MCP_CLIENT_SECRET:-}
+      - ENTRA_AUDIENCE=${ENTRA_AUDIENCE}
+      - ENTRA_ISSUER=${ENTRA_ISSUER:-}
+      - ENTRA_JWKS_URL=${ENTRA_JWKS_URL:-}
+      - ENTRA_BROWSER_CLIENT_ID=${ENTRA_BROWSER_CLIENT_ID:-}
+      - ENTRA_BROWSER_SCOPES=${ENTRA_BROWSER_SCOPES:-}
+      - ENTRA_READ_PERMISSIONS=${ENTRA_READ_PERMISSIONS:-Borg.Read,Borg.Write,Borg.Admin}
+      - ENTRA_WRITE_PERMISSIONS=${ENTRA_WRITE_PERMISSIONS:-Borg.Write,Borg.Admin}
+      - ENTRA_ADMIN_PERMISSIONS=${ENTRA_ADMIN_PERMISSIONS:-Borg.Admin}
+      - ENTRA_NAMESPACE_CLAIM=${ENTRA_NAMESPACE_CLAIM:-borg_namespaces}
+      - BORG_PUBLIC_BASE_URL=${BORG_PUBLIC_BASE_URL:-http://localhost:8080}
+      - BORG_CORS_ORIGINS=${BORG_CORS_ORIGINS:-http://localhost:3000,http://127.0.0.1:3000}
+      - BORG_TRUSTED_HOSTS=${BORG_TRUSTED_HOSTS:-localhost,127.0.0.1,[::1],testserver}
+      - BORG_ENABLE_DOCS=${BORG_ENABLE_DOCS:-true}
+      - BORG_MCP_REDIRECT_PATH=${BORG_MCP_REDIRECT_PATH:-/auth/callback}
+      - BORG_MCP_ALLOWED_CLIENT_REDIRECT_URIS=${BORG_MCP_ALLOWED_CLIENT_REDIRECT_URIS:-http://localhost:*,http://127.0.0.1:*}
+      - BORG_MCP_REQUIRE_AUTHORIZATION_CONSENT=${BORG_MCP_REQUIRE_AUTHORIZATION_CONSENT:-true}
+      - BORG_MCP_JWT_SIGNING_KEY=${BORG_MCP_JWT_SIGNING_KEY:-}
+      - BORG_MAX_EPISODE_CONTENT_CHARS=${BORG_MAX_EPISODE_CONTENT_CHARS:-20000}
+      - BORG_MAX_EPISODE_METADATA_BYTES=${BORG_MAX_EPISODE_METADATA_BYTES:-16000}
+      - BORG_MAX_EPISODE_PARTICIPANTS=${BORG_MAX_EPISODE_PARTICIPANTS:-25}
+      - BORG_RATE_LIMIT_THINK_PER_MINUTE=${BORG_RATE_LIMIT_THINK_PER_MINUTE:-30}
+      - BORG_RATE_LIMIT_LEARN_PER_MINUTE=${BORG_RATE_LIMIT_LEARN_PER_MINUTE:-60}
+      - BORG_RATE_LIMIT_ADMIN_PER_MINUTE=${BORG_RATE_LIMIT_ADMIN_PER_MINUTE:-10}
+      - BORG_RATE_LIMIT_MCP_PER_MINUTE=${BORG_RATE_LIMIT_MCP_PER_MINUTE:-60}
+      - BORG_AUTH_FAILURE_ALERT_THRESHOLD=${BORG_AUTH_FAILURE_ALERT_THRESHOLD:-5}
+      - BORG_AUTH_FAILURE_ALERT_WINDOW_SECONDS=${BORG_AUTH_FAILURE_ALERT_WINDOW_SECONDS:-300}
+      - BORG_EXTRACTION_PROCEDURE_MIN_CONFIDENCE=${BORG_EXTRACTION_PROCEDURE_MIN_CONFIDENCE:-0.6}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+      - BORG_PROFILE=${BORG_PROFILE:-enterprise}
+    depends_on:
+      borg-db:
+        condition: service_healthy
+    restart: unless-stopped
+    volumes:
+      - ./migrations:/app/migrations
+
+  borg-db:
+    image: pgvector/pgvector:pg16
+    container_name: borg-db
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_DB=borg
+      - POSTGRES_USER=borg
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - borg-data:/var/lib/postgresql/data
+      - ./migrations/001_initial_schema.sql:/docker-entrypoint-initdb.d/001_initial_schema.sql
+      - ./migrations/002_amendments.sql:/docker-entrypoint-initdb.d/002_amendments.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U borg -d borg"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  borg-data:

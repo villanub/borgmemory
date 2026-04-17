@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "Misses explicit mention of the 36 identified customers required by the brief, though it otherwise includes BFSI/Healthcare targeting and quantified impact metrics.",
+  "retrieval_precision": 0.85,
+  "retrieval_precision_reasoning": "Accurately pulls key metrics (99.97% recovery, RTO ~72\u21924 hours, 60% cost reduction, RPO/RTO examples) and Azure-native/managed details from the context, but omitted the explicit '36 customers' targeting detail.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "All cited facts and metrics align with the provided recent episode data; no outdated or time-sensitive inaccuracies detected.",
+  "irrelevant_rate": 0.05,
+  "irrelevant_reasoning": "Nearly all content is directly relevant to a Cyber Recovery value proposition; only small portions are generic marketing phrasing but still pertinent.",
+  "knowledge_coverage": 0.67,
+  "knowledge_coverage_reasoning": "Addresses BFSI and Healthcare segments and includes quantified impact metrics from deployments, but does not state the required 36-customer targeting figure.",
+  "context_tokens": 1338,
+  "latency_ms": 16484,
+  "condition": "B",
+  "task_id": "task-04",
+  "explainability": null
+}

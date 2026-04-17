@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response correctly identified the ARM template scope misalignment as the root cause and described the fix, including switching to az rest for deployment.",
+  "retrieval_precision": 1.0,
+  "retrieval_precision_reasoning": "All key facts from the ground truth were accurately retrieved: ARM scope issue, updating ARM scope definitions, and using az rest instead of curl.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The response references current deployment practices and recent resolution steps with no outdated details.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "All included information is relevant to diagnosing and resolving the MFA Phase 2 ARM issue; no extraneous facts were added.",
+  "knowledge_coverage": 1.0,
+  "knowledge_coverage_reasoning": "The reply covers the expected points: scope problem, az rest usage, and ARM scope updates, and also notes an appropriate permissions remediation step.",
+  "context_tokens": 902,
+  "latency_ms": 11991,
+  "condition": "C",
+  "task_id": "task-06",
+  "explainability": 1
+}

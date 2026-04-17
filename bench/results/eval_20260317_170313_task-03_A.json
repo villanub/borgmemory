@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response did not state the specific decision from the ground truth (use of pgAudit on all Borg tables and explicit Section 404 compliance); it provided general guidance instead of the requested decision retrieval.",
+  "retrieval_precision": 0.4,
+  "retrieval_precision_reasoning": "It correctly mentioned audit trails and the need for approval/change gates, but failed to mention pgAudit, Borg tables, or explicitly cite Section 404 compliance.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The response contains general, current best practices and no outdated or incorrect factual claims.",
+  "irrelevant_rate": 0.5,
+  "irrelevant_reasoning": "The reply includes many general SOX/AI governance recommendations beyond the narrowly requested decision, which is partially irrelevant to the query to retrieve a specific decision.",
+  "knowledge_coverage": 0.33,
+  "knowledge_coverage_reasoning": "Covers approval gates and audit-trail requirements but omits the crucial specifics in the ground truth (pgAudit on Borg tables and explicit statement about meeting Section 404).",
+  "context_tokens": 0,
+  "latency_ms": 12002,
+  "condition": "A",
+  "task_id": "task-03",
+  "explainability": null
+}

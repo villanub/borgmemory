@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response clearly lists a repeatable DDI-first tri-auth debugging pattern and provides ordered procedural steps that address the requested debugging patterns.",
+  "retrieval_precision": 1.0,
+  "retrieval_precision_reasoning": "It accurately captures the required items (DDI isolation first, token inspection including encoding issues, and APIM policy review) and presents them in the correct priority order with practical checks.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The content describes procedural debugging steps and implementation details that are not time-sensitive or tied to transient facts, so nothing appears outdated.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "All additional details (subscription keys, service-to-service config, tooling tips) are relevant to authenticating/debugging APIM scenarios and support the main pattern.",
+  "knowledge_coverage": 1.0,
+  "knowledge_coverage_reasoning": "The response covers each expected knowledge point (DDI check, token inspection/encoding, APIM policy review) and adds complementary checks and troubleshooting tips that reflect the provided context.",
+  "context_tokens": 1341,
+  "latency_ms": 13504,
+  "condition": "B",
+  "task_id": "task-09",
+  "explainability": null
+}

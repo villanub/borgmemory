@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The AI response was empty and provided no architecture, so it failed to address the design task.",
+  "retrieval_precision": 0.0,
+  "retrieval_precision_reasoning": "No relevant information was returned, so nothing retrieved was precise or on-topic.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "No factual content was presented, so there are no stale or outdated facts.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "The response contained no content, therefore there is no irrelevant material.",
+  "knowledge_coverage": 0.0,
+  "knowledge_coverage_reasoning": "None of the expected topics (rax- prefix, OS categorization, v2 schema risks, desired vs actual DCR comparison) were addressed.",
+  "context_tokens": 10,
+  "latency_ms": 25993,
+  "condition": "C",
+  "task_id": "task-02",
+  "explainability": 0
+}

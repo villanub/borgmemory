@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response accurately and usefully describes the current AeroPro Texas architecture using the provided facts (region, Front Door, AKS migration, Virtual WAN, RA-GRS, RTO, and ownership of cloud spend). It presents a coherent high-level topology consistent with the ground truth.",
+  "retrieval_precision": 1.0,
+  "retrieval_precision_reasoning": "All salient facts from the injected context (Front Door, AKS and migration from App Service, Azure Virtual WAN, RA-GRS, East US 2 deployment, RTO target, and spend ownership) were incorporated into the response.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "No injected context items appeared outdated or superseded; the response reflected the current observed facts.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "All context facts were directly relevant to describing the infrastructure architecture and were used appropriately.",
+  "knowledge_coverage": 1.0,
+  "knowledge_coverage_reasoning": "The response covered infrastructure components, the recent decision to migrate from App Service to AKS, and the current deployment topology (Front Door \u2192 AKS in East US 2 with Virtual WAN and RA-GRS), meeting the expected knowledge areas.",
+  "context_tokens": 233,
+  "latency_ms": 9118,
+  "condition": "C",
+  "task_id": "task-07",
+  "explainability": 1
+}

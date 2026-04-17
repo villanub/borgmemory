@@ -1,0 +1,14 @@
+{
+  "condition": "C",
+  "task_id": "task-02",
+  "response": "",
+  "context_injected": "{\"ns\": \"azure-msp\", \"task\": \"architecture\"}",
+  "context_tokens": 10,
+  "task_class": "architecture",
+  "candidates_found": 0,
+  "candidates_selected": 0,
+  "latency_ms": 25993,
+  "latency_think_ms": 72,
+  "latency_llm_ms": 25921,
+  "borg_latency_ms": 8
+}

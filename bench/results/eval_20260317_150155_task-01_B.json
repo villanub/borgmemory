@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response correctly identified the root cause (XML-special chars breaking APIM policy), recommended URL-encoding as the fix, and provided a clear debugging checklist and verification steps relevant to APIM tri-auth and DDI isolation.",
+  "retrieval_precision": 0.9,
+  "retrieval_precision_reasoning": "The response used the core injected context (XML-escaping root cause, URL-encoding fix, tri-auth pattern, x-auth-ddi emphasis, retry-loop behavior) though it did not incorporate some peripheral details from unrelated episodes.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The provided context is recent and operational; no obsolete or superseded facts were presented or repeated in the response.",
+  "irrelevant_rate": 0.33,
+  "irrelevant_reasoning": "About two of the six provided episodes related to other operational topics (MFA/ARM template, unrelated PROD changes) and were not relevant to the APIM token retry debugging task.",
+  "knowledge_coverage": 1.0,
+  "knowledge_coverage_reasoning": "All expected knowledge points were present: tri-auth pattern, DDI tenant isolation via x-auth header, XML-escaping as root cause, and advice to check DDI isolation first when debugging.",
+  "context_tokens": 1318,
+  "latency_ms": 22865,
+  "condition": "B",
+  "task_id": "task-01",
+  "explainability": null
+}

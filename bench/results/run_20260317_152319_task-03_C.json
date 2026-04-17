@@ -1,0 +1,14 @@
+{
+  "condition": "C",
+  "task_id": "task-03",
+  "response": "Decision (2026-03-17):\n\n- All AI model deployments must go through the existing change-management process.\n- pgAudit will be used for SOX compliance on all Borg database tables (chosen because pgAudit is natively supported on Azure PostgreSQL Flexible Server and meets the SOX audit requirements).",
+  "context_injected": "{\"ns\": \"azure-msp\", \"task\": \"compliance\", \"facts\": [\"AMA compliance tracking depends_on Data Collection Rules\", \"AMA compliance tracking integrates_with DCR mapping table\", \"Use pgAudit for SOX compliance on all Borg database tables targets Borg\", \"Use pgAudit for SOX compliance on all Borg database tables implements SOX\"], \"recent\": [\"2026-03-17: SOX compliance review for AI development practices at Rackspace. Key outcomes: (1) All AI model deployments must go through the existing change manage\", \"2026-03-17: Decision: Use pgAudit for SOX compliance on all Borg database tables. Rationale: pgAudit is natively supported on Azure PostgreSQL Flexible Server, re\", \"2026-03-17: Project Sentinel customer pipeline update: Contoso Financial has signed the pilot agreement \u2014 starting with SOC2 compliance automation. Woodgrove Bank\", \"2026-03-17: Project Sentinel architecture review. Sentinel is a multi-agent AI compliance automation system using 6 specialized agents built on Semantic Kernel an\", \"2026-03-17: Wisdm governance automation technical approach: Layer 1 \u2014 Azure Policy definitions for resource compliance (naming, tagging, allowed regions, SKU rest\", \"2026-03-17: AMA compliance tracking v2 post-mortem: the main drift risk was that DCR assignments could silently change during Azure maintenance or subscription mi\", \"2026-03-17: Wisdm RFP preparation \u2014 governance automation section. Wisdm requires automated governance capabilities including: policy-as-code enforcement via Azur\", \"2026-03-17: Azure-PROD entity changes this month: New service principal created for Sentinel (sp-sentinel-prod) with contributor role scoped to rax-prod-sentinel-\", \"2026-03-17: Azure-PROD schema change log \u2014 March 2026: (1) Added new resource group rax-prod-sentinel-rg for Project Sentinel pilot. (2) Updated NSG rules on rax-\", \"2026-03-17: Designing the AMA v3 DCR drift detection system. Key considerations: all Data Collection Rules follow the rax- prefix naming convention (e.g., rax-win\"]}",
+  "context_tokens": 499,
+  "task_class": "compliance",
+  "candidates_found": 14,
+  "candidates_selected": 14,
+  "latency_ms": 7150,
+  "latency_think_ms": 449,
+  "latency_llm_ms": 6701,
+  "borg_latency_ms": 375
+}

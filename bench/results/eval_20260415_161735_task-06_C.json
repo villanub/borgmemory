@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response fails to include critical network access-control details (WAF policy name, VpnOnly rule, AllowTrustedVpnFazureMcp, explicit Janus IP allowlist, backend App Service and resource group) so it does not fully answer the query.",
+  "retrieval_precision": 0.4,
+  "retrieval_precision_reasoning": "It correctly identifies Application Gateway/WAF and APIM/tri-auth concepts but misstates emphasis (implying APIM is the primary enforcement) and omits or fails to retrieve the mandatory WAF rules and IP allowlist required by the ground truth.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The response does not present outdated facts; the issue is missing and incomplete information rather than stale data.",
+  "irrelevant_rate": 0.2,
+  "irrelevant_reasoning": "Some APIM tri-auth and logging details are peripheral to the core network-access controls described in the ground truth, though largely related to authentication; however more relevant WAF/VPN specifics were omitted.",
+  "knowledge_coverage": 0.35,
+  "knowledge_coverage_reasoning": "Covers some expected points (Application Gateway/WAF, APIM tri-auth pattern) but misses several required items: specific WAF policy and VpnOnly rule, AllowTrustedVpnFazureMcp, explicit Janus AWS IPs, backend azure-mcp-prod in rg-azure-mcp-prod, and that 403s from unknown IPs are expected behavior.",
+  "context_tokens": 1435,
+  "latency_ms": 27264,
+  "condition": "C",
+  "task_id": "task-06",
+  "explainability": 1
+}

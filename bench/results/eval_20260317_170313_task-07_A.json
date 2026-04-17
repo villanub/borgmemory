@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response did not describe AeroPro Texas's current architecture; it refused to provide company-specific details and instead gave general discovery steps and reference architecture templates.",
+  "retrieval_precision": 0.2,
+  "retrieval_precision_reasoning": "The provided guidance and canonical architecture are generally accurate and useful, but no AeroPro Texas\u2013specific facts or topology were retrieved or asserted.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The content consists of evergreen discovery steps and reference patterns rather than time-sensitive facts, so there are no stale claims.",
+  "irrelevant_rate": 0.25,
+  "irrelevant_reasoning": "Most of the response is relevant to discovering or designing an architecture, but it fails to answer the direct query about AeroPro Texas's current deployment, making parts of it not directly relevant to the user's request.",
+  "knowledge_coverage": 0.0,
+  "knowledge_coverage_reasoning": "The response contains no information about AeroPro infrastructure components, recent architecture decisions, or the current deployment topology, so it provides no coverage of the expected AeroPro-specific knowledge.",
+  "context_tokens": 0,
+  "latency_ms": 22323,
+  "condition": "A",
+  "task_id": "task-07",
+  "explainability": null
+}

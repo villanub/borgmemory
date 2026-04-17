@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The AI response contained no substantive content addressing the debugging task, so it did not correctly or usefully answer the query.",
+  "retrieval_precision": 0.0,
+  "retrieval_precision_reasoning": "The provided borg context was not referenced or used in the (empty) response, so none of the injected context was utilized.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The injected context was a simple compilation tag and contained no factual claims; there is no evidence of outdated information.",
+  "irrelevant_rate": 1.0,
+  "irrelevant_reasoning": "The borg-compiled context token is not directly relevant to debugging APIM tokens, so the entire injected context is effectively unrelated to the task.",
+  "knowledge_coverage": 0.0,
+  "knowledge_coverage_reasoning": "None of the expected knowledge items (tri-auth pattern, x-auth tenant isolation, XML-escaping causing retry bug, check DDI isolation first) appeared in the response.",
+  "context_tokens": 19,
+  "latency_ms": 22469,
+  "condition": "C",
+  "task_id": "task-01",
+  "explainability": 0
+}

@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response correctly identifies the decision to switch from Entra client credentials to Rackspace Identity and provides the core rationale (security, compatibility with Fleet/APIM, and operational simplicity). It therefore succeeds at retrieving the decision and explaining why it was made.",
+  "retrieval_precision": 0.8,
+  "retrieval_precision_reasoning": "Most key points are accurate (backend migration, Entra creds unsuitable/unsafe in a browser, Fleet/APIM expecting Rackspace X-Auth semantics, and operational/permission advantages), but the answer omits some implementation specifics from the ground truth.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The response references the 2026-04-09 revision and current rationale; there are no outdated or time-sensitive inaccuracies detected.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "All content is focused on the decision and rationale for switching token acquisition and is relevant to the debugging task.",
+  "knowledge_coverage": 0.6,
+  "knowledge_coverage_reasoning": "Covers the high-level reasons and that Rackspace Identity is now used, but misses code-level details from the expected knowledge: the specific call to shared.janus_helpers.get_rackspace_identity_token(auth_mode='identity'), use of RACKSPACE_USERNAME/RACKSPACE_PASSWORD, and the explicit note that the token is sent as Authorization: Bearer to APIM.",
+  "context_tokens": 1035,
+  "latency_ms": 45000,
+  "condition": "C",
+  "task_id": "task-07",
+  "explainability": 1
+}

@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response provides a strong generic Cyber Recovery value proposition but fails to target the specified 36 customers or explicitly address the BFSI and Healthcare segments and does not include quantified impact metrics from real existing deployments.",
+  "retrieval_precision": 0.0,
+  "retrieval_precision_reasoning": "The injected context (36 customers, BFSI/Healthcare focus, and existing-deployment metrics) was not used or referenced in the response.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "There were no time-sensitive facts in the injected context; the response contained general, evergreen claims rather than outdated information.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "All provided context elements were relevant to the task (targeting and metrics); none were unrelated.",
+  "knowledge_coverage": 0.33,
+  "knowledge_coverage_reasoning": "The response included measurable outcomes and a hypothetical ROI example (partial coverage of impact metrics) but did not mention the 36-customer targeting strategy or explicitly focus on BFSI and Healthcare segments.",
+  "context_tokens": 0,
+  "latency_ms": 13915,
+  "condition": "A",
+  "task_id": "task-04",
+  "explainability": null
+}

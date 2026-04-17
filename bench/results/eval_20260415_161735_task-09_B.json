@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response presents a clear, ordered debugging pattern that maps to the expected triage steps (logs \u2192 correlate \u2192 isolate WAF vs backend \u2192 fix \u2192 validate), which satisfies the task to retrieve the procedural pattern for fazure-mcp connectivity/auth issues.",
+  "retrieval_precision": 0.9,
+  "retrieval_precision_reasoning": "Most key checks are present (AGWAccessLogs, AGWFirewallLogs, gateway probes/metrics, App Service state/health, App Insights, activity logs) and the probe-interval/worker-count root cause is noted, but it omits an explicit mention that 403s matching VpnOnly for unknown IPs are expected/normal and does not call out show-backend-health by name.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The response relies on procedural steps and recent incident details that remain operationally valid; no obsolete or time\u2011bound inaccuracies were introduced.",
+  "irrelevant_rate": 0.05,
+  "irrelevant_reasoning": "Almost all content is directly relevant to debugging fazure-mcp; a few additional recommendations (detailed WAF regex/rate-limit ordering) are slightly more prescriptive than the minimal pattern but still relevant.",
+  "knowledge_coverage": 0.9,
+  "knowledge_coverage_reasoning": "The coverage is high\u2014it includes access/firewall logs, metrics, probe configuration, App Service scaling, App Insights and validation\u2014but it misses the explicit note that 403s matching VpnOnly for unknown IPs are expected and does not explicitly name the show-backend-health check.",
+  "context_tokens": 3596,
+  "latency_ms": 31946,
+  "condition": "B",
+  "task_id": "task-09",
+  "explainability": null
+}

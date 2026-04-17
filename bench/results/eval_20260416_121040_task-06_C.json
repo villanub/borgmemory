@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response correctly identifies the Application Gateway WAF and the App Service backend but misses several critical ground-truth specifics (VpnOnly enforcement, required Janus AWS IP allowlist, and the expected 403 behavior) and introduces unverified APIM details.",
+  "retrieval_precision": 0.6,
+  "retrieval_precision_reasoning": "It accurately states the App Gateway WAF, the AllowTrustedVpnFazureMcp rule, and the azure-mcp-prod App Service backend, but omits the explicit VpnOnly rule name, the required Janus IP allowlist, and the expected 403 behavior while adding unconfirmed APIM architecture.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "There is no indication that any presented facts are outdated; inaccuracies are omissions or extraneous additions rather than stale information.",
+  "irrelevant_rate": 0.3,
+  "irrelevant_reasoning": "The response includes APIM-centric details (tri-auth, token management, rewrite logic) and extra allow rules that are not part of the core ground-truth authentication/network controls for fazure-mcp.",
+  "knowledge_coverage": 0.5,
+  "knowledge_coverage_reasoning": "Covers some core elements (App Gateway WAF, trusted-VPN allow rule, App Service backend) but misses high-priority items (VpnOnly enforcement name, explicit Janus IPs in the allowlist, and that 403s from unknown/external IPs are expected).",
+  "context_tokens": 3042,
+  "latency_ms": 46638,
+  "condition": "C",
+  "task_id": "task-06",
+  "explainability": 1
+}

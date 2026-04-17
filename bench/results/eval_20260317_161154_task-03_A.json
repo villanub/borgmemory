@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response failed to state the actual decision from the ground truth (pgAudit on all Borg tables and Section 404 compliance) and instead provided generic guidance, so it did not accomplish the retrieval task.",
+  "retrieval_precision": 0.2,
+  "retrieval_precision_reasoning": "The reply included relevant SOX controls (audit trails, change approvals) but did not retrieve the key specific facts (pgAudit, Borg tables, explicit Section 404 confirmation).",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The content contained general, current SOX control guidance and no outdated or incorrect factual claims.",
+  "irrelevant_rate": 0.8,
+  "irrelevant_reasoning": "Much of the response was general best-practice guidance and hypothetical options rather than the specific decision requested, so a large portion was irrelevant to the task of retrieving the decided facts.",
+  "knowledge_coverage": 0.5,
+  "knowledge_coverage_reasoning": "The response covered approval gates and audit/logging needs (matching part of the expected knowledge) but missed the critical specifics about using pgAudit for all Borg tables and the explicit Section 404 compliance statement.",
+  "context_tokens": 0,
+  "latency_ms": 17199,
+  "condition": "A",
+  "task_id": "task-03",
+  "explainability": null
+}

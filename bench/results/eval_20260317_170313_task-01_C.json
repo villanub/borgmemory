@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response correctly identified the root cause (XML escaping of the service token) and provided actionable debugging steps and fixes that address APIM policy injection and retry behavior.",
+  "retrieval_precision": 1.0,
+  "retrieval_precision_reasoning": "The reply accurately referenced the tri-auth pattern, x-auth-ddi (DDI isolation), the XML-escaping root cause, and concrete APIM policy patterns (set-variable, set-header) to avoid inlining tokens.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "All facts are current and directly drawn from the provided context (March 2026 debugging session); nothing appears outdated.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "All content is focused on diagnosing and fixing the APIM service token retry issue; ancillary notes are operationally relevant to debugging.",
+  "knowledge_coverage": 1.0,
+  "knowledge_coverage_reasoning": "The response covered the expected points: tri-auth pattern, DDI tenant isolation via x-auth-ddi, XML-escaping as the cause, and the recommendation to check DDI isolation first plus remediation steps.",
+  "context_tokens": 724,
+  "latency_ms": 25691,
+  "condition": "C",
+  "task_id": "task-01",
+  "explainability": 1
+}

@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response accurately describes the dedicated Postgres-backed run/item tables, the 15-second ProcessEventGridBulkRemediation timer worker with advisory lock, requeueing stale running items on restart, the recency index, and separate bulk-worker Fleet polling knobs, satisfying the architecture task.",
+  "retrieval_precision": 1.0,
+  "retrieval_precision_reasoning": "All expected concrete implementation details from the ground truth are present and correctly stated without contradicting facts.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "No facts presented appear outdated or inconsistent with the provided context; details mirror the recent implementation notes.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "The response stays focused on bulk remediation architecture, recoverability, indexing, and polling knobs; no extraneous material is included.",
+  "knowledge_coverage": 1.0,
+  "knowledge_coverage_reasoning": "The answer covers the dedicated tables, 15s timer worker, non-use of sync_queue, stale-item requeue on restart, the recency index definition, and separate fleet polling environment knobs.",
+  "context_tokens": 1822,
+  "latency_ms": 61700,
+  "condition": "C",
+  "task_id": "task-10",
+  "explainability": 1
+}

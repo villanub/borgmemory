@@ -1,0 +1,164 @@
+{
+  "version": "2.0",
+  "namespace": "azure-msp",
+  "description": "10 benchmark tasks grounded in real production episodes (March–April 2026). All ground truths are derived from actual work history, not synthetic seed data.",
+  "tasks": [
+    {
+      "id": "task-01",
+      "query": "Why was fazure-mcp showing 502 errors and what did we find?",
+      "task_class": "debug",
+      "description": "Diagnose the root cause of fazure-mcp 502 errors reported in AGWAccessLogs",
+      "expected_entities": ["fazure-mcp", "Application Gateway", "AGWAccessLogs", "azure-mcp-prod"],
+      "expected_knowledge": [
+        "502s were transient backend unavailability, not WAF regression",
+        "Backend health (HealthyHostCount=1, UnhealthyHostCount=0) stayed healthy throughout",
+        "App Service Http5xx stayed 0 — no real backend 500s",
+        "App Gateway FailedRequests spiked while backend health-state did not change",
+        "Current 403s were expected VpnOnly blocks from external/scanner IPs, not an incident"
+      ],
+      "ground_truth": "The fazure-mcp 502 investigation showed the backend (App Service azure-mcp-prod) was healthy throughout: HealthyHostCount stayed 1, UnhealthyHostCount stayed 0, and Http5xx stayed 0. The FailedRequests spike on App Gateway indicated short transient unavailability that did not trip a health-state change. The concurrent 403s were expected VpnOnly blocks from external scanners and preview IPs, not related to the 502s. Conclusion: not a WAF regression, not backend server errors — transient upstream unavailability."
+    },
+    {
+      "id": "task-02",
+      "query": "How does Event Grid remediation work in azr-compliance-v3?",
+      "task_class": "architecture",
+      "description": "Describe the architecture of the Event Grid remediation flow implemented in azr-compliance-v3",
+      "expected_entities": ["azr-compliance-v3", "Event Grid", "APIM", "Fleet"],
+      "expected_knowledge": [
+        "Switched from browser-side Fleet API call to backend-mediated flow",
+        "Fleet requires application permission so the browser cannot call it directly",
+        "Backend calls POST /api/event-grid/remediation/ensure",
+        "Backend acquires ClientSecretCredential token for Fleet APIM scope",
+        "Frontend polls a statusUrl returned by the backend until completion",
+        "APIM endpoint: /v1/customers/{customerId}/subscriptions/{subscriptionId}/eventgrid/subscription"
+      ],
+      "ground_truth": "Event Grid remediation in azr-compliance-v3 is backend-mediated because Fleet requires application permission which the browser lacks. The frontend calls POST /api/event-grid/remediation/ensure. The backend acquires a ClientSecretCredential token scoped to the Fleet APIM audience and calls the APIM endpoint /v1/customers/{customerId}/subscriptions/{subscriptionId}/eventgrid/subscription, then polls the returned statusUrl until completion. The original browser-side approach was abandoned because the browser's MSAL Bearer token does not have application permission."
+    },
+    {
+      "id": "task-03",
+      "query": "What did we decide about Event Grid scoping and ownership in SyncEventGrid?",
+      "task_class": "compliance",
+      "description": "Retrieve the decision about how SyncEventGrid filters Event Grid resources to Rackspace-owned subscriptions",
+      "expected_entities": ["azr-compliance-v3", "Event Grid", "lighthouse_delegations", "Rackspace"],
+      "expected_knowledge": [
+        "SyncEventGrid joins customer_subscriptions to lighthouse_delegations",
+        "Requires managed_by_tenant_id to equal the Rackspace Lighthouse tenant",
+        "Requires delegation_state in active or succeeded",
+        "Uses a single Rackspace Lighthouse credential — no per-customer tenant tokens",
+        "Intentionally does not acquire per-customer tokens"
+      ],
+      "ground_truth": "SyncEventGrid was updated to scope exclusively to Rackspace-managed monitoring subscriptions by joining customer_subscriptions to lighthouse_delegations and filtering on managed_by_tenant_id equal to the Rackspace Lighthouse tenant and delegation_state in active/succeeded. The sync uses a single shared Rackspace Lighthouse credential and intentionally does not acquire per-customer tenant tokens. This ensures Event Grid rows are filtered to Rackspace-owned resources before any upsert."
+    },
+    {
+      "id": "task-04",
+      "query": "What does fleet-agent-query do and how is it built?",
+      "task_class": "writing",
+      "description": "Summarize the purpose and architecture of the fleet-agent-query project",
+      "expected_entities": ["fleet-agent-query", "Azure Function", "propensity_store"],
+      "expected_knowledge": [
+        "Generates sales propensity reports",
+        "Matches third-party vendor solutions against the Rackspace Azure managed fleet",
+        "Built as an Azure Function app in Python",
+        "Uses intake.py for vendor solution intake with OpenAI",
+        "Uses propensity_store.py for customer/billing queries",
+        "Includes SQL injection protection via safe_table_name validation"
+      ],
+      "ground_truth": "fleet-agent-query is a Python Azure Function app that generates sales propensity reports by matching third-party vendor solutions against the Rackspace Azure managed fleet. It has an intake module that uses OpenAI to extract structured vendor/solution data, and a propensity_store module that queries customer and billing data. The codebase includes SQL injection protection, retry logic with exponential backoff, and output validation to ensure intake results are non-empty and non-placeholder."
+    },
+    {
+      "id": "task-05",
+      "query": "How did we trace the Service Bus 40100 unauthorized errors in prod-azure-v3?",
+      "task_class": "debug",
+      "description": "Identify the root cause and investigation path for Service Bus GetSubscription 40100 errors",
+      "expected_entities": ["Service Bus", "prod-azure-v3", "pim-dev", "Datadog"],
+      "expected_knowledge": [
+        "Service Bus operational logs were in Datadog blob storage, not Log Analytics",
+        "Logs found in storage account ddlogstorage3a0c161f2e70, insights-logs-operationallogs",
+        "Client was ServiceBus Client against pim-dev subscription management endpoints",
+        "Five pim-dev endpoints affected: check-reader, check-contributor, get-eligibility, request-reader, request-contributor",
+        "Roughly 442-450 attempts per endpoint in the incident hour",
+        "Namespace auth rules only had RootManageSharedAccessKey — no topic-scoped permissions"
+      ],
+      "ground_truth": "The Service Bus 40100 Unauthorized GetSubscription errors in namespace prod-azure-v3 were traced by searching raw blob logs in Datadog forwarding storage (not Log Analytics). The logs were in ddlogstorage3a0c161f2e70 under insights-logs-operationallogs. The caller was ServiceBus Client hitting five pim-dev subscription management endpoints (check-reader, check-contributor, get-eligibility, request-reader, request-contributor) approximately 442-450 times each in the incident hour. The Service Bus namespace only had RootManageSharedAccessKey at namespace level with no topic-scoped permissions for pim-dev."
+    },
+    {
+      "id": "task-06",
+      "query": "What is the authentication architecture for fazure-mcp?",
+      "task_class": "architecture",
+      "description": "Describe how fazure-mcp handles authentication and network access control",
+      "expected_entities": ["fazure-mcp", "Application Gateway", "VpnOnly", "AllowTrustedVpnFazureMcp", "Janus"],
+      "expected_knowledge": [
+        "Sits behind Application Gateway with WAF",
+        "WAF policy waf-appgw-phoenix-prod-southcentralus-rax-fazure-mcp-sites contains VpnOnly rule",
+        "AllowTrustedVpnFazureMcp rule allows trusted Rackspace and Janus traffic",
+        "Janus AWS IPs must be explicitly added to the allowlist",
+        "Backend is App Service azure-mcp-prod in rg-azure-mcp-prod",
+        "403s from unknown IPs are expected and correct — VpnOnly enforcement"
+      ],
+      "ground_truth": "fazure-mcp is protected by an Application Gateway with a WAF policy (waf-appgw-phoenix-prod-southcentralus-rax-fazure-mcp-sites) that enforces a VpnOnly rule. Trusted traffic is allowed via the AllowTrustedVpnFazureMcp rule. Janus AWS IPs (52.39.2.74, 52.41.136.221, 52.10.115.132, 52.40.141.99) must be explicitly present in the allowlist. The backend is App Service azure-mcp-prod in rg-azure-mcp-prod. 403s from unknown or external IPs are expected and correct behavior, not incidents."
+    },
+    {
+      "id": "task-07",
+      "query": "Why did we switch Event Grid token acquisition to Rackspace Identity instead of Entra client credentials?",
+      "task_class": "debug",
+      "description": "Retrieve the decision and rationale for changing the auth method used in azr-compliance-v3 Event Grid remediation",
+      "expected_entities": ["azr-compliance-v3", "APIM", "Rackspace Identity", "Janus"],
+      "expected_knowledge": [
+        "Token acquisition was revised away from Entra client credentials",
+        "Now uses Rackspace Identity flow via RACKSPACE_USERNAME and RACKSPACE_PASSWORD",
+        "Uses janus_helpers.get_rackspace_identity_token(auth_mode='identity')",
+        "Token sent as Authorization: Bearer to APIM",
+        "Rackspace Identity is the existing shared flow used elsewhere in azr-compliance-v3"
+      ],
+      "ground_truth": "The Event Grid remediation token acquisition in azr-compliance-v3 was revised from Entra client credentials to the Rackspace Identity flow. shared/fleet_event_grid_helpers.py now calls shared.janus_helpers.get_rackspace_identity_token(auth_mode='identity') and sends the resulting token as Authorization: Bearer to APIM for the targeted Event Grid ensure endpoint. The rationale was to reuse the existing Rackspace Identity flow already established in the codebase rather than maintaining a separate Entra client credential."
+    },
+    {
+      "id": "task-08",
+      "query": "How did we resolve the fleet-platform-app CI security audit failure?",
+      "task_class": "compliance",
+      "description": "Retrieve the root cause and fix for the pip-audit CI gate failure in fleet-platform-app",
+      "expected_entities": ["fleet-platform-app", "pip-audit", "aiohttp"],
+      "expected_knowledge": [
+        "pip-audit reported 10 GHSA advisories against aiohttp 3.13.3",
+        "aiohttp was pinned to 3.13.3 in both functions/requirements.txt and functions-webhook/requirements.txt",
+        "First fixed version was 3.13.4",
+        "Both manifests were updated to aiohttp==3.13.4",
+        "454 pytest tests passed after the fix",
+        "CI gate failed because GitHub Actions inspection was blocked by Rackspace SAML on the gh token"
+      ],
+      "ground_truth": "The fleet-platform-app CI security audit failure was caused by aiohttp pinned to 3.13.3 in both functions/requirements.txt and functions-webhook/requirements.txt. pip-audit reported 10 GHSA advisories with first fixed version 3.13.4. Both manifests were updated to aiohttp==3.13.4. After the fix, pip-audit reported no known vulnerabilities and 454 pytest tests passed. The CI gate had originally been triggered locally because GitHub Actions inspection was blocked by Rackspace SAML on the gh token."
+    },
+    {
+      "id": "task-09",
+      "query": "What pattern do we follow when debugging traffic issues on fazure-mcp?",
+      "task_class": "debug",
+      "description": "Retrieve the procedural debugging pattern for fazure-mcp connectivity and auth issues",
+      "expected_entities": ["fazure-mcp", "AGWAccessLogs", "AGWFirewallLogs", "Application Gateway"],
+      "expected_knowledge": [
+        "Start with AGWAccessLogs to get status code breakdown (5xx vs 4xx vs 502)",
+        "Check AGWFirewallLogs to distinguish WAF blocks from backend errors",
+        "Check App Service state (Running/Stopped) and backend-health via show-backend-health",
+        "Check HealthyHostCount and UnhealthyHostCount in App Gateway metrics",
+        "Check App Insights azure-mcp-prod for actual backend error traces",
+        "403s matching VpnOnly for unknown IPs are expected — not an incident"
+      ],
+      "ground_truth": "The established pattern for debugging fazure-mcp traffic issues is: (1) check AGWAccessLogs for the status code distribution to determine whether errors are 5xx, 502, or 403; (2) check AGWFirewallLogs to identify WAF rule matches and distinguish blocked traffic from backend failures; (3) check App Service state and use show-backend-health to confirm the backend is healthy; (4) check App Gateway metrics — HealthyHostCount and UnhealthyHostCount — to verify no health-state change; (5) check App Insights azure-mcp-prod for backend error traces. 403s matching VpnOnly for unknown IPs are expected and correct."
+    },
+    {
+      "id": "task-10",
+      "query": "How does azr-compliance-v3 handle bulk Event Grid remediation at scale?",
+      "task_class": "architecture",
+      "description": "Describe the bulk remediation architecture and how it handles worker restarts and stale runs",
+      "expected_entities": ["azr-compliance-v3", "ProcessEventGridBulkRemediation", "event_grid_bulk_remediation_runs"],
+      "expected_knowledge": [
+        "Uses dedicated Postgres-backed tables: event_grid_bulk_remediation_runs and event_grid_bulk_remediation_run_items",
+        "ProcessEventGridBulkRemediation is a dedicated 15-second timer worker",
+        "Does not reuse sync_queue — separate dedicated tables",
+        "Stale running items are requeued to pending on worker restart",
+        "Recency index on event_grid_bulk_remediation_run_items(run_id, updated_at DESC, id DESC)",
+        "Bulk-worker-specific Fleet polling env knobs separate from main worker"
+      ],
+      "ground_truth": "azr-compliance-v3 implements bulk Event Grid remediation using dedicated Postgres-backed tables (event_grid_bulk_remediation_runs and event_grid_bulk_remediation_run_items) rather than reusing sync_queue. A dedicated ProcessEventGridBulkRemediation timer worker runs on a 15-second interval. On restart, stale running items are requeued to pending so interrupted runs recover automatically. A recency index on (run_id, updated_at DESC, id DESC) supports efficient polling. Bulk-worker Fleet polling behavior is controlled via separate environment knobs from the main sync worker."
+    }
+  ]
+}

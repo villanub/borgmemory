@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response correctly identifies the ARM scope mismatch as the root cause and describes the implemented fix using az rest and updated ARM scope definitions, which matches the expected solution.",
+  "retrieval_precision": 1.0,
+  "retrieval_precision_reasoning": "The response precisely states subscription-level vs resource-group-level scope mismatch and the switch from curl to az rest to handle MFA/token refresh, matching the ground truth.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "All facts are current and directly relevant to the described issue and fix; no outdated information is present.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "The response contains no extraneous details and stays focused on diagnosis and remediation of the MFA Phase 2 ARM issue.",
+  "knowledge_coverage": 1.0,
+  "knowledge_coverage_reasoning": "It covers the three expected points: ARM scope issue, use of az rest instead of curl, and updating ARM scope definitions.",
+  "context_tokens": 1338,
+  "latency_ms": 5104,
+  "condition": "B",
+  "task_id": "task-06",
+  "explainability": null
+}

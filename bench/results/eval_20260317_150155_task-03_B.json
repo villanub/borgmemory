@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response correctly states pgAudit was chosen for Borg/PostgreSQL, that pgAudit satisfies SOX Section 404 audit trail requirements, and that approval gates are required for production changes, directly answering the query.",
+  "retrieval_precision": 0.33,
+  "retrieval_precision_reasoning": "The response primarily used details from Episodes 1 and 2 (pgAudit, Section 404 rationale, approval gates, provenance), while the other injected episodes contained largely unrelated material.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "Injected context items are contemporaneous and consistent; no outdated or superseded facts were used.",
+  "irrelevant_rate": 0.67,
+  "irrelevant_reasoning": "Four of the six injected episodes (customer pipeline, architecture, governance automation layers, drift post-mortem) were not relevant to the SOX decision and therefore irrelevant to the task.",
+  "knowledge_coverage": 1.0,
+  "knowledge_coverage_reasoning": "All expected knowledge items appear: pgAudit chosen, audit trails meet SOX Section 404, and approval gates required for production changes.",
+  "context_tokens": 1312,
+  "latency_ms": 7041,
+  "condition": "B",
+  "task_id": "task-03",
+  "explainability": null
+}

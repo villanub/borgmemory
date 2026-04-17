@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response provides a thorough generic layered debugging workflow but does not return the specific procedural pattern for fazure-mcp (named logs, exact commands like show-backend-health, App Gateway metrics, or the expected VpnOnly 403 behavior).",
+  "retrieval_precision": 0.25,
+  "retrieval_precision_reasoning": "The reply covers many relevant debugging concepts (WAF, health probes, ingress, packet capture, Azure Network Watcher) but fails to retrieve the exact artifacts and checks required by the task (AGWAccessLogs, AGWFirewallLogs, show-backend-health, HealthyHostCount/UnhealthyHostCount, azure-mcp-prod App Insights, VpnOnly 403 note).",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "Content is general, current, and contains no identifiable outdated or incorrect factual claims.",
+  "irrelevant_rate": 0.3,
+  "irrelevant_reasoning": "Some sections (deep generic Kubernetes and service-mesh checks, broad RCA/process details) are useful but exceed the concise, targeted runbook pattern requested and thus are partially extraneous.",
+  "knowledge_coverage": 0.25,
+  "knowledge_coverage_reasoning": "Covers high-level telemetry collection and layered isolation principles and mentions WAF and Azure tooling, but omits several key, task-specific checks and named logs/metrics that constitute the established fazure-mcp debugging pattern.",
+  "context_tokens": 0,
+  "latency_ms": 76241,
+  "condition": "A",
+  "task_id": "task-09",
+  "explainability": null
+}

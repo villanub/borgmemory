@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response provides a solid general troubleshooting checklist for token retry issues in APIM but fails to identify the specific known root cause (XML escaping of the service token) and misses key APIM-specific concepts required by the task (tri-auth pattern and DDI/x-auth isolation).",
+  "retrieval_precision": 0.5,
+  "retrieval_precision_reasoning": "The reply correctly covers common causes (throttling, caching, backoff, thundering herd) and practical APIM policy patterns, but omits the crucial detail about XML escaping/URL-encoding and the tri-auth/DDI isolation context.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The guidance given (caching tokens, respecting Retry-After, using send-request and cache-lookup, backoff) is current and accurate for APIM token handling.",
+  "irrelevant_rate": 0.1,
+  "irrelevant_reasoning": "Most content is relevant to debugging token retry behavior; introductory questions and some general troubleshooting steps add minor extra context but are not irrelevant.",
+  "knowledge_coverage": 0.1,
+  "knowledge_coverage_reasoning": "The response covers general APIM token retry debugging but fails to mention the expected domain-specific items: APIM tri-auth pattern, DDI tenant isolation and x-auth header, and the XML-escaping/URL-encoding root cause, so coverage of required knowledge is very limited.",
+  "context_tokens": 0,
+  "latency_ms": 63857,
+  "condition": "A",
+  "task_id": "task-01",
+  "explainability": null
+}

@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response delivers a comprehensive, actionable architecture that directly addresses drift detection for AMA v3 DCRs, including detection, reconciliation, remediation, auditing, and operational runbooks.",
+  "retrieval_precision": 0.95,
+  "retrieval_precision_reasoning": "The design correctly leverages the canonical mapping table, ARM Resource Graph, Activity Logs, reconciliation loops and agent health correlation; recommendations are specific and practical with appropriate Azure services and controls.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The response aligns with the provided (2026) context and uses current Azure constructs (Resource Graph, Activity Log, ARM) without introducing outdated or time-bound claims.",
+  "irrelevant_rate": 0.05,
+  "irrelevant_reasoning": "Nearly all content is relevant; minor peripheral mentions (e.g., Project Sentinel integration, DDI header note) are ancillary but still applicable for operational integration.",
+  "knowledge_coverage": 1.0,
+  "knowledge_coverage_reasoning": "All expected knowledge points are covered: rax- prefix enforcement, OS-based categorization for targeted remediation, and lessons from v2 (silent/maintenance-driven drift) with desired-vs-actual comparisons and remediation modes.",
+  "context_tokens": 677,
+  "latency_ms": 37593,
+  "condition": "C",
+  "task_id": "task-02",
+  "explainability": 1
+}

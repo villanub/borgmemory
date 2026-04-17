@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response outlines the broad AGW/WAF forensic loop and some corrective actions but omits explicit, required checks (App Service state and show-backend-health, App Gateway HealthyHostCount/UnhealthyHostCount, and Application Insights azure-mcp-prod traces), so it does not fully reproduce the established procedural pattern.",
+  "retrieval_precision": 0.6,
+  "retrieval_precision_reasoning": "It correctly retrieves AGWAccessLogs, AGWFirewallLogs, WAF rule (VpnOnly) behavior, and allowlist remediation, but it lacks precise backend-health commands/metrics and the App Insights trace step.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The response references recent investigation findings consistent with the provided context and does not introduce outdated information.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "All items in the response are relevant to debugging fazure-mcp connectivity/auth and WAF/backend correlation.",
+  "knowledge_coverage": 0.4,
+  "knowledge_coverage_reasoning": "Covers access logs, firewall logs, and WAF/allowlist handling but omits App Service state/show-backend-health verification, App Gateway HealthyHostCount/UnhealthyHostCount metrics, and explicit App Insights (azure-mcp-prod) error-trace checks; only partially acknowledges expected VpnOnly 403s.",
+  "context_tokens": 1720,
+  "latency_ms": 28662,
+  "condition": "C",
+  "task_id": "task-09",
+  "explainability": 1
+}

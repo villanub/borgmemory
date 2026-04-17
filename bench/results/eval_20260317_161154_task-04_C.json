@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response produces a coherent Healthcare-focused value proposition but fails to address the requirement to target 36 identified customers, omits the BFSI segment, and does not include quantified impact metrics from existing deployments.",
+  "retrieval_precision": 0.88,
+  "retrieval_precision_reasoning": "It accurately incorporates many provided facts (Azure deployment, Rackspace management, immutable backup vaults, PCI\u2011DSS, cost reduction vs on\u2011prem DR, single pane-of-glass, RFP readiness) but neglects key context elements like the 36-customer target and BFSI segment.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The facts cited align with the provided context and there is no evidence of outdated or incorrect information.",
+  "irrelevant_rate": 0.05,
+  "irrelevant_reasoning": "Nearly all content is relevant to a value proposition; only small portions (e.g., 'Next step' and procurement phrasing) extend beyond the core ask.",
+  "knowledge_coverage": 0.45,
+  "knowledge_coverage_reasoning": "Many contextual points are used, but the response fails to cover crucial expected items: explicit targeting of the 36 customers, inclusion of the BFSI segment, and any quantified impact metrics from existing deployments.",
+  "context_tokens": 99,
+  "latency_ms": 10886,
+  "condition": "C",
+  "task_id": "task-04",
+  "explainability": 1
+}

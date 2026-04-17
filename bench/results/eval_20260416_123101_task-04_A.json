@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response did not describe the fleet-agent-query project requested and instead asked for clarification and provided unrelated interpretations; it fails to summarize the specified project's purpose and architecture.",
+  "retrieval_precision": 0.0,
+  "retrieval_precision_reasoning": "No accurate details from the ground-truth (Azure Function, Python, intake.py, propensity_store.py, SQL protections, etc.) were retrieved or presented.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The general descriptions of FleetDM, Rancher Fleet, and Elastic Fleet are contemporary and not time-sensitive, so there are no identifiable stale facts.",
+  "irrelevant_rate": 1.0,
+  "irrelevant_reasoning": "Nearly all content discusses unrelated projects or asks for clarification rather than summarizing the specified fleet-agent-query codebase.",
+  "knowledge_coverage": 0.0,
+  "knowledge_coverage_reasoning": "None of the expected knowledge points (sales propensity reports, matching vendor solutions to Rackspace Azure fleet, Azure Function in Python, intake.py/OpenAI, propensity_store.py, SQL injection protection) were mentioned.",
+  "context_tokens": 0,
+  "latency_ms": 51715,
+  "condition": "A",
+  "task_id": "task-04",
+  "explainability": null
+}

@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response describes a high-level Event Grid fan-out and callback pattern but fails to include critical implementation details from the ground truth (dedicated Postgres tables, ProcessEventGridBulkRemediation 15s timer worker, requeueing of stale items, recency index, and bulk-worker polling knobs), so it does not meet the task requirements.",
+  "retrieval_precision": 0.55,
+  "retrieval_precision_reasoning": "The answer accurately captures the general Event Grid fan\u2011out, asynchronous callback flow and references some real infra pieces (automation trigger, send_bulk_operation_callback), but it omits and does not precisely state the key architecture components and behaviors required by the ground truth.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "There are no clearly incorrect or outdated facts presented; the issues are omissions rather than incorrect statements.",
+  "irrelevant_rate": 0.1,
+  "irrelevant_reasoning": "Minor details (e.g., python-httpx, shared ASE outbound IP) are somewhat peripheral to the core question about bulk remediation orchestration and restart/recovery behavior but are not strongly irrelevant.",
+  "knowledge_coverage": 0.35,
+  "knowledge_coverage_reasoning": "The response covers the general pattern (Event Grid, fan\u2011out, callbacks) but misses most of the specific expected items: dedicated Postgres tables and their names, the dedicated 15s timer worker, requeueing of stale 'running' items, the recency index, and separate bulk-worker polling knobs.",
+  "context_tokens": 1875,
+  "latency_ms": 60967,
+  "condition": "C",
+  "task_id": "task-10",
+  "explainability": 1
+}

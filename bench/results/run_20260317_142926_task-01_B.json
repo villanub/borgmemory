@@ -1,0 +1,11 @@
+{
+  "condition": "B",
+  "task_id": "task-01",
+  "response": "",
+  "context_injected": "",
+  "context_tokens": 0,
+  "episodes_fetched": 0,
+  "latency_ms": 24653,
+  "latency_fetch_ms": 1200,
+  "latency_llm_ms": 23453
+}

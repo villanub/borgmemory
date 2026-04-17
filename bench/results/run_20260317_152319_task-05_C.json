@@ -1,0 +1,14 @@
+{
+  "condition": "C",
+  "task_id": "task-05",
+  "response": "The customers discussed were:\n- Contoso Financial \u2014 signed the pilot (SOC2 compliance automation)\n- Woodgrove Bank \u2014 in legal review for Project Sentinel\n- Adatum Insurance \u2014 expressed interest\n- Northwind Traders \u2014 declined Project Sentinel",
+  "context_injected": "{\"ns\": \"azure-msp\", \"task\": \"compliance\", \"facts\": [\"Contoso Financial uses Project Sentinel\", \"Project Sentinel targets SOC2\", \"Woodgrove Bank in_legal_review_with Project Sentinel\", \"Adatum Insurance expressed_interest_in Project Sentinel\", \"Northwind Traders declined Project Sentinel\", \"Project Sentinel uses Azure Monitor DCR\"], \"recent\": [\"2026-03-17: Project Sentinel architecture review. Sentinel is a multi-agent AI compliance automation system using 6 specialized agents built on Semantic Kernel an\", \"2026-03-17: Project Sentinel customer pipeline update: Contoso Financial has signed the pilot agreement \u2014 starting with SOC2 compliance automation. Woodgrove Bank\", \"2026-03-17: Azure-PROD schema change log \u2014 March 2026: (1) Added new resource group rax-prod-sentinel-rg for Project Sentinel pilot. (2) Updated NSG rules on rax-\", \"2026-03-17: Azure-PROD entity changes this month: New service principal created for Sentinel (sp-sentinel-prod) with contributor role scoped to rax-prod-sentinel-\", \"2026-03-17: Cyber Recovery targeting strategy: 36 customers identified across two primary segments \u2014 BFSI (banking, financial services, insurance) and Healthcare.\", \"2026-03-17: AeroPro Texas current architecture: Hub-spoke network topology with Azure Virtual WAN. Production workloads run in South Central US region. Key compon\", \"2026-03-17: AMA compliance tracking v2 post-mortem: the main drift risk was that DCR assignments could silently change during Azure maintenance or subscription mi\", \"2026-03-17: SOX compliance review for AI development practices at Rackspace. Key outcomes: (1) All AI model deployments must go through the existing change manage\", \"2026-03-17: Cyber Recovery value proposition elements: (1) Azure-native DR with automated failover \u2014 no manual intervention required. (2) Immutable backup vaults \", \"2026-03-17: Wisdm governance automation technical approach: Layer 1 \u2014 Azure Policy definitions for resource compliance (naming, tagging, allowed regions, SKU rest\"]}",
+  "context_tokens": 501,
+  "task_class": "compliance",
+  "candidates_found": 16,
+  "candidates_selected": 16,
+  "latency_ms": 4067,
+  "latency_think_ms": 433,
+  "latency_llm_ms": 3634,
+  "borg_latency_ms": 366
+}

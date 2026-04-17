@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response states pgAudit will be used for SOX compliance on all Borg tables and that AI model deployments must go through the change-management process, aligning with the ground truth decision and approval-gate requirement.",
+  "retrieval_precision": 1.0,
+  "retrieval_precision_reasoning": "All key points from the provided context are accurately and succinctly restated without adding incorrect details.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The facts reflect the 2026-03-17 decisions in the context and there is no indication of outdated information.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "The response contains only relevant information about SOX compliance and deployment approval processes.",
+  "knowledge_coverage": 0.95,
+  "knowledge_coverage_reasoning": "The response covers pgAudit selection, asserts SOX audit compliance, and notes the approval-gate/change-management requirement; it does not explicitly name 'Section 404' but conveys equivalent compliance coverage.",
+  "context_tokens": 499,
+  "latency_ms": 7150,
+  "condition": "C",
+  "task_id": "task-03",
+  "explainability": 1
+}

@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response correctly states the decision to switch to the Rackspace Identity flow and gives the core rationale for the change (reuse of existing flow, APIM compatibility, and reduced operational complexity).",
+  "retrieval_precision": 0.8,
+  "retrieval_precision_reasoning": "The response accurately lists key reasons and mentions RACKSPACE_USERNAME/PASSWORD and APIM validation, but it omits the specific implementation detail that code now calls shared.janus_helpers.get_rackspace_identity_token(auth_mode='identity') and that the token is explicitly sent as Authorization: Bearer to APIM.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "All facts align with the provided context and there are no outdated or contradicted statements.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "The reply stays on-topic and focuses on the decision and rationale without introducing unrelated information.",
+  "knowledge_coverage": 0.6,
+  "knowledge_coverage_reasoning": "The response covers avoiding Entra client credentials, use of Rackspace credentials, APIM compatibility, and the x-tenant-id limitation, but it fails to mention the exact function call (get_rackspace_identity_token with auth_mode='identity') and the explicit Authorization: Bearer header usage.",
+  "context_tokens": 2186,
+  "latency_ms": 35872,
+  "condition": "B",
+  "task_id": "task-07",
+  "explainability": null
+}

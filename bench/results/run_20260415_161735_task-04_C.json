@@ -1,0 +1,14 @@
+{
+  "condition": "C",
+  "task_id": "task-04",
+  "response": "Briefly \u2014 fleet-agent-query is a small serverless data/service component that implements part of the fleet\u2011platform\u2011app by executing queries against the fleet database and producing higher\u2011level outputs (for example the generate_ai_talk_tracks() output used by the platform).\n\nHow it\u2019s built\n- Implemented as Azure Functions (the project contains azure\u2011functions and is implemented_by Azure Functions).  \n- Deployed to the Tessell DBaaS environment (the DB is hosted there).  \n- Connects to Postgres through PgBouncer (integrates_with PgBouncer).  \n- Uses Azure AD managed identity for DB auth (configured_with PG_MANAGED_IDENTITY_CLIENT_ID).  \n- Exposes/returns application\u2011level data such as the generate_ai_talk_tracks() results and is consumed by the fleet\u2011platform\u2011app.\n\nIn short: a serverless Azure Functions service that queries the fleet Postgres DB (via PgBouncer and a managed identity) to supply fleet\u2011platform\u2011app functionality (e.g., AI talk\u2011track generation).",
+  "context_injected": "{\"ns\": \"azure-msp\", \"task\": \"writing\", \"facts\": [\"linux_stress_cleanup.sh uses az vm run-command invoke\", \"Run Command targets wisdm-poc1-windows\", \"get_appinsights_logger() uses AzureLogHandler\", \"AzureLogHandler contained_in App Insights\", \"commit b922bc7 implements AzureLogHandler\", \"Run_Windows_Command configured_with DisableAsyncPattern\", \"Run_Linux_Command configured_with DisableAsyncPattern\", \"Logic App stress-test-controller blocked_by Run_Windows_Command\", \"Azure Run Command blocks 409 Conflict\", \"fleet-platform-app replaced AzureLogHandler\", \"AzureLogHandler replaced_by Functions-native telemetry pattern\", \"fleet-agent-query implemented_by Azure Functions\", \"fleet-agent-query deployed_to Tessell DBaaS\", \"fleet-agent-query contains azure-functions\", \"fleet-agent-query integrates_with PgBouncer\", \"fleet-agent-query configured_with PG_MANAGED_IDENTITY_CLIENT_ID\", \"fleet-agent-query implements fleet-platform-app\", \"fleet-agent-query uses generate_ai_talk_tracks()\", \"OPERATIONS_GUIDE.md contains az logic workflow trigger callback-url show\", \"codex/bootstrap-failure-labs contains ALERTS_AND_KQL.md\"]}",
+  "context_tokens": 280,
+  "task_class": "writing",
+  "candidates_found": 20,
+  "candidates_selected": 20,
+  "latency_ms": 10552,
+  "latency_think_ms": 109,
+  "latency_llm_ms": 10443,
+  "borg_latency_ms": 7
+}

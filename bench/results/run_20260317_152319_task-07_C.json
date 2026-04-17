@@ -1,0 +1,14 @@
+{
+  "condition": "C",
+  "task_id": "task-07",
+  "response": "Summary \u2014 AeroPro Texas runs a cloud-native Azure deployment centered on AKS in East US 2 with global edge and WAN connectivity and geo\u2011redundant storage.\n\nKey components and roles\n- AKS (Azure Kubernetes Service): primary compute platform \u2014 workloads were migrated from App Service to AKS and run in an AKS cluster deployed to East US 2.  \n- Azure Front Door: global front end for HTTP(s) traffic (global load balancing/edge entry point).  \n- Azure Virtual WAN: hub-and-spoke / WAN connectivity for branch/hybrid networking and site-to-site/ExpressRoute connectivity.  \n- Storage: uses Read\u2011access geo\u2011redundant storage (RA\u2011GRS) for geo\u2011resilience and read access from the secondary region.  \n- Resilience/DR objective: architecture targets a defined RTO.  \n- Operations/finance: AeroPro Texas owns monthly cloud spend.\n\nIf you want, I can draw a simple diagram or expand on networking/AKS design details (cluster topology, ingress, CI/CD, backup/DR) to match the RTO and operational requirements.",
+  "context_injected": "{\"ns\": \"azure-msp\", \"task\": \"architecture\", \"facts\": [\"AeroPro Texas uses Azure Virtual WAN\", \"AeroPro Texas contains Front Door\", \"Migration from App Service to AKS implemented_by AeroPro Texas\", \"Monthly cloud spend owned_by AeroPro Texas\", \"AeroPro Texas deployed_to East US 2\", \"AeroPro Texas uses Read-access geo-redundant storage (RA-GRS)\", \"AeroPro Texas targets RTO\", \"AeroPro deployed_to AKS\", \"AeroPro AKS cluster implements AKS\"]}",
+  "context_tokens": 110,
+  "task_class": "architecture",
+  "candidates_found": 9,
+  "candidates_selected": 9,
+  "latency_ms": 7162,
+  "latency_think_ms": 63,
+  "latency_llm_ms": 7099,
+  "borg_latency_ms": 7
+}

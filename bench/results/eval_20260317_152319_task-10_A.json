@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response was empty and did not list any schema changes, entities, or superseded facts, so it failed to fulfill the audit request.",
+  "retrieval_precision": 0.0,
+  "retrieval_precision_reasoning": "No facts or claims were provided, so there is nothing correct or precise to measure.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "There are no facts in the response, so none can be identified as stale or superseded.",
+  "irrelevant_rate": 1.0,
+  "irrelevant_reasoning": "The empty response contains no content relevant to the compliance audit, making it entirely unhelpful.",
+  "knowledge_coverage": 0.0,
+  "knowledge_coverage_reasoning": "The response provides none of the expected information about recent schema or entity changes in the last 30 days.",
+  "context_tokens": 0,
+  "latency_ms": 33579,
+  "condition": "A",
+  "task_id": "task-10",
+  "explainability": null
+}

@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The AI response was empty or contained no actionable debugging information, so it did not address the retry bug or provide guidance.",
+  "retrieval_precision": 0.0,
+  "retrieval_precision_reasoning": "None of the provided context or expected knowledge was referenced or used in the response.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The injected context is current and relevant to the APIM debugging task; no items were outdated.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "All provided context items were directly relevant to the debugging task, none were unrelated.",
+  "knowledge_coverage": 0.0,
+  "knowledge_coverage_reasoning": "The response did not mention the tri-auth pattern, DDI x-auth tenant isolation, XML-escaping causing the token retry bug, or the need to check DDI isolation first.",
+  "context_tokens": 0,
+  "latency_ms": 26917,
+  "condition": "A",
+  "task_id": "task-01",
+  "explainability": null
+}

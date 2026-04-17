@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response gave a useful general cloud debugging pattern but did not retrieve or reproduce the site\u2011specific fazure\u2011mcp runbook items requested (specific AGW log names, show-backend-health, App Gateway metric names, or the VpnOnly 403 guidance).",
+  "retrieval_precision": 0.45,
+  "retrieval_precision_reasoning": "The answer covered related checks (WAF logs, App Insights, backend health and probes, Azure network tools) but missed key explicit artifacts: AGWAccessLogs, AGWFirewallLogs by name, show-backend-health, HealthyHostCount/UnhealthyHostCount, and the explicit VpnOnly 403 note.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The content is current, high\u2011level operational guidance and contains no outdated facts.",
+  "irrelevant_rate": 0.25,
+  "irrelevant_reasoning": "Several sections (deep Kubernetes troubleshooting, extensive packet capture guidance, generic RCA steps) are broader than the narrow fazure\u2011mcp log/checklist requested, though generally relevant to debugging.",
+  "knowledge_coverage": 0.5,
+  "knowledge_coverage_reasoning": "The reply demonstrates general knowledge of Azure and cloud debugging workflows and mentions App Insights and WAF logs, but it fails to enumerate the precise procedural checks and named logs/metrics that the ground truth requires.",
+  "context_tokens": 0,
+  "latency_ms": 39889,
+  "condition": "A",
+  "task_id": "task-09",
+  "explainability": null
+}

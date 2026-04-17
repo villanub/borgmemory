@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response correctly identifies pgAudit for SOX compliance, affirms that audit trails meet SOX Section 404 requirements, and states that approval gates are required for production changes.",
+  "retrieval_precision": 1.0,
+  "retrieval_precision_reasoning": "All facts in the response accurately reflect the provided context and ground truth, including the Azure PostgreSQL rationale and licensing note.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "No information appears outdated or incorrect relative to the supplied episodes; the claims align with recent decisions.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "The response remains focused on SOX compliance decisions with no substantive unrelated content.",
+  "knowledge_coverage": 1.0,
+  "knowledge_coverage_reasoning": "The reply covers the key expected points: pgAudit selection, Section 404 audit-trail compliance, and required approval gates for production deployments.",
+  "context_tokens": 1312,
+  "latency_ms": 6655,
+  "condition": "B",
+  "task_id": "task-03",
+  "explainability": null
+}

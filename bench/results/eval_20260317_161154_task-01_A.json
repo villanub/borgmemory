@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The AI response was empty and did not attempt to diagnose or explain the APIM service token retry bug or provide any debugging guidance.",
+  "retrieval_precision": 0.0,
+  "retrieval_precision_reasoning": "No facts or assertions were returned, so there is nothing accurate or precise to evaluate.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "Because the response contained no factual content, there are no stale or outdated facts present.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "With no content produced, there is no irrelevant information to penalize.",
+  "knowledge_coverage": 0.0,
+  "knowledge_coverage_reasoning": "The response failed to mention any expected points (tri-auth pattern, DDI x-auth tenant isolation, XML escaping causing the retry bug, or checking DDI isolation first).",
+  "context_tokens": 0,
+  "latency_ms": 24123,
+  "condition": "A",
+  "task_id": "task-01",
+  "explainability": null
+}

@@ -1,0 +1,9 @@
+{
+  "condition": "C",
+  "task_id": "task-02",
+  "response": "",
+  "context_injected": null,
+  "context_tokens": 0,
+  "latency_ms": 0,
+  "error": "Illegal header value b'Bearer '"
+}

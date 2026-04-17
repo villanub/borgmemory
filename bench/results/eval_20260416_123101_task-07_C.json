@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response correctly identifies the switch from Entra client credentials to the Rackspace Identity flow and gives the primary rationale (reuse of existing flow) required by the task.",
+  "retrieval_precision": 0.9,
+  "retrieval_precision_reasoning": "The reply accurately cites shared.janus_helpers.get_rackspace_identity_token(auth_mode='identity') and the use of Rackspace credentials, and explains APIM acceptance reasons; it omits one explicit detail about sending the token as Authorization: Bearer to the APIM Event Grid ensure endpoint.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "All facts align with the provided recent context (2026-04-09 change) and no outdated information is introduced.",
+  "irrelevant_rate": 0.05,
+  "irrelevant_reasoning": "Most content is directly relevant; a small portion (claims about prior Entra brittleness in prod) goes beyond the minimal ground-truth rationale but remains plausibly related.",
+  "knowledge_coverage": 0.9,
+  "knowledge_coverage_reasoning": "Covers the key points (move away from Entra, use Rackspace Identity, call to janus_helpers, RACKSPACE env vars, APIM validation rationale) but misses explicitly stating the token is sent as 'Authorization: Bearer' to the APIM Event Grid ensure endpoint.",
+  "context_tokens": 3071,
+  "latency_ms": 63587,
+  "condition": "C",
+  "task_id": "task-07",
+  "explainability": 1
+}

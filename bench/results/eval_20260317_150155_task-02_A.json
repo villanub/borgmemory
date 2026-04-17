@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "No AI response content was provided to evaluate, so it did not correctly or usefully answer the query.",
+  "retrieval_precision": 0.0,
+  "retrieval_precision_reasoning": "None of the provided context items (rax- prefix, OS categorization, v2 schema risks) were referenced or used because the response text is absent.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The injected context items are current and relevant to the task; there is no evidence of outdated or superseded information in the provided context.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "All injected context elements were directly relevant to designing AMA v3 DCR drift detection, so none are irrelevant.",
+  "knowledge_coverage": 0.0,
+  "knowledge_coverage_reasoning": "None of the expected knowledge items (rax- prefix, OS categorization, v2 schema risks) appeared in the (absent) response.",
+  "context_tokens": 0,
+  "latency_ms": 24820,
+  "condition": "A",
+  "task_id": "task-02",
+  "explainability": null
+}

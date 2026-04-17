@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The AI response contained no content addressing the RFP section, so it did not fulfill the request to draft governance automation capabilities for Wisdm.",
+  "retrieval_precision": 0.0,
+  "retrieval_precision_reasoning": "There was no contextual material provided or used in the response, so nothing relevant from injected context was retrieved or applied.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "No factual claims or contextual information were presented, so there are no outdated or superseded facts.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "Because the response was empty, there is no injected context that is unrelated to the task.",
+  "knowledge_coverage": 0.0,
+  "knowledge_coverage_reasoning": "The response did not include any governance automation capabilities, metrics, or technical terminology, so it covered none of the expected knowledge items.",
+  "context_tokens": 0,
+  "latency_ms": 22979,
+  "condition": "A",
+  "task_id": "task-08",
+  "explainability": null
+}

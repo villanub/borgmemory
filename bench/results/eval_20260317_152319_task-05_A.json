@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response did not list any customers as requested and therefore failed to fulfill the task of identifying customers discussed for Project Sentinel.",
+  "retrieval_precision": 0.0,
+  "retrieval_precision_reasoning": "No customer names were retrieved or provided, so there is no precision in returned results.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The reply contained no factual claims about Project Sentinel that could be outdated; it only offered procedural search guidance.",
+  "irrelevant_rate": 0.3,
+  "irrelevant_reasoning": "Most of the guidance (where to look, search queries) is relevant to finding customer names but does not directly answer the question, so some content is off-target relative to the requested output.",
+  "knowledge_coverage": 0.0,
+  "knowledge_coverage_reasoning": "The response showed no awareness of Project Sentinel specifics (e.g., multi-agent nature, six agents, Semantic Kernel) and therefore failed to demonstrate expected domain knowledge.",
+  "context_tokens": 0,
+  "latency_ms": 11611,
+  "condition": "A",
+  "task_id": "task-05",
+  "explainability": null
+}

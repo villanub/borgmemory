@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response correctly states the high-level purpose (sales propensity reports) and that it is a Python Azure Function, but it omitted key expected implementation details (explicit mention of intake.py and propensity_store.py and the SQL injection protection via safe_table_name), so it does not fully satisfy the task.",
+  "retrieval_precision": 0.75,
+  "retrieval_precision_reasoning": "Many technical details (Azure Functions in Python, DB deployment behind PgBouncer, managed identity config, generate_ai_talk_tracks) align with the context, but some claims (e.g., prior Claude/web-search intake, exact dependency versions) are unsupported or speculative.",
+  "stale_fact_rate": 0.1,
+  "stale_fact_reasoning": "Most facts appear current relative to the provided 2026 context; a few specific version numbers and historical claims may be speculative rather than stale.",
+  "irrelevant_rate": 0.1,
+  "irrelevant_reasoning": "The response stays focused on architecture and implementation; a small amount of extra deployment and dependency detail is marginally beyond the concise summary requested but still relevant.",
+  "knowledge_coverage": 0.7,
+  "knowledge_coverage_reasoning": "Covers the core purpose, Azure Function architecture, DB integration, managed identity usage, and AI integration, but misses explicit mention of intake.py and propensity_store.py and the SQL injection protection (safe_table_name) which were part of the expected coverage.",
+  "context_tokens": 1786,
+  "latency_ms": 37869,
+  "condition": "C",
+  "task_id": "task-04",
+  "explainability": 1
+}

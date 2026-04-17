@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response correctly listed the five specific customers discussed across the episodes and provided accurate brief status notes matching the context.",
+  "retrieval_precision": 1.0,
+  "retrieval_precision_reasoning": "All customers named in the response (Contoso Financial, Woodgrove Bank, Fabrikam Healthcare, Adatum Insurance, Northwind Traders) appear in the provided episodes and no incorrect customers were added.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The status details align with the most recent episode information provided and no outdated or contradicted facts were presented.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "All information in the response directly pertains to the query about which customers were discussed and their brief statuses.",
+  "knowledge_coverage": 0.6,
+  "knowledge_coverage_reasoning": "The response fully covered the customer identification requirement but did not mention other expected context (e.g., that Project Sentinel is a 6-agent multi-agent system built on Semantic Kernel and Azure AI Foundry), so coverage is partial.",
+  "context_tokens": 1360,
+  "latency_ms": 7883,
+  "condition": "B",
+  "task_id": "task-05",
+  "explainability": null
+}

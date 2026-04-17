@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response directly captures the established procedural pattern (DDI-first, token inspection, APIM policy review) and presents a clear, actionable checklist matching the debug task.",
+  "retrieval_precision": 1.0,
+  "retrieval_precision_reasoning": "All key facts from the context are accurately reflected (x-auth-ddi DDI-first check, tri-auth model including subscription key and token flow, and APIM policy XML/encoding issues).",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The response uses recent, context-provided facts (dated entries) and does not introduce outdated information.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "The content is focused on authentication debugging steps with no unrelated material; all items are pertinent to the query.",
+  "knowledge_coverage": 1.0,
+  "knowledge_coverage_reasoning": "The response covers the three expected areas (DDI isolation, token inspection, APIM policy review) and supplements them with related checks (gateway stripping, XML encoding, replay/logging) that improve practical coverage.",
+  "context_tokens": 678,
+  "latency_ms": 18232,
+  "condition": "C",
+  "task_id": "task-09",
+  "explainability": 1
+}

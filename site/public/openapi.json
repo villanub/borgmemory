@@ -1,0 +1,2547 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Project Borg",
+    "description": "\n## PostgreSQL-Native Memory Compiler for AI Workflows\n\nBorg extracts entities, facts, and procedures from your AI conversations into a temporal knowledge graph, then compiles task-specific context for any LLM.\n\n### Pipelines\n\n- **Online** (`borg_think`): classify intent \u2192 retrieve candidates \u2192 rank \u2192 compile \u2192 audit\n- **Offline** (`borg_learn`): ingest \u2192 embed \u2192 extract entities \u2192 resolve \u2192 extract facts \u2192 procedures \u2192 snapshot\n\n### MCP Integration\n\nThe MCP endpoint at `/mcp` uses FastMCP 3.x with the Streamable HTTP transport.\n\n```bash\n# Codex CLI (~/.codex/config.toml)\n[mcp_servers.borg]\nurl = \"http://localhost:8080/mcp\"\n```\n        ",
+    "contact": {
+      "name": "Project Borg"
+    },
+    "license": {
+      "name": "Private"
+    },
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/health": {
+      "get": {
+        "tags": [
+          "Health"
+        ],
+        "summary": "API health check",
+        "operationId": "health_api_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/think": {
+      "post": {
+        "tags": [
+          "Core"
+        ],
+        "summary": "Compile context for a query",
+        "description": "Run the full online compilation pipeline:\n\n1. **Classify intent** \u2014 dual-profile with primary + secondary task class\n2. **Retrieve candidates** \u2014 vector search, graph traversal, recency, procedures\n3. **Rank and trim** \u2014 4-dimension scoring with memory-type weight modifiers\n4. **Compile package** \u2014 structured XML (Claude/Copilot) or compact JSON (GPT/Codex)\n5. **Update access tracking** \u2014 increment entity_state and fact_state counters\n6. **Audit log** \u2014 full trace with score breakdowns and rejection reasons\n\nThis is the primary Borg operation. Equivalent to `borg_think` via MCP.",
+        "operationId": "api_think_api_think_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ThinkRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Compiled context package",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ThinkResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid auth token"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/learn": {
+      "post": {
+        "tags": [
+          "Core"
+        ],
+        "summary": "Ingest an episode",
+        "description": "Store a new episode (conversation, decision, note) into Borg.\n\nThe episode is persisted immediately with SHA-256 content dedup. Returns in milliseconds.\n\nThe background worker then asynchronously:\n- Generates a 1536-dim embedding (Azure OpenAI text-embedding-3-small)\n- Extracts entities via LLM (up to 10, typed taxonomy)\n- Resolves entities (3-pass: exact \u2192 alias \u2192 semantic 0.92)\n- Extracts facts via LLM (up to 8, predicate-validated)\n- Checks supersession (same subject+predicate+different object)\n- Extracts procedures (up to 3, merged on duplicate)\n\nCheck `GET /health` or `GET /api/admin/queue` to monitor processing.",
+        "operationId": "api_learn_api_learn_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EpisodeCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Episode accepted or duplicate detected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EpisodeResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid auth token"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/recall": {
+      "post": {
+        "tags": [
+          "Core"
+        ],
+        "summary": "Search memory without compilation",
+        "description": "Search raw memory (episodes, facts, procedures) without the compilation pipeline.\n\nUses vector similarity when embeddings are available, falls back to recency-based\nretrieval otherwise. Facts are matched by entity name keyword search.\n\nReturns raw candidates \u2014 not compiled, not ranked. For when you want to browse\nmemory directly rather than get a compiled context package.",
+        "operationId": "api_recall_api_recall_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RecallRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Raw search results",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RecallResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid auth token"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/episodes/{episode_id}": {
+      "get": {
+        "tags": [
+          "Core"
+        ],
+        "summary": "Fetch a full episode by ID",
+        "description": "Return the complete stored episode content and metadata for a known episode ID.\n\nUse this after `borg_recall` when you want the full body rather than the truncated\npreview returned by search results.",
+        "operationId": "api_get_episode_api_episodes__episode_id__get",
+        "parameters": [
+          {
+            "name": "episode_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Episode Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Full stored episode",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EpisodeDetailResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Missing or invalid auth token"
+          },
+          "404": {
+            "description": "Episode not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/namespaces": {
+      "get": {
+        "tags": [
+          "Namespaces"
+        ],
+        "summary": "List all namespaces",
+        "description": "Returns all configured namespaces with their token budgets and descriptions.",
+        "operationId": "list_namespaces_api_namespaces_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NamespaceListResponse"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Namespaces"
+        ],
+        "summary": "Create namespace",
+        "description": "Create a new namespace with configurable hot and warm tier token budgets.",
+        "operationId": "create_namespace_api_namespaces_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NamespaceConfigCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "409": {
+            "description": "Namespace already exists"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/namespaces/{namespace}": {
+      "get": {
+        "tags": [
+          "Namespaces"
+        ],
+        "summary": "Get namespace details",
+        "description": "Returns config for a specific namespace including entity, fact, episode, and procedure counts.",
+        "operationId": "get_namespace_api_namespaces__namespace__get",
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 63,
+              "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$",
+              "title": "Namespace"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/NamespaceDetailResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Namespace not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Namespaces"
+        ],
+        "summary": "Update namespace",
+        "description": "Update token budgets or description for an existing namespace. Only provided fields are changed.",
+        "operationId": "update_namespace_api_namespaces__namespace__put",
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 63,
+              "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$",
+              "title": "Namespace"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NamespaceConfigUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Namespace not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Namespaces"
+        ],
+        "summary": "Delete namespace config",
+        "description": "Delete a namespace configuration. Does NOT delete entities, facts, or episodes in that namespace. The 'default' namespace cannot be deleted.",
+        "operationId": "delete_namespace_api_namespaces__namespace__delete",
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 63,
+              "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$",
+              "title": "Namespace"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "400": {
+            "description": "Cannot delete the default namespace"
+          },
+          "404": {
+            "description": "Namespace not found"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/queue": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Processing queue status",
+        "description": "Show unprocessed episodes waiting for the background worker, plus count of failed extractions.",
+        "operationId": "admin_queue_api_admin_queue_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QueueResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/entities": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "List entities",
+        "description": "List all entities in a namespace with their serving state (tier, salience score, access count, aliases). Ordered by access count descending.",
+        "operationId": "admin_entities_api_admin_entities_get",
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Namespace to list entities from",
+              "default": "default",
+              "title": "Namespace"
+            },
+            "description": "Namespace to list entities from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntityListResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/facts": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "List current facts",
+        "description": "List all current (non-superseded, non-deleted) facts in a namespace with salience and access tracking from fact_state.",
+        "operationId": "admin_facts_api_admin_facts_get",
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Namespace to list facts from",
+              "default": "default",
+              "title": "Namespace"
+            },
+            "description": "Namespace to list facts from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FactListResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/procedures": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "List procedures",
+        "description": "List all candidate and promoted procedures in a namespace. Ordered by confidence descending. Procedures with evidence_status='promoted' and confidence >= 0.8 are used in compilation.",
+        "operationId": "admin_procedures_api_admin_procedures_get",
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Namespace to list procedures from",
+              "default": "default",
+              "title": "Namespace"
+            },
+            "description": "Namespace to list procedures from"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProcedureListResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/conflicts": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Entity resolution conflicts",
+        "description": "Show unresolved entity resolution conflicts \u2014 cases where the three-pass resolution algorithm found ambiguous matches (top two semantic candidates within 0.03 similarity gap).",
+        "operationId": "admin_conflicts_api_admin_conflicts_get",
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Namespace to check for conflicts",
+              "default": "default",
+              "title": "Namespace"
+            },
+            "description": "Namespace to check for conflicts"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConflictListResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/predicates": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Predicate registry",
+        "description": "Show the 24 canonical predicates with usage counts, plus pending non-canonical predicate candidates. Candidates with 5+ occurrences are flagged for promotion review.",
+        "operationId": "admin_predicates_api_admin_predicates_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PredicateListResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/process-episode": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Manual extraction trigger",
+        "description": "Manually trigger the full extraction pipeline for a specific episode. Runs synchronously and returns extraction metrics (entities, facts, procedures extracted).",
+        "operationId": "admin_process_episode_api_admin_process_episode_post",
+        "parameters": [
+          {
+            "name": "episode_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "UUID of the episode to process",
+              "title": "Episode Id"
+            },
+            "description": "UUID of the episode to process"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/requeue-failed": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Requeue failed episodes",
+        "description": "Requeue episodes that failed extraction (have extraction_error in metadata). Clears the error flag so the background worker picks them up again. Useful after fixing extraction bugs or adding Azure OpenAI credentials.",
+        "operationId": "admin_requeue_failed_api_admin_requeue_failed_post",
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 63,
+                  "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Namespace to requeue (omit for all namespaces)",
+              "title": "Namespace"
+            },
+            "description": "Namespace to requeue (omit for all namespaces)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/snapshot": {
+      "post": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Trigger hot-tier snapshot",
+        "description": "Manually trigger a hot-tier snapshot. Captures current hot entities, facts, and procedures. If namespace is provided, snapshots only that namespace. Otherwise snapshots all configured namespaces.",
+        "operationId": "admin_snapshot_api_admin_snapshot_post",
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 63,
+                  "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "description": "Namespace to snapshot (omit for all)",
+              "title": "Namespace"
+            },
+            "description": "Namespace to snapshot (omit for all)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SnapshotTriggerResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/snapshot/latest": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Latest hot-tier snapshot",
+        "description": "Retrieve the most recent hot-tier snapshot for a namespace. Useful for cold-start loading and debugging what was 'hot' at a point in time.",
+        "operationId": "admin_latest_snapshot_api_admin_snapshot_latest_get",
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "description": "Namespace to get snapshot for",
+              "default": "default",
+              "title": "Namespace"
+            },
+            "description": "Namespace to get snapshot for"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SnapshotResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No snapshots found for namespace"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/admin/cost-summary": {
+      "get": {
+        "tags": [
+          "Admin"
+        ],
+        "summary": "Extraction cost summary by namespace",
+        "description": "Summarize extraction token usage and estimated cost for a namespace over a lookback period.",
+        "operationId": "admin_cost_summary_api_admin_cost_summary_get",
+        "parameters": [
+          {
+            "name": "namespace",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "Namespace to summarize",
+              "title": "Namespace"
+            },
+            "description": "Namespace to summarize"
+          },
+          {
+            "name": "days",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 365,
+              "minimum": 1,
+              "description": "Lookback period in days",
+              "default": 30,
+              "title": "Days"
+            },
+            "description": "Lookback period in days"
+          },
+          {
+            "name": "cost_per_1k_prompt",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "description": "USD per 1K prompt tokens",
+              "default": 0.00015,
+              "title": "Cost Per 1K Prompt"
+            },
+            "description": "USD per 1K prompt tokens"
+          },
+          {
+            "name": "cost_per_1k_completion",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "description": "USD per 1K completion tokens",
+              "default": 0.0006,
+              "title": "Cost Per 1K Completion"
+            },
+            "description": "USD per 1K completion tokens"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "Health"
+        ],
+        "summary": "Service health check",
+        "description": "Returns liveness for unauthenticated callers and detailed worker/queue metrics for authenticated callers.",
+        "operationId": "root_health_health_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ConflictItem": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "entity_name": {
+            "type": "string",
+            "title": "Entity Name"
+          },
+          "entity_type": {
+            "type": "string",
+            "title": "Entity Type"
+          },
+          "candidates": {
+            "anyOf": [
+              {
+                "items": {},
+                "type": "array"
+              },
+              {
+                "additionalProperties": true,
+                "type": "object"
+              }
+            ],
+            "title": "Candidates"
+          },
+          "created_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "entity_name",
+          "entity_type",
+          "candidates"
+        ],
+        "title": "ConflictItem"
+      },
+      "ConflictListResponse": {
+        "properties": {
+          "namespace": {
+            "type": "string",
+            "title": "Namespace"
+          },
+          "count": {
+            "type": "integer",
+            "title": "Count"
+          },
+          "conflicts": {
+            "items": {
+              "$ref": "#/components/schemas/ConflictItem"
+            },
+            "type": "array",
+            "title": "Conflicts"
+          }
+        },
+        "type": "object",
+        "required": [
+          "namespace",
+          "count",
+          "conflicts"
+        ],
+        "title": "ConflictListResponse",
+        "description": "Unresolved entity resolution conflicts."
+      },
+      "EntityItem": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type"
+          },
+          "tier": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tier"
+          },
+          "salience": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Salience"
+          },
+          "access_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Access Count"
+          },
+          "last_accessed": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Accessed"
+          },
+          "episode_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Episode Count"
+          },
+          "aliases": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Aliases"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "type"
+        ],
+        "title": "EntityItem"
+      },
+      "EntityListResponse": {
+        "properties": {
+          "namespace": {
+            "type": "string",
+            "title": "Namespace"
+          },
+          "count": {
+            "type": "integer",
+            "title": "Count"
+          },
+          "entities": {
+            "items": {
+              "$ref": "#/components/schemas/EntityItem"
+            },
+            "type": "array",
+            "title": "Entities"
+          }
+        },
+        "type": "object",
+        "required": [
+          "namespace",
+          "count",
+          "entities"
+        ],
+        "title": "EntityListResponse",
+        "description": "Entities in a namespace with serving state."
+      },
+      "EpisodeCreate": {
+        "properties": {
+          "content": {
+            "type": "string",
+            "maxLength": 20000,
+            "title": "Content",
+            "description": "The text content of the episode (conversation, decision, note)"
+          },
+          "source": {
+            "type": "string",
+            "maxLength": 100,
+            "title": "Source",
+            "description": "Origin system identifier",
+            "examples": [
+              "claude-code",
+              "manual",
+              "codex-cli",
+              "chatgpt"
+            ]
+          },
+          "namespace": {
+            "type": "string",
+            "maxLength": 63,
+            "minLength": 1,
+            "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$",
+            "title": "Namespace",
+            "description": "Project namespace for isolation",
+            "examples": [
+              "azure-msp",
+              "default"
+            ]
+          },
+          "source_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 255
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Id",
+            "description": "Original ID in the source system"
+          },
+          "source_event_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 255
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Event Id",
+            "description": "Connector-specific idempotency key"
+          },
+          "occurred_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occurred At",
+            "description": "When the event happened (defaults to now)"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Metadata",
+            "description": "Additional context (freeform JSON)"
+          },
+          "participants": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 25,
+            "title": "Participants",
+            "description": "People involved in the episode"
+          }
+        },
+        "type": "object",
+        "required": [
+          "content",
+          "source",
+          "namespace"
+        ],
+        "title": "EpisodeCreate",
+        "description": "Ingest a new episode into Borg.",
+        "examples": [
+          {
+            "content": "Decided to use pgAudit for SOX compliance on all Borg tables.",
+            "metadata": {
+              "session_id": "abc123"
+            },
+            "namespace": "azure-msp",
+            "source": "claude-code"
+          }
+        ]
+      },
+      "EpisodeDetailResponse": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id",
+            "description": "Episode ID"
+          },
+          "source": {
+            "type": "string",
+            "title": "Source",
+            "description": "Origin system identifier"
+          },
+          "source_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Id",
+            "description": "Optional source thread/document identifier"
+          },
+          "source_event_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Event Id",
+            "description": "Optional source event/message identifier"
+          },
+          "namespace": {
+            "type": "string",
+            "title": "Namespace",
+            "description": "Namespace the episode belongs to"
+          },
+          "content": {
+            "type": "string",
+            "title": "Content",
+            "description": "Full stored episode content"
+          },
+          "occurred_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occurred At",
+            "description": "When the episode originally occurred"
+          },
+          "ingested_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ingested At",
+            "description": "When the episode was stored in Borg"
+          },
+          "metadata": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Metadata",
+            "description": "Stored episode metadata"
+          },
+          "participants": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Participants",
+            "description": "Participants attached to the episode"
+          },
+          "processed": {
+            "type": "boolean",
+            "title": "Processed",
+            "description": "Whether offline extraction has processed the episode"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "source",
+          "namespace",
+          "content",
+          "processed"
+        ],
+        "title": "EpisodeDetailResponse",
+        "description": "Full stored episode body and metadata."
+      },
+      "EpisodeResponse": {
+        "properties": {
+          "episode_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Episode Id",
+            "description": "Unique ID of the episode"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "description": "Ingestion result",
+            "examples": [
+              "accepted",
+              "duplicate"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "episode_id",
+          "status"
+        ],
+        "title": "EpisodeResponse",
+        "description": "Response after ingesting an episode."
+      },
+      "FactItem": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "subject": {
+            "type": "string",
+            "title": "Subject"
+          },
+          "predicate": {
+            "type": "string",
+            "title": "Predicate"
+          },
+          "object": {
+            "type": "string",
+            "title": "Object"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "review_required": {
+            "type": "boolean",
+            "title": "Review Required",
+            "default": false
+          },
+          "review_reasons": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Review Reasons"
+          },
+          "valid_from": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid From"
+          },
+          "salience": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Salience"
+          },
+          "access_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Access Count"
+          },
+          "last_accessed": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Accessed"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "subject",
+          "predicate",
+          "object",
+          "status"
+        ],
+        "title": "FactItem"
+      },
+      "FactListResponse": {
+        "properties": {
+          "namespace": {
+            "type": "string",
+            "title": "Namespace"
+          },
+          "count": {
+            "type": "integer",
+            "title": "Count"
+          },
+          "facts": {
+            "items": {
+              "$ref": "#/components/schemas/FactItem"
+            },
+            "type": "array",
+            "title": "Facts"
+          }
+        },
+        "type": "object",
+        "required": [
+          "namespace",
+          "count",
+          "facts"
+        ],
+        "title": "FactListResponse",
+        "description": "Current facts in a namespace with serving state."
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "HealthResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "examples": [
+              "ok"
+            ]
+          },
+          "service": {
+            "type": "string",
+            "title": "Service",
+            "examples": [
+              "borg"
+            ]
+          },
+          "version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Version",
+            "examples": [
+              "0.1.0"
+            ]
+          },
+          "worker": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Worker",
+            "examples": [
+              "running",
+              "stopped"
+            ]
+          },
+          "queue": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Queue",
+            "description": "Episode processing queue stats"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "service"
+        ],
+        "title": "HealthResponse",
+        "description": "Service health including worker and queue status."
+      },
+      "MemoryType": {
+        "type": "string",
+        "enum": [
+          "semantic",
+          "episodic",
+          "procedural"
+        ],
+        "title": "MemoryType"
+      },
+      "NamespaceConfigCreate": {
+        "properties": {
+          "namespace": {
+            "type": "string",
+            "maxLength": 63,
+            "minLength": 1,
+            "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$",
+            "title": "Namespace",
+            "description": "Unique namespace identifier",
+            "examples": [
+              "azure-msp",
+              "project-sentinel"
+            ]
+          },
+          "hot_tier_budget": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Hot Tier Budget",
+            "description": "Max tokens for always-injected hot-tier context",
+            "default": 500
+          },
+          "warm_tier_budget": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Warm Tier Budget",
+            "description": "Max tokens for per-query warm-tier retrieval",
+            "default": 3000
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description",
+            "description": "Human-readable description"
+          }
+        },
+        "type": "object",
+        "required": [
+          "namespace"
+        ],
+        "title": "NamespaceConfigCreate",
+        "description": "Create a new namespace with configurable token budgets."
+      },
+      "NamespaceConfigResponse": {
+        "properties": {
+          "namespace": {
+            "type": "string",
+            "title": "Namespace"
+          },
+          "hot_tier_budget": {
+            "type": "integer",
+            "title": "Hot Tier Budget"
+          },
+          "warm_tier_budget": {
+            "type": "integer",
+            "title": "Warm Tier Budget"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "created_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Created At"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "namespace",
+          "hot_tier_budget",
+          "warm_tier_budget"
+        ],
+        "title": "NamespaceConfigResponse",
+        "description": "A single namespace configuration."
+      },
+      "NamespaceConfigUpdate": {
+        "properties": {
+          "hot_tier_budget": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hot Tier Budget",
+            "description": "New hot-tier token budget"
+          },
+          "warm_tier_budget": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Warm Tier Budget",
+            "description": "New warm-tier token budget"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description",
+            "description": "New description"
+          }
+        },
+        "type": "object",
+        "title": "NamespaceConfigUpdate",
+        "description": "Update an existing namespace's budgets or description."
+      },
+      "NamespaceDetailResponse": {
+        "properties": {
+          "namespace": {
+            "type": "string",
+            "title": "Namespace"
+          },
+          "hot_tier_budget": {
+            "type": "integer",
+            "title": "Hot Tier Budget"
+          },
+          "warm_tier_budget": {
+            "type": "integer",
+            "title": "Warm Tier Budget"
+          },
+          "description": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Description"
+          },
+          "created_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Created At"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated At"
+          },
+          "stats": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Stats",
+            "description": "Counts of entities, facts, episodes, procedures"
+          }
+        },
+        "type": "object",
+        "required": [
+          "namespace",
+          "hot_tier_budget",
+          "warm_tier_budget",
+          "stats"
+        ],
+        "title": "NamespaceDetailResponse",
+        "description": "Namespace config with usage statistics."
+      },
+      "NamespaceListResponse": {
+        "properties": {
+          "count": {
+            "type": "integer",
+            "title": "Count"
+          },
+          "namespaces": {
+            "items": {
+              "$ref": "#/components/schemas/NamespaceConfigResponse"
+            },
+            "type": "array",
+            "title": "Namespaces"
+          }
+        },
+        "type": "object",
+        "required": [
+          "count",
+          "namespaces"
+        ],
+        "title": "NamespaceListResponse",
+        "description": "List of all namespace configurations."
+      },
+      "PendingPredicate": {
+        "properties": {
+          "predicate": {
+            "type": "string",
+            "title": "Predicate"
+          },
+          "occurrences": {
+            "type": "integer",
+            "title": "Occurrences"
+          },
+          "needs_review": {
+            "type": "boolean",
+            "title": "Needs Review"
+          }
+        },
+        "type": "object",
+        "required": [
+          "predicate",
+          "occurrences",
+          "needs_review"
+        ],
+        "title": "PendingPredicate"
+      },
+      "PredicateItem": {
+        "properties": {
+          "predicate": {
+            "type": "string",
+            "title": "Predicate"
+          },
+          "category": {
+            "type": "string",
+            "title": "Category"
+          },
+          "inverse": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Inverse"
+          },
+          "usage_count": {
+            "type": "integer",
+            "title": "Usage Count"
+          }
+        },
+        "type": "object",
+        "required": [
+          "predicate",
+          "category",
+          "usage_count"
+        ],
+        "title": "PredicateItem"
+      },
+      "PredicateListResponse": {
+        "properties": {
+          "canonical": {
+            "items": {
+              "$ref": "#/components/schemas/PredicateItem"
+            },
+            "type": "array",
+            "title": "Canonical"
+          },
+          "pending_candidates": {
+            "items": {
+              "$ref": "#/components/schemas/PendingPredicate"
+            },
+            "type": "array",
+            "title": "Pending Candidates"
+          }
+        },
+        "type": "object",
+        "required": [
+          "canonical",
+          "pending_candidates"
+        ],
+        "title": "PredicateListResponse",
+        "description": "Canonical predicates and pending custom candidates."
+      },
+      "ProcedureItem": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "pattern": {
+            "type": "string",
+            "title": "Pattern"
+          },
+          "category": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Category"
+          },
+          "confidence": {
+            "type": "number",
+            "title": "Confidence"
+          },
+          "observations": {
+            "type": "integer",
+            "title": "Observations"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "tier": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tier"
+          },
+          "first_observed": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "First Observed"
+          },
+          "last_observed": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Observed"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "pattern",
+          "confidence",
+          "observations",
+          "status"
+        ],
+        "title": "ProcedureItem"
+      },
+      "ProcedureListResponse": {
+        "properties": {
+          "namespace": {
+            "type": "string",
+            "title": "Namespace"
+          },
+          "count": {
+            "type": "integer",
+            "title": "Count"
+          },
+          "procedures": {
+            "items": {
+              "$ref": "#/components/schemas/ProcedureItem"
+            },
+            "type": "array",
+            "title": "Procedures"
+          }
+        },
+        "type": "object",
+        "required": [
+          "namespace",
+          "count",
+          "procedures"
+        ],
+        "title": "ProcedureListResponse",
+        "description": "Procedures in a namespace."
+      },
+      "QueueEpisode": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "source": {
+            "type": "string",
+            "title": "Source"
+          },
+          "namespace": {
+            "type": "string",
+            "title": "Namespace"
+          },
+          "ingested_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ingested At"
+          },
+          "content_length": {
+            "type": "integer",
+            "title": "Content Length"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "source",
+          "namespace",
+          "content_length"
+        ],
+        "title": "QueueEpisode"
+      },
+      "QueueResponse": {
+        "properties": {
+          "queue_depth": {
+            "type": "integer",
+            "title": "Queue Depth",
+            "description": "Number of unprocessed episodes"
+          },
+          "failed_count": {
+            "type": "integer",
+            "title": "Failed Count",
+            "description": "Episodes with extraction errors"
+          },
+          "episodes": {
+            "items": {
+              "$ref": "#/components/schemas/QueueEpisode"
+            },
+            "type": "array",
+            "title": "Episodes"
+          }
+        },
+        "type": "object",
+        "required": [
+          "queue_depth",
+          "failed_count",
+          "episodes"
+        ],
+        "title": "QueueResponse",
+        "description": "Processing queue status."
+      },
+      "RecallRequest": {
+        "properties": {
+          "query": {
+            "type": "string",
+            "title": "Query",
+            "description": "What to search for",
+            "examples": [
+              "APIM authentication"
+            ]
+          },
+          "namespace": {
+            "type": "string",
+            "maxLength": 63,
+            "minLength": 1,
+            "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$",
+            "title": "Namespace",
+            "description": "Project namespace to search",
+            "examples": [
+              "azure-msp"
+            ]
+          },
+          "memory_type": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MemoryType"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Filter by memory type (omit for all)"
+          },
+          "time_after": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time After",
+            "description": "Only return results after this time"
+          },
+          "time_before": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time Before",
+            "description": "Only return results before this time"
+          },
+          "limit": {
+            "type": "integer",
+            "maximum": 100.0,
+            "minimum": 1.0,
+            "title": "Limit",
+            "description": "Maximum results to return",
+            "default": 10
+          }
+        },
+        "type": "object",
+        "required": [
+          "query",
+          "namespace"
+        ],
+        "title": "RecallRequest",
+        "description": "Search raw memory without compilation."
+      },
+      "RecallResponse": {
+        "properties": {
+          "results": {
+            "items": {
+              "$ref": "#/components/schemas/RecallResult"
+            },
+            "type": "array",
+            "title": "Results",
+            "description": "Matching memory items"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total",
+            "description": "Number of results returned"
+          },
+          "namespace": {
+            "type": "string",
+            "title": "Namespace",
+            "description": "Namespace that was searched"
+          }
+        },
+        "type": "object",
+        "required": [
+          "results",
+          "total",
+          "namespace"
+        ],
+        "title": "RecallResponse",
+        "description": "Search results from borg_recall."
+      },
+      "RecallResult": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Id",
+            "description": "Unique ID of the memory item"
+          },
+          "type": {
+            "type": "string",
+            "title": "Type",
+            "description": "Memory type",
+            "examples": [
+              "episode",
+              "fact",
+              "procedure"
+            ]
+          },
+          "content": {
+            "type": "string",
+            "title": "Content",
+            "description": "Text content (truncated to 500 chars for episodes)"
+          },
+          "source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source",
+            "description": "Source system or evidence status"
+          },
+          "occurred_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Occurred At",
+            "description": "When this memory was created/observed"
+          },
+          "relevance_score": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Relevance Score",
+            "description": "Vector similarity score (0-1) if available"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "type",
+          "content"
+        ],
+        "title": "RecallResult",
+        "description": "A single search result from borg_recall."
+      },
+      "SnapshotResponse": {
+        "properties": {
+          "snapshot_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Snapshot At"
+          },
+          "hot_entities": {
+            "items": {},
+            "type": "array",
+            "title": "Hot Entities"
+          },
+          "hot_facts": {
+            "items": {},
+            "type": "array",
+            "title": "Hot Facts"
+          },
+          "hot_procedures": {
+            "items": {},
+            "type": "array",
+            "title": "Hot Procedures"
+          },
+          "total_tokens": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Tokens"
+          }
+        },
+        "type": "object",
+        "title": "SnapshotResponse",
+        "description": "A hot-tier snapshot."
+      },
+      "SnapshotTriggerResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "snapshots": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array",
+            "title": "Snapshots"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "snapshots"
+        ],
+        "title": "SnapshotTriggerResponse",
+        "description": "Result of manually triggering a snapshot."
+      },
+      "TargetModel": {
+        "type": "string",
+        "enum": [
+          "claude",
+          "gpt",
+          "local",
+          "copilot"
+        ],
+        "title": "TargetModel"
+      },
+      "TaskHint": {
+        "type": "string",
+        "enum": [
+          "debug",
+          "architecture",
+          "compliance",
+          "writing",
+          "chat"
+        ],
+        "title": "TaskHint"
+      },
+      "ThinkRequest": {
+        "properties": {
+          "query": {
+            "type": "string",
+            "title": "Query",
+            "description": "What you need context for",
+            "examples": [
+              "Debug APIM retry issue"
+            ]
+          },
+          "namespace": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 63,
+                "minLength": 1,
+                "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Namespace",
+            "description": "Project namespace (defaults to 'default')"
+          },
+          "model": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TargetModel"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Target LLM for output format selection"
+          },
+          "task_hint": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/TaskHint"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "Override automatic intent classification"
+          }
+        },
+        "type": "object",
+        "required": [
+          "query"
+        ],
+        "title": "ThinkRequest",
+        "description": "Compile task-specific context from the knowledge graph.",
+        "examples": [
+          {
+            "model": "claude",
+            "namespace": "azure-msp",
+            "query": "What patterns do I follow when debugging auth issues?",
+            "task_hint": "debug"
+          }
+        ]
+      },
+      "ThinkResponse": {
+        "properties": {
+          "compiled_context": {
+            "type": "string",
+            "title": "Compiled Context",
+            "description": "The compiled context (XML or JSON depending on model)"
+          },
+          "format": {
+            "type": "string",
+            "title": "Format",
+            "description": "Output format used",
+            "examples": [
+              "structured",
+              "compact"
+            ]
+          },
+          "tokens": {
+            "type": "integer",
+            "title": "Tokens",
+            "description": "Estimated token count of compiled context"
+          },
+          "task_class": {
+            "type": "string",
+            "title": "Task Class",
+            "description": "Classified task type",
+            "examples": [
+              "debug",
+              "architecture"
+            ]
+          },
+          "namespace": {
+            "type": "string",
+            "title": "Namespace",
+            "description": "Namespace the compilation ran against"
+          },
+          "candidates_found": {
+            "type": "integer",
+            "title": "Candidates Found",
+            "description": "Total candidates retrieved before ranking"
+          },
+          "candidates_selected": {
+            "type": "integer",
+            "title": "Candidates Selected",
+            "description": "Candidates that made it into the context"
+          },
+          "latency_ms": {
+            "type": "integer",
+            "title": "Latency Ms",
+            "description": "End-to-end compilation time in milliseconds"
+          }
+        },
+        "type": "object",
+        "required": [
+          "compiled_context",
+          "format",
+          "tokens",
+          "task_class",
+          "namespace",
+          "candidates_found",
+          "candidates_selected",
+          "latency_ms"
+        ],
+        "title": "ThinkResponse",
+        "description": "Compiled context package returned by borg_think."
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Health",
+      "description": "Service health, worker status, and queue metrics."
+    },
+    {
+      "name": "Core",
+      "description": "Primary operations: compile context (`borg_think`), ingest episodes (`borg_learn`), search memory (`borg_recall`)."
+    },
+    {
+      "name": "Namespaces",
+      "description": "CRUD management for namespace configurations and token budgets."
+    },
+    {
+      "name": "Admin",
+      "description": "Inspection and management of the knowledge graph, extraction pipeline, cost tracking, and processing queue. Includes cost summary, entity/fact/procedure browsing, and snapshot management."
+    }
+  ]
+}

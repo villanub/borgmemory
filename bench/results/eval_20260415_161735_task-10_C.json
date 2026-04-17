@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response captures the high-level Postgres-backed, backend-mediated design but fails to answer key operational details asked for \u2014 notably the dedicated table names, the 15s ProcessEventGridBulkRemediation timer, and explicit handling of stale running items on worker restart.",
+  "retrieval_precision": 0.6,
+  "retrieval_precision_reasoning": "It correctly states a durable Postgres-backed flow, avoidance of sync_queue, recency index work and callback wiring, but omits precise table names, the 15-second timer worker, and explicit restart/stale-run requeue semantics and env knobs.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The response does not contain demonstrably outdated or incorrect facts\u2014errors are primarily omissions rather than stale information.",
+  "irrelevant_rate": 0.1,
+  "irrelevant_reasoning": "Most content is relevant to bulk remediation architecture; a few sentences about Fleet integration and callbacks add context but are not required by the focused question.",
+  "knowledge_coverage": 0.33,
+  "knowledge_coverage_reasoning": "Covered: use of Postgres-backed queue, avoidance of sync_queue, recency index migration, and general worker-based processing. Missing: explicit table names (event_grid_bulk_remediation_runs and _run_items), ProcessEventGridBulkRemediation 15s timer, explicit requeueing of stale running items on restart, and bulk-worker-specific Fleet polling env knobs.",
+  "context_tokens": 850,
+  "latency_ms": 32475,
+  "condition": "C",
+  "task_id": "task-10",
+  "explainability": 1
+}

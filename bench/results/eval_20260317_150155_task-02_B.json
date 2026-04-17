@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The AI response is empty/absent and therefore did not provide any architecture or address the drift detection requirements (rax- prefix, OS categorization, v2 schema risks).",
+  "retrieval_precision": 0.0,
+  "retrieval_precision_reasoning": "No content from the provided context appears to have been used or cited in the (missing) response.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The injected context items are recent and domain-specific; none appear outdated or superseded in this set.",
+  "irrelevant_rate": 0.3333333333,
+  "irrelevant_reasoning": "Out of 6 injected episodes, roughly 2 (APIM/auth debugging) are unrelated to DCR drift detection, so about one-third of the context is irrelevant.",
+  "knowledge_coverage": 0.0,
+  "knowledge_coverage_reasoning": "The response did not include any of the expected knowledge items (rax- prefix, OS-based categorization, v2 schema drift risks).",
+  "context_tokens": 1346,
+  "latency_ms": 25063,
+  "condition": "B",
+  "task_id": "task-02",
+  "explainability": null
+}

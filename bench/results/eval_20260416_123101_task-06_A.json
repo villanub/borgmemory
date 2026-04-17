@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response did not describe the actual fazure-mcp implementation; it provided a generic Azure authentication architecture rather than the specific configuration and rules for fazure-mcp.",
+  "retrieval_precision": 0.0,
+  "retrieval_precision_reasoning": "None of the expected specific facts were present (no mention of Application Gateway with WAF, the waf-appgw policy and VpnOnly rule, AllowTrustedVpnFazureMcp, the Janus AWS IPs, the azure-mcp-prod App Service, or that 403s are expected).",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The response offered general, up-to-date architectural recommendations rather than asserting any specific, potentially outdated facts about fazure-mcp.",
+  "irrelevant_rate": 0.95,
+  "irrelevant_reasoning": "Most content is generic reference architecture and implementation guidance that does not answer the task-specific question about fazure-mcp's actual authentication and network access controls.",
+  "knowledge_coverage": 0.0,
+  "knowledge_coverage_reasoning": "The response failed to cover any of the expected knowledge items listed for fazure-mcp (App Gateway/WAF rules, allowlist IPs, backend App Service, and expected 403 behavior).",
+  "context_tokens": 0,
+  "latency_ms": 47413,
+  "condition": "A",
+  "task_id": "task-06",
+  "explainability": null
+}

@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response provides a solid generic Cyber Recovery value proposition but fails to satisfy key task requirements: it does not reference the 36 identified customers, does not specifically target BFSI and Healthcare as the primary segments, and omits quantified impact metrics from existing deployments.",
+  "retrieval_precision": 0.35,
+  "retrieval_precision_reasoning": "The reply accurately retrieves general benefits, technical differentiators, and KPIs for cyber recovery, but misses the precise, required items (the 36-customer targeting and quantified deployment metrics) and only mentions BFSI/Healthcare briefly and non-specifically.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The content is generic and evergreen with no time-sensitive or outdated facts presented.",
+  "irrelevant_rate": 0.08,
+  "irrelevant_reasoning": "Nearly all sections are relevant to a value proposition; only minor extra detail or broad audience mentions slightly exceed the core brief.",
+  "knowledge_coverage": 0.33,
+  "knowledge_coverage_reasoning": "Covers general cyber recovery concepts and benefits and briefly notes finance/healthcare as relevant sectors, but fails to incorporate the critical elements demanded by the brief: explicit 36-customer targeting and quantified impact metrics from existing deployments.",
+  "context_tokens": 0,
+  "latency_ms": 13836,
+  "condition": "A",
+  "task_id": "task-04",
+  "explainability": null
+}

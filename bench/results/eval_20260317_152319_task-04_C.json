@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response produces a solid Healthcare-focused value proposition but fails to meet key requirements: it omits the 36-customer targeting and the BFSI segment and provides no quantified impact metrics from deployments.",
+  "retrieval_precision": 0.8,
+  "retrieval_precision_reasoning": "The reply accurately incorporated many provided facts (Azure deployment, Rackspace management, immutable vaults, PCI\u2011DSS, RFP materials, single pane of glass, cost-reduction claim) but missed explicit targets and quantified metrics.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "There is no indication that any used facts are outdated or incorrect given the provided context.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "All included details are relevant to a Cyber Recovery value proposition and stay on-topic.",
+  "knowledge_coverage": 0.4,
+  "knowledge_coverage_reasoning": "Covered several contextual elements (Healthcare, Azure, management, compliance, immutability, procurement) but failed to address BFSI, the specified 36-customer targeting, and did not include quantified impact metrics from existing deployments.",
+  "context_tokens": 99,
+  "latency_ms": 12894,
+  "condition": "C",
+  "task_id": "task-04",
+  "explainability": 1
+}

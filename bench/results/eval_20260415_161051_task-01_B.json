@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response correctly identifies the root cause (XML-special chars in the service token) and the working fix (URL-encode before injecting into APIM policy XML), and it gives actionable debugging and verification steps tied to the tri-auth pattern and DDI isolation.",
+  "retrieval_precision": 0.98,
+  "retrieval_precision_reasoning": "The reply accurately reflects the provided context (tri-auth pattern, DDI x-auth header, XML-escaping bug, URL-encoding fix) and uses those facts consistently throughout the diagnostic steps and remediation options.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "All technical points are current and directly applicable to APIM policy XML handling and token encoding; no outdated or deprecated claims were made.",
+  "irrelevant_rate": 0.05,
+  "irrelevant_reasoning": "Most content is directly relevant; a few broad hardening suggestions (e.g., unit tests, alerts) are peripheral but still useful to prevent recurrence.",
+  "knowledge_coverage": 0.99,
+  "knowledge_coverage_reasoning": "The response covers the expected knowledge: tri-auth pattern, DDI tenant isolation priority, XML-escaping as the root cause, URL-encoding as the fix, and practical debugging/verification steps across all three auth paths.",
+  "context_tokens": 1833,
+  "latency_ms": 42291,
+  "condition": "B",
+  "task_id": "task-01",
+  "explainability": null
+}

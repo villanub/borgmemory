@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The AI response contained no substantive content addressing the APIM token retry bug, so it failed to provide a correct or useful debugging answer.",
+  "retrieval_precision": 0.0,
+  "retrieval_precision_reasoning": "None of the expected context or knowledge (tri-auth, x-auth/DDI, XML escaping) was referenced or used in the response.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The provided/expected knowledge is current and relevant; there were no outdated or superseded facts present in the (empty) response.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "All of the injected/expected context was relevant to the debugging task; none of it was irrelevant.",
+  "knowledge_coverage": 0.0,
+  "knowledge_coverage_reasoning": "The response did not mention any of the expected knowledge items (tri-auth pattern, DDI/x-auth isolation, XML escaping causing the retry bug, or checking DDI isolation first).",
+  "context_tokens": 0,
+  "latency_ms": 24653,
+  "condition": "B",
+  "task_id": "task-01",
+  "explainability": null
+}

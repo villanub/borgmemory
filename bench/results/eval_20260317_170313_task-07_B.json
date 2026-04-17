@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response describes the current AeroPro Texas architecture including infrastructure entities, recent decisions (e.g., App Service\u2192AKS migration, Key Vault rotation, AKS upgrade, Sentinel pilot) and the deployment topology (hub\u2011spoke, primary/DR regions, failover configuration).",
+  "retrieval_precision": 0.95,
+  "retrieval_precision_reasoning": "Most details match the provided context precisely (Virtual WAN hub\u2011spoke, AKS config and upgrade, Azure SQL MI with auto\u2011failover, Event Hubs, ADF, Front Door WAF, GRS storage, Traffic Manager/RPO/RTO, spend). One small assertion (APIM 'tri\u2011auth pattern') is not explicitly present in the context.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "All cited facts come from the supplied March 2026 episodes and reflect recent configuration and decisions, so nothing appears outdated within the provided timeframe.",
+  "irrelevant_rate": 0.05,
+  "irrelevant_reasoning": "The response is focused on architecture; only minor nonessential items (offer to produce diagrams/optimizations) add small extraneous content.",
+  "knowledge_coverage": 0.95,
+  "knowledge_coverage_reasoning": "Covers the expected areas: core components, recent architecture decisions, and current topology/topology details including DR and observability; only a few minor details inferred rather than explicitly in the context.",
+  "context_tokens": 1300,
+  "latency_ms": 13582,
+  "condition": "B",
+  "task_id": "task-07",
+  "explainability": null
+}

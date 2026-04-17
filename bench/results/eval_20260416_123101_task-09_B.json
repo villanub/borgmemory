@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response clearly presents a repeatable, step-by-step debugging pattern that matches the requested procedure for fazure-mcp connectivity/auth issues, including AGW access + firewall logs, App Service checks, App Gateway metrics, and App Insights correlation.",
+  "retrieval_precision": 0.95,
+  "retrieval_precision_reasoning": "Most expected items are present and accurately described (AGWAccessLogs, AGWFirewallLogs, App Service state and show-backend-health, HealthyHostCount/UnhealthyHostCount, App Insights), with only minor extra operational recommendations beyond the minimal pattern.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The response contains procedural and observational guidance without time-sensitive factual claims, so no stale information is present.",
+  "irrelevant_rate": 0.1,
+  "irrelevant_reasoning": "A small portion of the reply expands into broader hardening and ASE/scm/backend network details that, while useful, are slightly beyond the concise debugging pattern requested.",
+  "knowledge_coverage": 1.0,
+  "knowledge_coverage_reasoning": "All key expected knowledge points are covered explicitly: starting with AGW access logs, checking WAF logs, verifying App Service state and backend health, inspecting App Gateway metrics, looking at App Insights, and noting expected VpnOnly 403s.",
+  "context_tokens": 3596,
+  "latency_ms": 49195,
+  "condition": "B",
+  "task_id": "task-09",
+  "explainability": null
+}

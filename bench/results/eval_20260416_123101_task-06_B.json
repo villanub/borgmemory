@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response does not describe the Application Gateway/WAF protection, the VpnOnly rule, the AllowTrustedVpnFazureMcp rule, the required Janus AWS IP allowlist, or the named App Service backend; instead it fabricates an APIM-centric model that contradicts the ground truth.",
+  "retrieval_precision": 0.05,
+  "retrieval_precision_reasoning": "Most technical details are incorrect or unsupported (APIM tri-auth, DDI header, subscription key, Rackspace X-Auth-Token mappings); there is essentially no precise retrieval of the documented WAF rules or allowlisted IP addresses.",
+  "stale_fact_rate": 0.9,
+  "stale_fact_reasoning": "The reply introduces many invented/incorrect facts about APIM behavior and header mappings that are not in the provided context and appear misleading rather than merely outdated.",
+  "irrelevant_rate": 0.9,
+  "irrelevant_reasoning": "The answer focuses on APIM-specific authentication flows and header-based RBAC which are not relevant to the expected WAF/AGW allowlist and VpnOnly enforcement details.",
+  "knowledge_coverage": 0.05,
+  "knowledge_coverage_reasoning": "It fails to cover the core expected items (Application Gateway with WAF, VpnOnly rule, AllowTrustedVpnFazureMcp rule, Janus AWS IPs, azure-mcp-prod App Service, and expected 403 behavior); coverage is nearly zero.",
+  "context_tokens": 2945,
+  "latency_ms": 26616,
+  "condition": "B",
+  "task_id": "task-06",
+  "explainability": null
+}

@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response explains generic reasons for switching to Rackspace Identity but fails to retrieve or cite the specific change, file, function call, and exact rationale recorded in the codebase/PR, so it does not accomplish the requested debug retrieval.",
+  "retrieval_precision": 0.3,
+  "retrieval_precision_reasoning": "The answer correctly identifies a switch to Rackspace Identity and general motivations, but omits the concrete implementation details required (shared/fleet_event_grid_helpers.py, shared.janus_helpers.get_rackspace_identity_token(auth_mode='identity'), use of RACKSPACE_USERNAME/PASSWORD, and sending the token as Authorization: Bearer to APIM).",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The response contains no time-sensitive or outdated claims; it provides general rationale and checklist items that are evergreen.",
+  "irrelevant_rate": 0.3,
+  "irrelevant_reasoning": "Roughly a third of the content is generic guidance and operational justification beyond the requested retrieval of the specific decision and code change, which is useful but not directly answering the debug query.",
+  "knowledge_coverage": 0.5,
+  "knowledge_coverage_reasoning": "The response covers the high-level fact that auth was moved from Entra to Rackspace Identity and that reuse of an existing flow is desirable, but it misses several expected specifics (exact helper function call, credential variables, APIM bearer usage, and the precise code location).",
+  "context_tokens": 0,
+  "latency_ms": 37406,
+  "condition": "A",
+  "task_id": "task-07",
+  "explainability": null
+}

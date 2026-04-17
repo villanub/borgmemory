@@ -1,0 +1,14 @@
+{
+  "condition": "C",
+  "task_id": "task-04",
+  "response": "Cyber Recovery \u2014 built for Healthcare\n\nCyber Recovery is an Azure\u2011deployed, Rackspace\u2011managed cyber recovery solution designed to protect healthcare data, simplify procurement, and lower the total cost of disaster recovery versus on\u2011premises approaches.\n\nKey value points\n- Purpose-built for Healthcare: Protects patient and clinical data while supporting healthcare operational requirements and auditability.\n- Cloud native on Azure: Leverages Azure scale, resiliency and security posture to remove the capital and operational overhead of on\u2011prem DR.\n- Measurable cost reduction vs on\u2011prem DR: Deliverable cost savings through reduced infrastructure, maintenance and staffing needs (we provide a cost comparison during procurement).\n- Immutable backup vaults: Air\u2011gapped, tamper\u2011resistant backups that defend against ransomware and accidental or malicious deletion.\n- Compliance\u2011focused: Implements PCI\u2011DSS controls and supports regulatory assessments and reporting.\n- Fully managed by Rackspace: Day\u2011to\u2011day operations, monitoring, and orchestration handled by a trusted managed services provider to accelerate time to value and minimize internal burden.\n- Procurement ready: Includes RFP materials and response support to shorten vendor selection and contracting cycles.\n- Operational simplicity: Integrates into a single pane of glass for unified monitoring and recovery orchestration across environments.\n\nOutcome for customers\n- Faster, more reliable recovery with reduced risk of data loss or compromise\n- Lower TCO compared with maintaining equivalent on\u2011prem DR infrastructure\n- Streamlined procurement and compliance readiness\n- Reduced operational load through expert managed services\n\nNext step\nRequest a tailored cost comparison and RFP package to see quantified savings and a technical fit for your healthcare environment.",
+  "context_injected": "{\"ns\": \"azure-msp\", \"task\": \"writing\", \"facts\": [\"Cyber Recovery targets Healthcare\", \"Cyber Recovery contains RFP\", \"Cyber Recovery has_metric Cost reduction vs on-premise DR\", \"Cyber Recovery deployed_to Azure\", \"Cyber Recovery contains Immutable backup vaults\", \"Cyber Recovery implements PCI-DSS\", \"Cyber Recovery managed_by Rackspace\", \"Cyber Recovery integrates_with Single pane of glass\"]}",
+  "context_tokens": 99,
+  "task_class": "writing",
+  "candidates_found": 8,
+  "candidates_selected": 8,
+  "latency_ms": 12894,
+  "latency_think_ms": 55,
+  "latency_llm_ms": 12839,
+  "borg_latency_ms": 2
+}

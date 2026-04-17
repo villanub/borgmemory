@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response provides broad, useful debugging guidance but fails to identify the actual root cause (XML escaping requiring URL-encoding) and omits checking DDI isolation and tri-auth specifics, so it does not solve the known retry bug.",
+  "retrieval_precision": 0.6,
+  "retrieval_precision_reasoning": "Advice on caching, retries, APIM policies, and MSAL token caching is accurate and practical, but the response omits the crucial XML-escaping/URL-encoding detail and DDI/tri-auth specifics that were central to the query.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The technical guidance (APIM policies, caching patterns, MSAL usage, diagnostics) is current and not based on outdated information.",
+  "irrelevant_rate": 0.2,
+  "irrelevant_reasoning": "Most content is relevant to token retry debugging, but sections on general application-level MSAL patterns and some broad diagnostics go beyond the focused APIM-specific issue requested.",
+  "knowledge_coverage": 0.2,
+  "knowledge_coverage_reasoning": "The response covers general APIM token handling and mitigation patterns but misses the expected key points: APIM tri-auth pattern mention, DDI tenant isolation/x-auth header checks, and the XML escaping -> URL-encoding root cause.",
+  "context_tokens": 0,
+  "latency_ms": 32812,
+  "condition": "A",
+  "task_id": "task-01",
+  "explainability": null
+}

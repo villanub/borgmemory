@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response correctly describes the dedicated Postgres tables, the 15s ProcessEventGridBulkRemediation timer worker, avoidance of sync_queue, snapshotting behavior, persisted per-item status, recovery of stale runs, recency-based polling, and separate Fleet polling knobs, matching the task requirements.",
+  "retrieval_precision": 0.95,
+  "retrieval_precision_reasoning": "Most factual details from the ground truth are present and accurate; the only minor omission is not quoting the exact recency index tuple (run_id, updated_at DESC, id DESC) verbatim, though it does state a recency index/polling ordering exists.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "No facts presented conflict with the provided ground truth or context; details are current and consistent with the implementation notes.",
+  "irrelevant_rate": 0.1,
+  "irrelevant_reasoning": "A small amount of extra detail about Fleet/API auth flows is peripheral to the core architecture question but not incorrect.",
+  "knowledge_coverage": 1.0,
+  "knowledge_coverage_reasoning": "All expected knowledge points (tables, worker cadence and lock, non-reuse of sync_queue, stale-item requeue behavior, recency-based polling, and separate worker knobs) are covered.",
+  "context_tokens": 3036,
+  "latency_ms": 33745,
+  "condition": "C",
+  "task_id": "task-10",
+  "explainability": 1
+}

@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response partially lists changes (new resource group, NSG updates, new service principal) but is incomplete and truncated and does not report any superseded facts as required by the task.",
+  "retrieval_precision": 0.85,
+  "retrieval_precision_reasoning": "The responder correctly extracted the main items from the provided context (rax-prod-sentinel-rg, NSG changes, sp-sentinel-prod) but left entries truncated and omitted exact NSG/resource and SP scope details.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "All cited facts match the provided March 17, 2026 context and there is no indication they are outdated.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "All content in the response pertains directly to the requested audit of Azure-PROD schema changes.",
+  "knowledge_coverage": 0.6,
+  "knowledge_coverage_reasoning": "The response covers the primary additions/modifications but fails to provide full specifics (truncated NSG and SP details) and does not identify any facts that were superseded, so coverage is incomplete.",
+  "context_tokens": 451,
+  "latency_ms": 13783,
+  "condition": "C",
+  "task_id": "task-10",
+  "explainability": 1
+}

@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response did not answer the question or provide any customer names from Project Sentinel; it only requested source material and gave advice on how to find the information.",
+  "retrieval_precision": 0.25,
+  "retrieval_precision_reasoning": "The injected context contained the 'no context provided' condition plus three expected-knowledge items; the AI used only the fact it had no documents, so it used about one of four provided pieces of context.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The provided context and the AI response contain no facts that appear outdated or superseded.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "All provided context items (no memory and the expected knowledge points) were relevant to the task of identifying customers discussed for Project Sentinel.",
+  "knowledge_coverage": 0.0,
+  "knowledge_coverage_reasoning": "The response did not mention that Project Sentinel is a multi-agent system, the use of six agents or Semantic Kernel, nor did it list any specific customer names from discussions.",
+  "context_tokens": 0,
+  "latency_ms": 12145,
+  "condition": "A",
+  "task_id": "task-05",
+  "explainability": null
+}

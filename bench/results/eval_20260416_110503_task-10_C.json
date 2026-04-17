@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response clearly describes the bulk remediation architecture, including dedicated Postgres tables, a 15-second timer worker, recovery behavior on restarts, and polling knobs\u2014matching the requested architecture-level description.",
+  "retrieval_precision": 0.95,
+  "retrieval_precision_reasoning": "The reply accurately surfaces the key design points (dedicated tables, 15s ProcessEventGridBulkRemediation worker, advisory lock, requeueing stale items, and separate polling knobs). It omits the exact recency index columns (run_id, updated_at DESC, id DESC) but references a recency index and ordering.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "No assertions conflict with the provided ground truth or context; the details presented align with recent implementation notes.",
+  "irrelevant_rate": 0.1,
+  "irrelevant_reasoning": "A few extra operational/UI and credential details (Fleet/APIM call flow, specific endpoint names) go beyond the minimal architecture answer but remain contextually relevant rather than distracting.",
+  "knowledge_coverage": 0.95,
+  "knowledge_coverage_reasoning": "All expected knowledge points are covered: dedicated event_grid_bulk_remediation_runs/items tables, 15s ProcessEventGridBulkRemediation timer worker, non-use of sync_queue, stale-item requeueing, recency indexing (mentioned), and separate bulk-worker polling env knobs\u2014only the precise index column ordering was not explicitly quoted.",
+  "context_tokens": 1972,
+  "latency_ms": 43614,
+  "condition": "C",
+  "task_id": "task-10",
+  "explainability": 1
+}

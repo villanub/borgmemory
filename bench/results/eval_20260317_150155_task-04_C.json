@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response produced a strong high-level value proposition using provided context but failed to meet key requirements: it did not reference the 36 targeted customers, omitted the BFSI segment, and provided no quantified impact metrics from existing deployments.",
+  "retrieval_precision": 1.0,
+  "retrieval_precision_reasoning": "The response incorporated all relevant borg facts (Healthcare focus, RFP readiness, cost reduction vs on\u2011prem DR, Azure deployment, immutable backup vaults, PCI\u2011DSS, Rackspace management, and single pane of glass).",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "None of the injected facts appear time-sensitive or outdated in the provided context.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "All injected context facts were directly relevant to drafting the Cyber Recovery value proposition.",
+  "knowledge_coverage": 0.33,
+  "knowledge_coverage_reasoning": "Only one of three expected knowledge items appeared (Healthcare); the response missed mentioning the 36-customer targeting and the BFSI segment and did not include quantified impact metrics from deployments.",
+  "context_tokens": 210,
+  "latency_ms": 12978,
+  "condition": "C",
+  "task_id": "task-04",
+  "explainability": 1
+}

@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response correctly describes the primary authentication and access control architecture: an Application Gateway with a WAF policy protecting the App Service (azure-mcp-prod) and the use of VPN/allow\u2011list rules (including Janus AWS IPs) to permit trusted traffic.",
+  "retrieval_precision": 0.85,
+  "retrieval_precision_reasoning": "Most named components and rules match the ground truth (per\u2011site WAF policy, VpnOnly, AllowTrustedVpnFazureMcp, explicit Janus IP allow\u2011listing, backend App Service). A few extra specifics (e.g., an additional global WAF name, oauth host, probe path) are plausible but not present in the ground truth and may be inferred.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "No information appears to be time\u2011sensitive or outdated; the response aligns with the provided ground truth rather than legacy data.",
+  "irrelevant_rate": 0.1,
+  "irrelevant_reasoning": "Most content is on\u2011topic; minor extra details (OAuth host name, probe path, RateLimit mention) go beyond the core task but remain related to access/authentication context.",
+  "knowledge_coverage": 0.9,
+  "knowledge_coverage_reasoning": "The response includes the key expected points (Application Gateway with WAF, waf-appgw-phoenix-prod-southcentralus-rax-fazure-mcp-sites, VpnOnly rule, AllowTrustedVpnFazureMcp, explicit Janus IP allow\u2011listing, backend azure-mcp-prod). It omits an explicit note that 403s from unknown/external IPs are expected/correct and does not mention the resource group (rg-azure-mcp-prod).",
+  "context_tokens": 3042,
+  "latency_ms": 39849,
+  "condition": "C",
+  "task_id": "task-06",
+  "explainability": 1
+}

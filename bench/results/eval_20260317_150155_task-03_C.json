@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response correctly reported the two main decisions (pgAudit for Borg tables and CAB/change-management approval for AI deployments), which answers the query usefully.",
+  "retrieval_precision": 0.3,
+  "retrieval_precision_reasoning": "The reply used the core SOX/pgAudit and change-management items from the context but ignored many other context items (Sentinel, Wisdm, AMA details) that were present.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The injected context contained current decisions and rationale with no indication of being outdated or superseded.",
+  "irrelevant_rate": 0.6,
+  "irrelevant_reasoning": "Approximately 60% of the provided context (architecture/other project episodes and governance details) was not directly relevant to the SOX/AI compliance decision.",
+  "knowledge_coverage": 0.67,
+  "knowledge_coverage_reasoning": "The response included pgAudit for Borg tables and approval gates/CAB requirement but did not explicitly state that the audit trail meets SOX Section 404 requirements.",
+  "context_tokens": 816,
+  "latency_ms": 7553,
+  "condition": "C",
+  "task_id": "task-03",
+  "explainability": 1
+}

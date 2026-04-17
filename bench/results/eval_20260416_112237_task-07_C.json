@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response correctly identifies that azr-compliance-v3 switched from Entra client credentials to the Rackspace Identity flow and explains the practical rationale for the change.",
+  "retrieval_precision": 0.9,
+  "retrieval_precision_reasoning": "The answer accurately cites shared.janus_helpers.get_rackspace_identity_token(auth_mode='identity'), reuse of existing Rackspace credentials, and that the token is sent as a Bearer to APIM; it adds some plausible but unstated details (e.g., specific JWT/MSAL failure modes) that slightly reduce precision.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "All referenced facts align with the recent 2026-04-09 revision and the provided context; nothing appears outdated.",
+  "irrelevant_rate": 0.05,
+  "irrelevant_reasoning": "Most content is on-topic; a small amount of extra detail about JWT/MSAL and platform config is somewhat tangential to the core decision but not majorly irrelevant.",
+  "knowledge_coverage": 1.0,
+  "knowledge_coverage_reasoning": "The response covers all expected points: moved away from Entra client credentials, uses Rackspace Identity with RACKSPACE_USERNAME/RACKSPACE_PASSWORD, calls get_rackspace_identity_token(auth_mode='identity'), and sends the token as Authorization: Bearer to APIM, reusing existing shared flow.",
+  "context_tokens": 1921,
+  "latency_ms": 61987,
+  "condition": "C",
+  "task_id": "task-07",
+  "explainability": 1
+}

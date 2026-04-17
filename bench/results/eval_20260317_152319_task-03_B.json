@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response accurately states the SOX decision: use pgAudit for Borg tables, Section 404 audit trail coverage, and required approval gates for production changes.",
+  "retrieval_precision": 1.0,
+  "retrieval_precision_reasoning": "All retrieved facts (pgAudit choice, Section 404 compliance, three approval gates/CAB requirement, provenance via Borg) match the provided context with no incorrect details.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The decision is a recent, context-specific compliance choice and there are no signs of outdated or time-sensitive inaccuracies.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "The response stays focused on SOX compliance items and does not include unrelated information.",
+  "knowledge_coverage": 1.0,
+  "knowledge_coverage_reasoning": "The response covers all expected points: pgAudit for SOX, Section 404 audit trail satisfaction, and approval gates for production AI changes (including code review/staging/production).",
+  "context_tokens": 1312,
+  "latency_ms": 8782,
+  "condition": "B",
+  "task_id": "task-03",
+  "explainability": null
+}

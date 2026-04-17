@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The design is a strong generic drift-detection architecture for AMA v3 DCRs but fails to address the task-specific requirements: it does not mention the rax- prefix convention, OS-based categorization for DCR assignment, nor explicitly reference lessons/risks from the v2 schema.",
+  "retrieval_precision": 0.9,
+  "retrieval_precision_reasoning": "Most technical recommendations (Resource Graph, ARM GET, normalization, hashing, polling+event-driven hybrid, RBAC, remediation patterns) are accurate and practical; the response avoids clear factual errors and appropriately qualifies schema uncertainty.",
+  "stale_fact_rate": 0.1,
+  "stale_fact_reasoning": "The response is largely schema-agnostic and cautious about post-2024 changes; only small risk of stale specifics around AMA v3 schema behaviors which were explicitly noted as assumptions.",
+  "irrelevant_rate": 0.05,
+  "irrelevant_reasoning": "Nearly all sections (normalization, comparator, remediation, observability, rollout) are relevant to drift detection; a few general operational recommendations are ancillary but still on-topic.",
+  "knowledge_coverage": 0.25,
+  "knowledge_coverage_reasoning": "Covers general drift-detection architecture well but misses the expected domain-specific knowledge: no handling or mention of the rax- naming convention, no OS-based DCR categorization guidance, and no explicit discussion of v2 schema drift risks and lessons.",
+  "context_tokens": 0,
+  "latency_ms": 28816,
+  "condition": "A",
+  "task_id": "task-02",
+  "explainability": null
+}

@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response fails the task because it asserts APIM fronts fazure-mcp and focuses on APIM tri-auth behavior instead of describing the Application Gateway WAF-based protection and allowlist-based VPN-only enforcement required by the ground truth.",
+  "retrieval_precision": 0.2,
+  "retrieval_precision_reasoning": "Some high-level points (WAF/App Gateway involvement and oauth endpoints) are correct, but major assertions like APIM fronting are incorrect and it omits crucial specifics such as the WAF policy name and required Janus AWS IP allowlist.",
+  "stale_fact_rate": 0.1,
+  "stale_fact_reasoning": "Most content is not time-sensitive; the primary problems are inaccuracies and omissions rather than outdated facts.",
+  "irrelevant_rate": 0.7,
+  "irrelevant_reasoning": "The response contains extensive APIM-specific detail (tri-auth, subscription keys, header mappings) that is not relevant to the expected WAF/allowlist/App Service\u2013based architecture.",
+  "knowledge_coverage": 0.15,
+  "knowledge_coverage_reasoning": "Covers only that WAF/App Gateway and oauth play roles, but misses nearly all required items: specific WAF policy (waf-appgw-phoenix-prod-southcentralus-rax-fazure-mcp-sites), VpnOnly and AllowTrustedVpnFazureMcp rules, explicit Janus AWS IPs, backend App Service azure-mcp-prod in rg-azure-mcp-prod, and that 403s from unknown IPs are expected.",
+  "context_tokens": 2945,
+  "latency_ms": 34046,
+  "condition": "B",
+  "task_id": "task-06",
+  "explainability": null
+}

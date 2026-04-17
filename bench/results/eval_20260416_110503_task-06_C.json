@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response does not describe fazure-mcp's actual authentication and network access control (Application Gateway with WAF, VpnOnly rule, allowlist rules, Janus IPs, backend App Service, and expected 403 behavior).",
+  "retrieval_precision": 0.2,
+  "retrieval_precision_reasoning": "It correctly references APIM/DDI tri-auth concepts present in the context, but these are not the authoritative controls for fazure-mcp and key facts (App Gateway/WAF, VpnOnly, allowlist IPs, backend app) are missing or incorrect.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "Errors stem from omission/misattribution rather than using outdated information; no clear stale facts are present.",
+  "irrelevant_rate": 0.8,
+  "irrelevant_reasoning": "Most of the response focuses on APIM tri\u2011auth details that are not central to the requested architecture for fazure-mcp, omitting critical network-level controls and allowlist specifics.",
+  "knowledge_coverage": 0.0,
+  "knowledge_coverage_reasoning": "The response fails to cover the expected items: Application Gateway with WAF and VpnOnly policy, AllowTrustedVpnFazureMcp rule, explicit Janus AWS IP allowlisting, the azure-mcp-prod App Service backend, and 403 behavior.",
+  "context_tokens": 1995,
+  "latency_ms": 19783,
+  "condition": "C",
+  "task_id": "task-06",
+  "explainability": 1
+}

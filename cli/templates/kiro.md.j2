@@ -1,0 +1,9 @@
+# Borg Memory — {{ namespace }}
+
+This project uses Borg ({{ borg_url }}) for persistent memory. Namespace: `{{ namespace }}`.
+
+- Call `borg_think` before complex tasks (debugging, architecture, unfamiliar modules).
+- Call `borg_learn` after significant decisions or non-obvious fixes.
+- Call `borg_recall` for direct memory searches.
+- Always pass `namespace="{{ namespace }}"` in all Borg calls.
+- Do NOT learn secrets, API keys, passwords, PII, or routine git-obvious changes.

@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response produces a strong general Cyber Recovery value proposition but fails to address key ground-truth requirements: it does not target the 36 identified customers, and it omits quantified impact metrics from existing deployments.",
+  "retrieval_precision": 0.4,
+  "retrieval_precision_reasoning": "The response accurately covers many core value points, KPIs and ROI framing, but misses the specific targeting (36 customers) and concrete, deployment-derived metrics requested in the brief.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The content contains no time-sensitive or dated factual claims; no stale facts are present.",
+  "irrelevant_rate": 0.1,
+  "irrelevant_reasoning": "Most content is relevant to a Cyber Recovery value proposition; a small portion (e.g., generic offers to tailor, broad use cases) is peripheral to the explicit requirements.",
+  "knowledge_coverage": 0.3,
+  "knowledge_coverage_reasoning": "The response demonstrates knowledge of cyber recovery capabilities, KPIs and stakeholder messaging but fails to incorporate the required targeting (36 customers, BFSI and Healthcare emphasis) and lacks quantified impact metrics from existing deployments.",
+  "context_tokens": 0,
+  "latency_ms": 16481,
+  "condition": "A",
+  "task_id": "task-04",
+  "explainability": null
+}

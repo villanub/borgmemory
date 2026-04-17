@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response was empty and did not provide any architecture or guidance for AMA v3 DCR drift detection, so it failed to accomplish the task.",
+  "retrieval_precision": 0.0,
+  "retrieval_precision_reasoning": "No contextual facts or requirements from the prompt were referenced or used, so retrieval precision is zero.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The response contained no facts or assertions, therefore there were no stale facts to count.",
+  "irrelevant_rate": 1.0,
+  "irrelevant_reasoning": "An empty response provides no relevant content for the task; the entire output is therefore irrelevant.",
+  "knowledge_coverage": 0.0,
+  "knowledge_coverage_reasoning": "The response did not demonstrate awareness of the rax- prefix, OS-based categorization, or v2 schema risks, so required knowledge coverage is zero.",
+  "context_tokens": 259,
+  "latency_ms": 30097,
+  "condition": "C",
+  "task_id": "task-02",
+  "explainability": 1
+}

@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "The response correctly identified the five specific customers discussed for Project Sentinel and matched their statuses from the provided episodes.",
+  "retrieval_precision": 1.0,
+  "retrieval_precision_reasoning": "All five named customers (Contoso Financial, Woodgrove Bank, Fabrikam Healthcare, Adatum Insurance, Northwind Traders) appear in the context and were reported accurately.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "No facts presented in the response conflict with or are outdated relative to the supplied episodes.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "All items listed are directly relevant to the query about customers discussed for Project Sentinel.",
+  "knowledge_coverage": 1.0,
+  "knowledge_coverage_reasoning": "The response included all specific customer names mentioned in the injected episodes; no named customers from the context were omitted.",
+  "context_tokens": 1360,
+  "latency_ms": 4715,
+  "condition": "B",
+  "task_id": "task-05",
+  "explainability": null
+}

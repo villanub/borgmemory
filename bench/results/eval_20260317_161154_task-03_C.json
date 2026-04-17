@@ -1,0 +1,17 @@
+{
+  "task_success": 1,
+  "task_success_reasoning": "Response captured the primary SOX compliance decisions\u2014use of pgAudit for Borg tables and requirement for approval gates and formal change control\u2014though it omitted explicit mention that pgAudit meets SOX Section 404 audit-trail requirements.",
+  "retrieval_precision": 0.95,
+  "retrieval_precision_reasoning": "Facts presented are accurate and align with the context (pgAudit for Borg tables, CAB/approval gates, PR review); the only minor missing detail is the explicit Section 404 compliance statement.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "All facts reference the 2026-03-17 decision and match the provided, recent context.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "The response contains only relevant points about SOX compliance decisions for AI development.",
+  "knowledge_coverage": 0.67,
+  "knowledge_coverage_reasoning": "Covered pgAudit choice and approval gates but omitted the specific claim that the audit trail meets SOX Section 404 requirements.",
+  "context_tokens": 608,
+  "latency_ms": 8966,
+  "condition": "C",
+  "task_id": "task-03",
+  "explainability": 1
+}

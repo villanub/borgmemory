@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response was empty and provided none of the requested debugging patterns, so it failed to meet the task objective.",
+  "retrieval_precision": 0.0,
+  "retrieval_precision_reasoning": "No relevant items (DDI isolation, token inspection, APIM policy review) were returned, so precision is zero.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "No facts were provided in the response, so there are no outdated facts to count.",
+  "irrelevant_rate": 0.0,
+  "irrelevant_reasoning": "The response contained no content, and thus no irrelevant information.",
+  "knowledge_coverage": 0.0,
+  "knowledge_coverage_reasoning": "None of the expected knowledge points (DDI isolation, token inspection, APIM policy review) were mentioned, so coverage is zero.",
+  "context_tokens": 0,
+  "latency_ms": 23347,
+  "condition": "A",
+  "task_id": "task-09",
+  "explainability": null
+}

@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response failed to state the actual root cause or the concrete fix for the fleet-platform-app pip-audit failure; it returned a generic remediation workflow instead of the specific facts requested.",
+  "retrieval_precision": 0.0,
+  "retrieval_precision_reasoning": "None of the expected, specific facts (aiohttp pinned to 3.13.3, pip-audit 10 GHSA advisories, updated to 3.13.4, 454 tests passing, Rackspace SAML blocking GH Actions) were returned; the reply gave generic, mostly Node/npm-focused steps.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The response did not present time-sensitive factual claims about the incident, so there are no outdated facts to rate.",
+  "irrelevant_rate": 1.0,
+  "irrelevant_reasoning": "The content is largely irrelevant: it discusses general audit workflows and npm/yarn commands rather than the Python/pip-audit/aiohttp-specific root cause and fix requested.",
+  "knowledge_coverage": 0.0,
+  "knowledge_coverage_reasoning": "None of the expected knowledge items (aiohttp versions, affected files, number of advisories, test results, or CI gating cause) were included.",
+  "context_tokens": 0,
+  "latency_ms": 52938,
+  "condition": "A",
+  "task_id": "task-08",
+  "explainability": null
+}

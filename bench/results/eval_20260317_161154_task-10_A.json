@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response was empty and provided no audit of schema changes, so it did not accomplish the task.",
+  "retrieval_precision": 0.0,
+  "retrieval_precision_reasoning": "No facts or retrieved items were returned, so there is nothing correct or precise in the response.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "Because the response contained no facts, there are no stale or outdated facts to rate.",
+  "irrelevant_rate": 1.0,
+  "irrelevant_reasoning": "The response contained no content relevant to the query; it was entirely non-informative.",
+  "knowledge_coverage": 0.0,
+  "knowledge_coverage_reasoning": "The response provided none of the expected coverage (recent schema changes, entity changes, or supersessions) for the last month.",
+  "context_tokens": 0,
+  "latency_ms": 19462,
+  "condition": "A",
+  "task_id": "task-10",
+  "explainability": null
+}

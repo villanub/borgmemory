@@ -1,0 +1,14 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "Judge parse error: ",
+  "retrieval_precision": 0.0,
+  "stale_fact_rate": 0.0,
+  "irrelevant_rate": 0.0,
+  "knowledge_coverage": 0.0,
+  "parse_error": true,
+  "context_tokens": 0,
+  "latency_ms": 22222,
+  "condition": "A",
+  "task_id": "task-03",
+  "explainability": null
+}

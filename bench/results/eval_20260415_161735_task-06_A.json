@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response did not describe the specific, existing implementation for fazure-mcp and omitted key enforced controls and allowlist details, instead offering a generic Azure authentication design.",
+  "retrieval_precision": 0.1,
+  "retrieval_precision_reasoning": "While the response gave accurate Azure auth best practices, it failed to retrieve or state any of the required, specific facts (WAF policy name, VpnOnly/AllowTrusted rules, Janus IPs, backend App Service, expected 403 behavior).",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The content consisted of general best practices and non\u2011time\u2011sensitive recommendations, so there are no clearly outdated claims.",
+  "irrelevant_rate": 0.9,
+  "irrelevant_reasoning": "The majority of the response consisted of generic architecture guidance rather than the task\u2011specific description of fazure\u2011mcp's configured authentication and network access controls.",
+  "knowledge_coverage": 0.17,
+  "knowledge_coverage_reasoning": "Only a brief mention of Application Gateway/WAF appeared; it omitted critical expected items (the specific WAF policy and VpnOnly rule, AllowTrustedVpnFazureMcp, required Janus AWS IPs, the azure-mcp-prod App Service and resource group, and the expected 403 behavior).",
+  "context_tokens": 0,
+  "latency_ms": 55784,
+  "condition": "A",
+  "task_id": "task-06",
+  "explainability": null
+}

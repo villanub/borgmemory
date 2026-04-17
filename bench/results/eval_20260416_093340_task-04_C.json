@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response did not provide the requested summary of fleet-agent-query\u2019s purpose or architecture; it only offered generic steps to locate and inspect the component and asked for repository artifacts.",
+  "retrieval_precision": 0.0,
+  "retrieval_precision_reasoning": "The assistant made no concrete claims about fleet-agent-query and explicitly stated it could not find the component in context, so it retrieved no relevant facts.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "There are effectively no factual assertions about the project in the response, so nothing is present that could be considered stale.",
+  "irrelevant_rate": 0.9,
+  "irrelevant_reasoning": "The bulk of the reply is procedural guidance for code discovery and debugging rather than the requested concise description of what fleet-agent-query does and how it is built; only a small portion (the offer to analyze provided files) marginally relates to the task.",
+  "knowledge_coverage": 0.0,
+  "knowledge_coverage_reasoning": "The response failed to cover expected knowledge elements (sales propensity reports, matching vendor solutions against Rackspace Azure fleet, Python Azure Function app, intake.py/OpenAI, propensity_store.py, and SQL injection protection).",
+  "context_tokens": 1574,
+  "latency_ms": 79332,
+  "condition": "C",
+  "task_id": "task-04",
+  "explainability": 1
+}

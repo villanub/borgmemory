@@ -1,0 +1,17 @@
+{
+  "task_success": 0,
+  "task_success_reasoning": "The response captures the high-level idea that fazure-mcp is protected by an App Gateway/WAF and uses APIM for authentication, but it omits key, required specifics (exact WAF policy/rule names, the Janus AWS allowlist IPs, and the backend App Service resource) and does not state that 403s from unknown IPs are expected behavior.",
+  "retrieval_precision": 0.6,
+  "retrieval_precision_reasoning": "Several high-level points are correct (App Gateway/WAF, trusted IP allowlisting, APIM tri-auth pattern), but the reply fails to include the exact WAF policy name and rule identifiers and omits the explicit Janus IP addresses and backend App Service name/rg, reducing factual precision.",
+  "stale_fact_rate": 0.0,
+  "stale_fact_reasoning": "The response does not contain outdated information; rather it is incomplete and lacks specific required facts.",
+  "irrelevant_rate": 0.2,
+  "irrelevant_reasoning": "Some APIM tri-auth implementation details and expanded APIM header behaviors are peripheral to the core answer about WAF rules, allowlist IPs, backend resource, and expected 403 behavior, adding modest irrelevance.",
+  "knowledge_coverage": 0.4,
+  "knowledge_coverage_reasoning": "Covers the presence of an App Gateway/WAF and APIM authentication, but misses several expected items: explicit waf-appgw-phoenix-prod-southcentralus-rax-fazure-mcp-sites and AllowTrustedVpnFazureMcp naming, the Janus AWS IP addresses, the azure-mcp-prod App Service (rg-azure-mcp-prod), and an explicit note that 403s from unknown IPs are expected.",
+  "context_tokens": 2078,
+  "latency_ms": 42256,
+  "condition": "C",
+  "task_id": "task-06",
+  "explainability": 1
+}
