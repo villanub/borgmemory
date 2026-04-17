@@ -41,9 +41,14 @@ export function Nav() {
               {link.label}
             </Link>
           ))}
-          <span className="rounded-full border border-[var(--accent-green)]/30 bg-[var(--accent-green)]/10 px-3 py-1 text-xs font-medium text-[var(--accent-green)]">
-            Open Source
-          </span>
+          <a
+            href="https://github.com/villanub/borgmemory"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full border border-[var(--accent-green)]/30 bg-[var(--accent-green)]/10 px-3 py-1 text-xs font-medium text-[var(--accent-green)] transition-all hover:bg-[var(--accent-green)]/20"
+          >
+            Open Source ↗
+          </a>
         </div>
       </div>
     </nav>

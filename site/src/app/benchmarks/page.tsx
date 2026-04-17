@@ -168,6 +168,32 @@ export default function Benchmarks() {
               </p>
             </div>
           </div>
+
+          <div className="mt-6 rounded-lg border border-[var(--accent-amber)]/30 bg-[var(--accent-amber)]/5 p-5">
+            <h3 className="text-lg font-semibold text-[var(--accent-amber)] mb-2">
+              Honest Caveats
+            </h3>
+            <ul className="list-disc pl-5 space-y-2 text-sm text-[var(--text-secondary)]">
+              <li>
+                Self-reported results from a single evaluator model on a single
+                domain (Azure infrastructure / MSP engineering). Not externally
+                reproduced.
+              </li>
+              <li>
+                10 tasks is a small N. Confidence intervals are wide; treat
+                absolute numbers as directional, not definitive.
+              </li>
+              <li>
+                Same LLM family used for task answering and grading — risks
+                circularity. An independent judge model would strengthen the
+                claim.
+              </li>
+              <li>
+                Full per-task inputs, outputs, and grader reasoning live in{" "}
+                <code>bench/results/report.md</code> on GitHub for audit.
+              </li>
+            </ul>
+          </div>
         </div>
       </Section>
 
@@ -191,10 +217,10 @@ export default function Benchmarks() {
               <tbody className="text-[var(--text-secondary)]">
                 {[
                   ["Task Success", "0/10", "8/10", "10/10"],
-                  ["Retrieval Precision", "0.060", "0.810", "0.913"],
-                  ["Stale Fact Rate", "0.000", "0.115", "0.025"],
-                  ["Irrelevant Rate", "0.695", "0.115", "0.045"],
-                  ["Knowledge Coverage", "0.085", "0.782", "0.908"],
+                  ["Retrieval Precision", "6.0%", "81.0%", "91.3%"],
+                  ["Stale Fact Rate", "0.0%", "11.5%", "2.5%"],
+                  ["Irrelevant Rate", "69.5%", "11.5%", "4.5%"],
+                  ["Knowledge Coverage", "8.5%", "78.2%", "90.8%"],
                   ["Avg Context Tokens", "0", "2,806", "3,026"],
                 ].map(([metric, a, b, c]) => (
                   <tr key={metric} className="border-b border-[var(--border)]/50">

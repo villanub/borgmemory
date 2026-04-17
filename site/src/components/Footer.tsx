@@ -8,14 +8,29 @@ export function Footer() {
         <p className="mt-2 text-xs text-[var(--text-muted)]">
           Built with PostgreSQL, pgvector, FastAPI, and Python.
         </p>
-        <p className="mx-auto mt-6 max-w-3xl text-xs text-[var(--text-muted)] opacity-70">
-          Independent open-source project. Not affiliated with, endorsed by, or
-          connected to any company, brand, franchise, or intellectual property
-          referenced by the project name or any term used here — including (but
-          not limited to) Paramount Global, CBS Studios, the Star Trek
-          franchise, Anthropic, OpenAI, Microsoft, or GitHub. All product
-          names, trademarks, and registered trademarks are property of their
-          respective owners.
+        <div className="mt-4 flex justify-center gap-6 text-xs text-[var(--text-muted)]">
+          <a
+            href="https://github.com/villanub/borgmemory"
+            className="hover:text-[var(--text-primary)] transition-colors"
+          >
+            GitHub
+          </a>
+          <a
+            href="https://github.com/villanub/borgmemory/issues"
+            className="hover:text-[var(--text-primary)] transition-colors"
+          >
+            Issues
+          </a>
+          <a
+            href="https://github.com/villanub/borgmemory/blob/main/LICENSE"
+            className="hover:text-[var(--text-primary)] transition-colors"
+          >
+            Apache 2.0
+          </a>
+        </div>
+        <p className="mx-auto mt-6 max-w-2xl text-xs text-[var(--text-muted)] opacity-70">
+          Independent open-source project. All trademarks and product names
+          are the property of their respective owners.
         </p>
       </div>
     </footer>

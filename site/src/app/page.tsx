@@ -10,12 +10,15 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--accent-green)]/5 via-transparent to-transparent" />
         <div className="relative mx-auto max-w-6xl px-6 pb-20 pt-24">
           <div className="max-w-3xl">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--accent-green)]/20 bg-[var(--accent-green)]/5 px-4 py-1.5">
+            <Link
+              href="/benchmarks"
+              className="mb-6 inline-flex items-center gap-2 rounded-full border border-[var(--accent-green)]/20 bg-[var(--accent-green)]/5 px-4 py-1.5 transition-all hover:bg-[var(--accent-green)]/10"
+            >
               <span className="h-2 w-2 rounded-full bg-[var(--accent-green)] animate-pulse" />
               <span className="text-xs font-medium text-[var(--accent-green)]">
-                10/10 task success | 91.3% precision | 78% less stale facts vs RAG
+                10/10 task success | 91.3% precision | 78% less stale facts vs RAG →
               </span>
-            </div>
+            </Link>
 
             <h1 className="text-5xl font-extrabold leading-tight tracking-tight text-[var(--text-primary)] sm:text-6xl">
               Your AI tools forget.
@@ -34,6 +37,14 @@ export default function Home() {
             <p className="mt-4 text-base text-[var(--text-muted)]">
               Open source. Apache 2.0. One local install.
             </p>
+
+            <div className="mt-6 rounded-lg border border-[var(--accent-amber)]/30 bg-[var(--accent-amber)]/5 px-4 py-3 text-xs text-[var(--text-secondary)]">
+              <span className="font-semibold text-[var(--accent-amber)]">Current release:</span>{" "}
+              single-user, no auth, localhost only. Episodes are embedded and
+              extracted via the OpenAI API (or your Azure OpenAI endpoint) —
+              everything else stays on your machine. Not intended for shared
+              deployments until auth lands.
+            </div>
 
             <div className="mt-6 overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--bg-card)]">
               <div className="flex items-center gap-2 border-b border-[var(--border)] px-4 py-2">
