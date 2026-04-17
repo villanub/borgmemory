@@ -21,17 +21,17 @@ export default function Home() {
             </Link>
 
             <h1 className="text-5xl font-extrabold leading-tight tracking-tight text-[var(--text-primary)] sm:text-6xl">
-              Your AI tools forget.
+              A memory stronghold
               <br />
               <span className="text-[var(--accent-green)] glow-green-text">
-                Borg remembers.
+                for your AI coding agent.
               </span>
             </h1>
 
             <p className="mt-6 text-xl leading-relaxed text-[var(--text-secondary)]">
-              Run one install command, type <code>borg init</code> in your project,
-              and every AI coding session builds a knowledge graph that makes the
-              next session smarter. One Postgres. No SDKs. No Neo4j.
+              The first thing a new engineer needs is context. The same is true
+              for your AI coding agent. Borg compiles it automatically from
+              every prior session — one Postgres, no SDKs, no re-explaining.
             </p>
 
             <p className="mt-4 text-base text-[var(--text-muted)]">

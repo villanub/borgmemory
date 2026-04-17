@@ -1,6 +1,6 @@
-# Borg — The PostgreSQL-native memory compiler for AI coding agents.
+# Borg — A memory stronghold for your AI coding agent.
 
-Run one install command, type `borg init` in your project, and every AI coding session builds a knowledge graph that makes the next session smarter — one Postgres, no SDKs, no Neo4j.
+The first thing a new engineer needs is context. The same is true for your AI coding agent. Borg compiles it automatically from every prior session — one Postgres, no SDKs, no re-explaining.
 
 ---
 
