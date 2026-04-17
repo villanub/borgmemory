@@ -34,7 +34,13 @@ export default function Home() {
               every prior session — one Postgres, no SDKs, no re-explaining.
             </p>
 
-            <p className="mt-4 text-base text-[var(--text-muted)]">
+            <p className="mt-4 text-base leading-relaxed text-[var(--text-secondary)]">
+              Run one install command, type <code>borg init</code> in your
+              project, and every AI coding session builds a knowledge graph
+              that makes the next session smarter.
+            </p>
+
+            <p className="mt-4 text-sm text-[var(--text-muted)]">
               Open source. Apache 2.0. One local install.
             </p>
 

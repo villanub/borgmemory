@@ -1,20 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --bg-primary: #0a0e17;
-  --bg-secondary: #111827;
-  --bg-card: #1a2332;
-  --bg-card-hover: #1f2b3d;
-  --text-primary: #e2e8f0;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --accent-green: #4ade80;
-  --accent-green-dim: #22c55e;
-  --accent-blue: #60a5fa;
-  --accent-amber: #fbbf24;
-  --accent-red: #f87171;
-  --border: #1e293b;
-  --border-accent: #334155;
+  --bg-primary: #08090f;
+  --bg-secondary: #0d0f17;
+  --bg-card: #12151f;
+  --bg-card-hover: #181c28;
+  --text-primary: #e8ecf5;
+  --text-secondary: #9aa3b8;
+  --text-muted: #60687d;
+  --accent-green: #6366f1;
+  --accent-green-dim: #4f46e5;
+  --accent-blue: #06b6d4;
+  --accent-amber: #fcd34d;
+  --accent-red: #f43f5e;
+  --border: #1a1f2e;
+  --border-accent: #2a3147;
+  --glow-rgb: 99, 102, 241;
 }
 
 html {
@@ -28,17 +29,19 @@ body {
 }
 
 ::selection {
-  background-color: rgba(74, 222, 128, 0.25);
+  background-color: rgba(var(--glow-rgb), 0.25);
   color: white;
 }
 
 /* Glow effects */
 .glow-green {
-  box-shadow: 0 0 20px rgba(74, 222, 128, 0.15), 0 0 60px rgba(74, 222, 128, 0.05);
+  box-shadow:
+    0 0 20px rgba(var(--glow-rgb), 0.15),
+    0 0 60px rgba(var(--glow-rgb), 0.05);
 }
 
 .glow-green-text {
-  text-shadow: 0 0 20px rgba(74, 222, 128, 0.3);
+  text-shadow: 0 0 20px rgba(var(--glow-rgb), 0.3);
 }
 
 /* Code blocks */
