@@ -109,3 +109,9 @@ Borg is open source under the Apache 2.0 license. Single-user, local, no auth �
 ## License
 
 Apache 2.0. See `LICENSE` for details.
+
+---
+
+## Disclaimer
+
+This is an independent open-source project. It is not affiliated with, endorsed by, or connected to any company, brand, franchise, or intellectual property referenced — directly or indirectly — by the project name or any term used in this repository, including (but not limited to) Paramount Global, CBS Studios, the Star Trek franchise, Anthropic, OpenAI, Microsoft, GitHub, or any other third party. All product names, trademarks, and registered trademarks are property of their respective owners.
