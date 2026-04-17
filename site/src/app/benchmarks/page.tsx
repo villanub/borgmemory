@@ -11,7 +11,7 @@ export default function Benchmarks() {
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-[var(--text-secondary)]">
             Retrieval quality, task success, and context quality across 10 benchmark
-            scenarios evaluated on real production episodes from Azure MSP engineering.
+            scenarios evaluated on real production episodes from cloud-infrastructure engineering.
           </p>
           <div className="mt-4 inline-flex items-center gap-2 rounded-full border border-[var(--accent-amber)]/20 bg-[var(--accent-amber)]/5 px-4 py-1.5">
             <span className="h-2 w-2 rounded-full bg-[var(--accent-amber)]" />
@@ -26,7 +26,7 @@ export default function Benchmarks() {
       <Section
         id="plan"
         title="Evaluation Plan"
-        subtitle="Three conditions (A/B/C) across 10 benchmark scenarios drawn from real production work. The published April 16, 2026 results below come from real production episodes from Azure MSP engineering work."
+        subtitle="Three conditions (A/B/C) across 10 benchmark scenarios drawn from real production work. The published April 16, 2026 results below come from real production episodes from cloud-infrastructure engineering work."
       >
         <div className="space-y-6">
           <div className="rounded-xl border border-[var(--accent-blue)]/30 bg-[var(--accent-blue)]/5 p-6">
@@ -34,7 +34,7 @@ export default function Benchmarks() {
               Scope Of The Published Results
             </h3>
             <p className="text-sm leading-relaxed text-[var(--text-secondary)]">
-              These benchmark runs use real production episodes from Azure MSP engineering work.
+              These benchmark runs use real production episodes from cloud-infrastructure engineering work.
               Tasks are drawn from actual engineering sessions covering debugging, architecture,
               compliance, and documentation scenarios. Results reflect how Borg performs on
               the kinds of work it was built to support.
@@ -87,16 +87,16 @@ export default function Benchmarks() {
                 </thead>
                 <tbody className="text-[var(--text-secondary)]">
                   {[
-                    ["1", "Diagnose fazure-mcp 502 errors", "debug", "Prior auth failures, gateway error patterns, retry behavior"],
-                    ["2", "Event Grid remediation architecture", "architecture", "Event Grid topology, remediation decisions, integration patterns"],
-                    ["3", "SyncEventGrid scoping decision", "compliance", "Scoping episodes, approval decisions, change boundaries"],
-                    ["4", "fleet-agent-query purpose and architecture", "writing", "Agent query design, service purpose, architectural context"],
-                    ["5", "Trace Service Bus 40100 unauthorized errors", "debug", "Auth error episodes, token acquisition patterns, Service Bus facts"],
-                    ["6", "fazure-mcp authentication architecture", "architecture", "Auth system entities, token flow facts, integration boundaries"],
-                    ["7", "Event Grid token acquisition change rationale", "debug", "Token acquisition episodes, change rationale, prior decisions"],
-                    ["8", "fleet-platform-app CI security audit fix", "compliance", "CI audit episodes, security findings, remediation decisions"],
-                    ["9", "fazure-mcp debugging pattern", "debug", "Debug procedure patterns, error resolution history, replay steps"],
-                    ["10", "Bulk Event Grid remediation architecture", "architecture", "Bulk remediation design, Event Grid entities, deployment facts"],
+                    ["1", "Diagnose API gateway 502 errors", "debug", "Prior auth failures, gateway error patterns, retry behavior"],
+                    ["2", "Event bus remediation architecture", "architecture", "Event bus topology, remediation decisions, integration patterns"],
+                    ["3", "Event-sync scoping decision", "compliance", "Scoping episodes, approval decisions, change boundaries"],
+                    ["4", "Agent query service purpose and architecture", "writing", "Agent query design, service purpose, architectural context"],
+                    ["5", "Trace message bus 40100 unauthorized errors", "debug", "Auth error episodes, token acquisition patterns, message bus facts"],
+                    ["6", "MCP gateway authentication architecture", "architecture", "Auth system entities, token flow facts, integration boundaries"],
+                    ["7", "Event bus token acquisition change rationale", "debug", "Token acquisition episodes, change rationale, prior decisions"],
+                    ["8", "Platform app CI security audit fix", "compliance", "CI audit episodes, security findings, remediation decisions"],
+                    ["9", "MCP gateway debugging pattern", "debug", "Debug procedure patterns, error resolution history, replay steps"],
+                    ["10", "Bulk event bus remediation architecture", "architecture", "Bulk remediation design, event bus entities, deployment facts"],
                   ].map(([num, task, type, memory]) => (
                     <tr key={num} className="border-b border-[var(--border)]/50">
                       <td className="py-3 pr-4 font-mono text-[var(--accent-green)]">{num}</td>
@@ -176,7 +176,7 @@ export default function Benchmarks() {
             <ul className="list-disc pl-5 space-y-2 text-sm text-[var(--text-secondary)]">
               <li>
                 Self-reported results from a single evaluator model on a single
-                domain (Azure infrastructure / MSP engineering). Not externally
+                domain (cloud infrastructure / platform engineering). Not externally
                 reproduced.
               </li>
               <li>
