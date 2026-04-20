@@ -8,47 +8,50 @@ const links = [
   { href: "/architecture", label: "Architecture" },
   { href: "/science", label: "Science" },
   { href: "/integrations", label: "Integrations" },
-  { href: "/docs", label: "API Docs" },
   { href: "/benchmarks", label: "Benchmarks" },
+  { href: "/docs", label: "Docs" },
 ];
 
 export function Nav() {
   const pathname = usePathname();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b border-[var(--border)] bg-[var(--bg-primary)]/90 backdrop-blur-md">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <Link href="/" className="flex items-center gap-3 group">
-          <span className="text-2xl font-bold text-[var(--accent-green)] glow-green-text group-hover:brightness-125 transition-all">
-            ⬡
-          </span>
-          <span className="text-lg font-bold text-[var(--text-primary)]">
+    <nav className="topnav">
+      <div className="wrap inner">
+        <Link href="/" className="mark">
+          <span style={{ color: "var(--ink)", fontWeight: 600, letterSpacing: "-0.01em" }}>
             Borg
+          </span>
+          <span className="kicker" style={{ marginLeft: 8 }}>
+            v2.1
           </span>
         </Link>
 
-        <div className="flex items-center gap-8">
+        <div className="links">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm font-medium transition-colors ${
-                pathname === link.href
-                  ? "text-[var(--accent-green)]"
-                  : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
-              }`}
+              className={pathname === link.href ? "active" : ""}
             >
               {link.label}
             </Link>
           ))}
+        </div>
+
+        <div className="right">
           <a
+            className="pill"
             href="https://github.com/villanub/borgmemory"
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full border border-[var(--accent-green)]/30 bg-[var(--accent-green)]/10 px-3 py-1 text-xs font-medium text-[var(--accent-green)] transition-all hover:bg-[var(--accent-green)]/20"
           >
-            Open Source ↗
+            <span className="dot" />
+            github · open source
           </a>
+          <Link className="btn primary" href="/#install">
+            Install
+          </Link>
         </div>
       </div>
     </nav>
