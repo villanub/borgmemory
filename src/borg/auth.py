@@ -6,7 +6,6 @@ from dataclasses import dataclass
 from typing import Any
 
 from fastapi import Header
-from starlette.types import ASGIApp, Receive, Scope, Send
 
 from borg.namespaces import normalize_namespace
 
@@ -65,15 +64,3 @@ def build_fastmcp_auth_provider():
 
 def mcp_require_permissions(_required: set[str] | None = None):
     return lambda _ctx: True
-
-
-class EntraBearerAuthMiddleware:
-    """Compatibility middleware — OSS has no auth; this passes through unchanged."""
-
-    def __init__(self, app: ASGIApp):
-        self.app = app
-
-    async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
-        if scope["type"] == "http":
-            scope["borg_principal"] = _local_principal()
-        await self.app(scope, receive, send)

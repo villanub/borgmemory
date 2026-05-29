@@ -11,8 +11,6 @@ import json
 from uuid import UUID
 
 from fastmcp import FastMCP
-from fastmcp.server.auth import AccessToken
-from fastmcp.server.dependencies import CurrentAccessToken
 
 from borg.auth import (
     build_fastmcp_auth_provider,
@@ -46,16 +44,13 @@ async def borg_think(
     namespace: str = "default",
     model: str = "claude",
     task_hint: str | None = None,
-    token: AccessToken | None = CurrentAccessToken(),
 ) -> str:
     """Compile task-specific context from the knowledge graph."""
     from borg.compiler import compile_context
     from borg.models import ThinkRequest
 
-    claims = token.claims if token else {}
     namespace = await require_namespace_access(
         namespace,
-        claims=claims,
         permissions=frozenset(),
     )
     req = ThinkRequest(
@@ -78,16 +73,13 @@ async def borg_learn(
     source: str,
     namespace: str,
     metadata: dict | None = None,
-    token: AccessToken | None = CurrentAccessToken(),
 ) -> str:
     """Ingest a new episode into the knowledge graph."""
     from borg.ingestion import ingest_episode
     from borg.models import EpisodeCreate
 
-    claims = token.claims if token else {}
     namespace = await require_namespace_access(
         namespace,
-        claims=claims,
         permissions=frozenset(),
     )
     ep = EpisodeCreate(
@@ -112,15 +104,12 @@ async def borg_recall(
     query: str,
     namespace: str,
     memory_type: str | None = None,
-    token: AccessToken | None = CurrentAccessToken(),
 ) -> str:
     """Search memory with vector similarity when available."""
     from borg.db import get_conn
 
-    claims = token.claims if token else {}
     namespace = await require_namespace_access(
         normalize_namespace(namespace),
-        claims=claims,
         permissions=frozenset(),
     )
     parts = []
@@ -203,7 +192,6 @@ async def borg_recall(
 )
 async def borg_get_episode(
     episode_id: str,
-    token: AccessToken | None = CurrentAccessToken(),
 ) -> str:
     """Return the full stored content for a single episode."""
     from borg.db import get_conn
@@ -225,10 +213,8 @@ async def borg_get_episode(
     if not row:
         return "Episode not found."
 
-    claims = token.claims if token else {}
     namespace = await require_namespace_access(
         row["namespace"],
-        claims=claims,
         permissions=frozenset(),
     )
     occurred_at = row["occurred_at"].isoformat() if row["occurred_at"] else "?"

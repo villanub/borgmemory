@@ -16,7 +16,7 @@ import logging
 from contextlib import asynccontextmanager
 
 import structlog
-from fastapi import FastAPI, Header
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
@@ -101,11 +101,7 @@ async def lifespan(app: FastAPI):
     await close_pool()
 
 
-async def root_health(
-    authorization: str | None = Header(
-        default=None, alias="Authorization", include_in_schema=False
-    ),
-):
+async def root_health():
     from borg.db import get_conn
 
     try:
@@ -165,7 +161,10 @@ url = "http://localhost:8080/mcp"
         version="0.1.0",
         lifespan=lifespan,
         openapi_tags=OPENAPI_TAGS,
-        license_info={"name": "Private"},
+        license_info={
+            "name": "Apache-2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.html",
+        },
         contact={"name": "Project Borg"},
         docs_url="/docs" if settings.borg_enable_docs else None,
         redoc_url="/redoc" if settings.borg_enable_docs else None,
@@ -196,13 +195,11 @@ url = "http://localhost:8080/mcp"
         response_model=HealthResponse,
         tags=["Health"],
         summary="Service health check",
-        description="Returns liveness for unauthenticated callers and detailed worker/queue metrics for authenticated callers.",
+        description="Returns local service health and worker/queue metrics.",
     )
 
     # Mount the FastMCP app LAST at "/".
-    # The sub-app serves the /mcp transport endpoint and the OAuth helper routes
-    # it needs for discovery and login, including /.well-known/*, /authorize,
-    # /token, and /auth/callback.
+    # The sub-app serves the /mcp transport endpoint.
     app.mount("/", MCPTransportSecurityMiddleware(mcp_http_app))
     return app
 

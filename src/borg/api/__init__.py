@@ -127,7 +127,6 @@ This is the primary Borg operation. Equivalent to `borg_think` via MCP.
 """,
     responses={
         200: {"description": "Compiled context package"},
-        401: {"description": "Missing or invalid auth token"},
     },
 )
 async def api_think(req: ThinkRequest, principal=Security(require_read_access_limited)):
@@ -163,7 +162,6 @@ Check `GET /health` or `GET /api/admin/queue` to monitor processing.
 """,
     responses={
         200: {"description": "Episode accepted or duplicate detected"},
-        401: {"description": "Missing or invalid auth token"},
     },
 )
 async def api_learn(ep: EpisodeCreate, principal=Security(require_write_access_limited)):
@@ -191,7 +189,6 @@ memory directly rather than get a compiled context package.
 """,
     responses={
         200: {"description": "Raw search results"},
-        401: {"description": "Missing or invalid auth token"},
     },
 )
 async def api_recall(req: RecallRequest, principal=Security(require_read_access)):
@@ -323,7 +320,6 @@ preview returned by search results.
 """,
     responses={
         200: {"description": "Full stored episode"},
-        401: {"description": "Missing or invalid auth token"},
         404: {"description": "Episode not found"},
     },
 )

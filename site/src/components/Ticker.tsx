@@ -6,7 +6,7 @@ const ITEMS = [
   "apache 2.0",
   "claude code · codex · copilot · kiro",
   "valid_from / valid_until supersession",
-  "single-user · localhost · auth on roadmap",
+  "single-user · localhost · no login",
   "15 tables · 1 function",
   "78% fewer stale facts vs RAG",
 ];

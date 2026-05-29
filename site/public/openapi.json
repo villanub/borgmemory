@@ -7,7 +7,8 @@
       "name": "Project Borg"
     },
     "license": {
-      "name": "Private"
+      "name": "Apache-2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
     "version": "0.1.0"
   },
@@ -60,9 +61,6 @@
               }
             }
           },
-          "401": {
-            "description": "Missing or invalid auth token"
-          },
           "422": {
             "description": "Validation Error",
             "content": {
@@ -105,9 +103,6 @@
               }
             }
           },
-          "401": {
-            "description": "Missing or invalid auth token"
-          },
           "422": {
             "description": "Validation Error",
             "content": {
@@ -149,9 +144,6 @@
                 }
               }
             }
-          },
-          "401": {
-            "description": "Missing or invalid auth token"
           },
           "422": {
             "description": "Validation Error",
@@ -196,9 +188,6 @@
                 }
               }
             }
-          },
-          "401": {
-            "description": "Missing or invalid auth token"
           },
           "404": {
             "description": "Episode not found"
@@ -946,7 +935,7 @@
           "Health"
         ],
         "summary": "Service health check",
-        "description": "Returns liveness for unauthenticated callers and detailed worker/queue metrics for authenticated callers.",
+        "description": "Returns local service health and worker/queue metrics.",
         "operationId": "root_health_health_get",
         "responses": {
           "200": {
@@ -955,16 +944,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HealthResponse"
-                }
-              }
-            }
-          },
-          "422": {
-            "description": "Validation Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
                 }
               }
             }

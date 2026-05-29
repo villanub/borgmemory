@@ -16,9 +16,6 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 # Prevent database connection on import
 os.environ.setdefault("DATABASE_URL", "postgresql+asyncpg://localhost/fake")
 os.environ.setdefault("DATABASE_URL_SYNC", "postgresql://localhost/fake")
-os.environ.setdefault("ENTRA_TENANT_ID", "00000000-0000-0000-0000-000000000000")
-os.environ.setdefault("ENTRA_CLIENT_ID", "00000000-0000-0000-0000-000000000000")
-os.environ.setdefault("ENTRA_AUDIENCE", "api://00000000-0000-0000-0000-000000000000")
 os.environ.setdefault("BORG_ENABLE_DOCS", "true")
 
 from borg.main import app

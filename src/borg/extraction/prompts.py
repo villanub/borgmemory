@@ -156,8 +156,8 @@ Security rules:
 
 A procedure is a repeatable pattern, workflow, decision rule, or best practice that someone follows or has established. Examples:
 - "Always run terraform plan before apply in production"
-- "Use tri-auth pattern (Entra JWT + Rackspace x-auth + customer x-auth) for APIM endpoints"
-- "Check SOX compliance matrix before deploying billing changes"
+- "Run a smoke test after changing webhook retry behavior"
+- "Check the release checklist before changing data retention policy"
 
 Rules:
 1. Only extract procedures that are explicitly stated or strongly implied as established practices

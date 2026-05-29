@@ -9,7 +9,7 @@ type Node = { id: string; label: string; type: "ent" | "ep"; x: number; y: numbe
 
 const NODES: Node[] = [
   { id: "WG", label: "Webhook Gateway", type: "ent", x: 160, y: 120 },
-  { id: "OA", label: "OAuth Scope", type: "ent", x: 760, y: 130 },
+  { id: "WH", label: "Webhook Rule", type: "ent", x: 760, y: 130 },
   { id: "HM", label: "HMAC Pattern", type: "ent", x: 140, y: 340 },
   { id: "BJ", label: "Background Jobs", type: "ent", x: 470, y: 360 },
   { id: "PG", label: "Postgres", type: "ent", x: 620, y: 260 },
@@ -22,7 +22,7 @@ const EDGES: { from: string; to: string; pred: string }[] = [
   { from: "WG", to: "HM", pred: "uses_pattern" },
   { from: "WG", to: "BJ", pred: "depends_on" },
   { from: "BJ", to: "PG", pred: "persists_to" },
-  { from: "WG", to: "OA", pred: "validates" },
+  { from: "WG", to: "WH", pred: "validates" },
 ];
 
 export function GraphViz() {

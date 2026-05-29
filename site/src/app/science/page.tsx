@@ -146,7 +146,7 @@ export default function SciencePage() {
             </div>
             <p className="sub">
               Both are popular. Both work fine on a demo. Both degrade sharply
-              once conversations accumulate across weeks and teams.
+              once conversations accumulate across weeks and projects.
             </p>
           </div>
 

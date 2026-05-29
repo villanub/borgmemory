@@ -3,12 +3,10 @@
 import json
 
 import pytest
-from fastmcp.server.auth import AccessToken
 
 import borg.compiler
 import borg.db as db_module
 from borg.compiler.classify import ClassificationResult
-from borg.config import settings
 from borg.mcp import borg_get_episode, borg_think
 from borg.models import TargetModel, ThinkRequest, ThinkResponse
 
@@ -52,19 +50,11 @@ async def test_borg_think_accepts_specific_model_names(monkeypatch):
 
     monkeypatch.setattr(borg.compiler, "compile_context", fake_compile_context)
 
-    token = AccessToken(
-        token="token",
-        client_id="client-id",
-        scopes=["access_as_user"],
-        claims={settings.entra_namespace_claim: ["borg"]},
-    )
-
     result = await borg_think(
         query="Check Borg",
         namespace="borg",
         model="gpt-5.2",
         task_hint="chat",
-        token=token,
     )
 
     assert result == '{"status":"ok"}'
@@ -93,13 +83,13 @@ async def test_compile_context_minimizes_audit_payloads(monkeypatch):
             {
                 "type": "fact",
                 "id": "11111111-1111-1111-1111-111111111111",
-                "content": "Borg uses Entra",
+                "content": "Borg uses Postgres",
                 "audit": {
                     "type": "fact",
                     "id": "11111111-1111-1111-1111-111111111111",
                     "predicate": "uses",
                     "from_entity": "Borg",
-                    "to_entity": "Entra",
+                    "to_entity": "Postgres",
                     "score_breakdown": {
                         "relevance": 0.8,
                         "composite": 0.9,
@@ -160,12 +150,12 @@ async def test_compile_context_minimizes_audit_payloads(monkeypatch):
     monkeypatch.setattr(borg.compiler, "get_conn", lambda: FakeConnContext())
 
     response, audit = await borg.compiler.compile_context(
-        ThinkRequest(query="What is Borg doing with Entra auth?", namespace="borg", model="gpt-5.2")
+        ThinkRequest(query="What storage does Borg use?", namespace="borg", model="gpt-5.2")
     )
 
     assert response.compiled_context == '{"status":"ok"}'
     assert audit.query_text.startswith("sha256:")
-    assert "What is Borg doing" not in audit.query_text
+    assert "What storage" not in audit.query_text
     assert captured["query_text"] == audit.query_text
     assert captured["selected_items"] == [
         {
@@ -221,14 +211,7 @@ async def test_borg_get_episode_returns_full_content(monkeypatch):
 
     monkeypatch.setattr(db_module, "get_conn", lambda: FakeConnContext())
 
-    token = AccessToken(
-        token="token",
-        client_id="client-id",
-        scopes=["access_as_user"],
-        claims={settings.entra_namespace_claim: ["borg"]},
-    )
-
-    result = await borg_get_episode(episode_id=episode_id, token=token)
+    result = await borg_get_episode(episode_id=episode_id)
 
     assert "## Episode" in result
     assert f"- id: {episode_id}" in result

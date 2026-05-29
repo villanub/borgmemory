@@ -42,7 +42,7 @@ Example:
 
 ```python
 borg_learn(
-    content="Fixed auth issue in Borg. Root cause was ... Solution was ...",
+    content="Fixed Borg issue. Root cause was ... Solution was ...",
     source="claude-code",
     namespace="borg",
 )
@@ -56,7 +56,7 @@ Example:
 
 ```python
 borg_recall(
-    query="Entra auth migration",
+    query="OSS release cleanup",
     namespace="borg",
     memory_type="semantic",
 )

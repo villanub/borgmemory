@@ -742,7 +742,7 @@ All endpoints are open in local single-user mode. No auth header required.
 url = "http://localhost:8080/mcp"
 ```
 
-Claude Code, Claude Desktop, and Kiro connect directly to `http://localhost:8080/mcp`. No auth, no OAuth — Borg accepts all local connections.
+Claude Code, Claude Desktop, and Kiro connect directly to `http://localhost:8080/mcp`. Borg accepts local connections without login.
 
 CLAUDE.md instruction:
 ```

@@ -471,7 +471,7 @@ const COMPARE: [string, string, string, string, string][] = [
   ["Stale-fact handling", "None", "Temporal (Neo4j)", "None", "Temporal · supersession"],
   ["Cross-client reuse", "Per SDK", "Per SDK", "Per SDK", "Any MCP client, same DB"],
   ["Audit + inspect", "Limited", "Partial", "Limited", "Full trace, per compile"],
-  ["License", "Source-avail.", "Mixed", "Open", "Apache 2.0"],
+  ["License", "Mixed", "Mixed", "Open", "Apache 2.0"],
 ];
 
 const DEEPER: { kicker: string; href: string; title: React.ReactNode; body: string }[] = [

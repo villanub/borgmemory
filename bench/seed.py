@@ -42,7 +42,7 @@ SEED_EPISODES = [
         "content": (
             "APIM uses a tri-auth pattern for service authentication: (1) DDI tenant "
             "isolation via x-auth-ddi header, (2) service-to-service token exchange via "
-            "Azure AD app registration, and (3) subscription key for rate limiting. All "
+            "service application registration, and (3) project key for rate limiting. All "
             "three must pass for a request to be authorized. When debugging auth issues, "
             "always check DDI isolation first — it's the most common failure point because "
             "tenant context gets lost in retry loops."
@@ -57,7 +57,7 @@ SEED_EPISODES = [
             "DDI tenant isolation headers (x-auth-ddi) are present and correct. Step 2 — "
             "Inspect the service token for encoding issues (XML escaping, URL encoding). "
             "Step 3 — Review APIM policy XML for correct token injection points. Step 4 — "
-            "Verify the subscription key is active and rate limits aren't exceeded. This "
+            "Verify the project key is active and rate limits aren't exceeded. This "
             "pattern has been used successfully across 4 separate auth debugging sessions."
         ),
         "source": "claude-code",
@@ -82,7 +82,7 @@ SEED_EPISODES = [
     {
         "content": (
             "AMA compliance tracking v2 post-mortem: the main drift risk was that DCR "
-            "assignments could silently change during Azure maintenance or subscription "
+            "assignments could silently change during Azure maintenance or project "
             "migrations. The rax- prefix convention helps identify Rackspace-managed DCRs "
             "vs customer-created ones. OS categorization (Windows/Linux/Other) determines "
             "which DCR set gets applied. v3 should add a daily drift scan comparing "
@@ -182,7 +182,7 @@ SEED_EPISODES = [
             "Resolved the MFA Phase 2 ARM template deployment issue. The problem was that "
             "the ARM template specified resource scopes that didn't align with the new MFA "
             "policy requirements. When MFA was enforced, the service principal couldn't "
-            "authenticate because the ARM scope was set to subscription-level but the MFA "
+            "connect because the ARM scope was set to project-level but the MFA "
             "policy required resource-group-level scope. Fix: Updated ARM scope definitions "
             "to use resource-group-level scoping. Used az rest instead of curl for the API "
             "calls because az rest handles token refresh and MFA challenges automatically, "
@@ -196,7 +196,7 @@ SEED_EPISODES = [
     {
         "content": (
             "AeroPro Texas current architecture: Hub-spoke network topology with Azure "
-            "Virtual WAN. Production workloads run in South Central US region. Key "
+            "Virtual WAN. Production workloads run in the primary US region. Key "
             "components: (1) AKS cluster for microservices (3 node pools, autoscaling), "
             "(2) Azure SQL Managed Instance for relational data, (3) Event Hubs for "
             "real-time telemetry ingestion, (4) Azure Data Factory for ETL pipelines, "
